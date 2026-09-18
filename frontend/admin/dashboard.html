@@ -1,0 +1,364 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Café Nébula | Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/styles.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- =================================================
+         NAVBAR
+         ================================================= -->
+
+    <header class="header">
+
+        <div class="logo">
+            Café Nébula
+        </div>
+
+
+        <nav>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="pedidos.html">
+                Pedidos
+            </a>
+
+            <a href="inventario.html">
+                Inventario
+            </a>
+
+            <a href="ventas.html">
+                Ventas
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =================================================
+         CONTENIDO PRINCIPAL
+         ================================================= -->
+
+    <main class="contenedor">
+
+
+        <!-- PRESENTACIÓN -->
+
+        <section class="presentacion">
+
+            <p class="etiqueta">
+                PANEL DEL NEGOCIO
+            </p>
+
+            <h1>
+                Dashboard
+            </h1>
+
+            <p>
+                Consulta un resumen general de la actividad
+                de Café Nébula.
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             RESUMEN
+             ================================================= -->
+
+        <section class="dashboard-resumen">
+
+
+            <article class="dashboard-card">
+
+                <span>
+                    Ventas totales
+                </span>
+
+                <strong id="ventas-totales">
+                    $0.00
+                </strong>
+
+            </article>
+
+
+            <article class="dashboard-card">
+
+                <span>
+                    Pedidos completados
+                </span>
+
+                <strong id="cantidad-pedidos">
+                    0
+                </strong>
+
+            </article>
+
+
+            <article class="dashboard-card">
+
+                <span>
+                    Producto más vendido
+                </span>
+
+                <strong id="producto-mas-vendido">
+                    Sin datos
+                </strong>
+
+            </article>
+
+
+            <article class="dashboard-card">
+
+                <span>
+                    Día con más ventas
+                </span>
+
+                <strong id="dia-mas-ventas">
+                    Sin datos
+                </strong>
+
+            </article>
+
+
+        </section>
+
+
+        <!-- =================================================
+             GRÁFICAS
+             ================================================= -->
+
+        <section class="dashboard-graficas">
+
+            <div class="dashboard-graficas-header">
+
+                <p class="etiqueta">
+                    ANÁLISIS VISUAL
+                </p>
+
+                <h2>
+                    Estadísticas de ventas
+                </h2>
+
+                <p>
+                    Visualización de los datos registrados
+                    en Café Nébula.
+                </p>
+
+            </div>
+
+
+            <div class="graficas-grid">
+
+
+                <!-- VENTAS POR DÍA -->
+
+                <article class="grafica-card">
+
+                    <div class="grafica-card-header">
+
+                        <h3>
+                            Ventas por día
+                        </h3>
+
+                        <p>
+                            Total vendido por fecha.
+                        </p>
+
+                    </div>
+
+
+                    <div class="grafica-contenedor">
+
+                        <canvas
+                            id="grafica-ventas-dia"
+                        ></canvas>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUCTOS MÁS VENDIDOS -->
+
+                <article class="grafica-card">
+
+                    <div class="grafica-card-header">
+
+                        <h3>
+                            Productos más vendidos
+                        </h3>
+
+                        <p>
+                            Cantidad de unidades vendidas
+                            por producto.
+                        </p>
+
+                    </div>
+
+
+                    <div class="grafica-contenedor">
+
+                        <canvas
+                            id="grafica-productos"
+                        ></canvas>
+
+                    </div>
+
+                </article>
+
+
+                <!-- DEMANDA POR HORA -->
+
+                <article class="grafica-card grafica-card-completa">
+
+                    <div class="grafica-card-header">
+
+                        <h3>
+                            Demanda por hora
+                        </h3>
+
+                        <p>
+                            Cantidad de ventas realizadas
+                            según la hora.
+                        </p>
+
+                    </div>
+
+
+                    <div class="grafica-contenedor grafica-hora">
+
+                        <canvas
+                            id="grafica-hora"
+                        ></canvas>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ACCESOS
+             ================================================= -->
+
+        <section class="dashboard-accesos">
+
+            <h2>
+                Administración
+            </h2>
+
+
+            <div class="dashboard-accesos-grid">
+
+
+                <a
+                    href="pedidos.html"
+                    class="dashboard-acceso"
+                >
+
+                    <span>
+                        Pedidos
+                    </span>
+
+                    <p>
+                        Consulta y administra los pedidos
+                        de los clientes.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="inventario.html"
+                    class="dashboard-acceso"
+                >
+
+                    <span>
+                        Inventario
+                    </span>
+
+                    <p>
+                        Consulta el stock actual
+                        de los productos.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="ventas.html"
+                    class="dashboard-acceso"
+                >
+
+                    <span>
+                        Ventas
+                    </span>
+
+                    <p>
+                        Consulta las ventas generadas
+                        por pedidos completados.
+                    </p>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =================================================
+         PROTECCIÓN DEL PANEL
+         ================================================= -->
+
+    <script src="../js/admin-auth.js"></script>
+
+
+    <!-- =================================================
+         CHART.JS
+         ================================================= -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js"
+    ></script>
+
+
+    <!-- =================================================
+         JAVASCRIPT DEL DASHBOARD
+         ================================================= -->
+
+    <script src="../js/dashboard.js"></script>
+
+</body>
+
+</html>
+

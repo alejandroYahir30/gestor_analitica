@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Café Nébula | Administración</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/styles.css"
+    >
+
+</head>
+
+<body>
+
+    <main class="login-admin">
+
+        <section class="login-admin-card">
+
+            <div class="login-admin-header">
+
+                <p class="etiqueta">
+                    CAFÉ NÉBULA
+                </p>
+
+                <h1>
+                    Administración
+                </h1>
+
+                <p>
+                    Ingresa tus credenciales para acceder
+                    al panel del negocio.
+                </p>
+
+            </div>
+
+
+            <form id="login-form">
+
+                <div class="campo">
+
+                    <label for="usuario">
+                        Usuario
+                    </label>
+
+                    <input
+                        type="text"
+                        id="usuario"
+                        name="usuario"
+                        placeholder="Ingresa tu usuario"
+                        autocomplete="username"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="contrasena">
+                        Contraseña
+                    </label>
+
+                    <input
+                        type="password"
+                        id="contrasena"
+                        name="contrasena"
+                        placeholder="Ingresa tu contraseña"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn-login-admin"
+                >
+                    Iniciar sesión
+                </button>
+
+
+                <p
+                    id="mensaje-login"
+                    class="mensaje-login"
+                ></p>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <script src="../js/admin-login.js"></script>
+
+</body>
+
+</html>

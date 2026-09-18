@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Café Nébula | Carrito</title>
+
+<link
+    rel="stylesheet"
+    href="../css/styles.css"
+>
+```
+
+</head>
+
+<body>
+
+```
+<header class="header">
+
+    <div class="logo">
+        Café Nébula
+    </div>
+
+    <nav>
+
+        <a href="productos.html">
+            Productos
+        </a>
+
+        <a href="carrito.html">
+            Carrito
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="contenedor">
+
+    <section class="presentacion">
+
+        <p class="etiqueta">
+            TU PEDIDO
+        </p>
+
+        <h1>
+            Carrito
+        </h1>
+
+        <p>
+            Revisa los productos antes de realizar tu pedido.
+        </p>
+
+    </section>
+
+
+    <!-- CONTENIDO DEL CARRITO -->
+
+    <section>
+
+        <div id="carrito">
+
+            <p>
+                Cargando carrito...
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FORMULARIO DEL PEDIDO -->
+
+    <section
+        id="formulario-pedido"
+        class="formulario-pedido"
+    >
+
+        <h2>
+            Datos del pedido
+        </h2>
+
+        <p>
+            Ingresa tus datos para realizar el pedido.
+        </p>
+
+
+        <form id="pedido-form">
+
+
+            <div class="campo">
+
+                <label for="nombre">
+                    Nombre
+                </label>
+
+                <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    placeholder="Ingresa tu nombre"
+                    required
+                >
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="telefono">
+                    Teléfono
+                </label>
+
+                <input
+                    type="tel"
+                    id="telefono"
+                    name="telefono"
+                    placeholder="Ingresa tu teléfono"
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn-agregar"
+            >
+                Realizar pedido
+            </button>
+
+
+        </form>
+
+    </section>
+
+</main>
+
+
+<script src="../js/carrito.js"></script>
+```
+
+</body>
+
+</html>

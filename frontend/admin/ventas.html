@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Café Nébula | Ventas</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/styles.css"
+    >
+
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="logo">
+            Café Nébula
+        </div>
+
+        <nav>
+
+            <a href="pedidos.html">
+                Pedidos
+            </a>
+
+            <a href="inventario.html">
+                Inventario
+            </a>
+
+            <a href="ventas.html">
+                Ventas
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main class="contenedor">
+
+        <section class="presentacion">
+
+            <p class="etiqueta">
+                PANEL DEL NEGOCIO
+            </p>
+
+            <h1>
+                Ventas
+            </h1>
+
+            <p>
+                Consulta las ventas generadas por los pedidos
+                completados.
+            </p>
+
+        </section>
+
+
+        <!-- RESUMEN -->
+
+        <section class="resumen-ventas">
+
+            <div class="resumen-venta">
+
+                <span>
+                    Ventas registradas
+                </span>
+
+                <strong id="cantidad-ventas">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="resumen-venta">
+
+                <span>
+                    Total vendido
+                </span>
+
+                <strong id="total-ventas">
+                    $0.00
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- LISTA DE VENTAS -->
+
+        <section>
+
+            <div id="ventas">
+
+                <p>
+                    Cargando ventas...
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="../js/ventas.js"></script>
+    <script src="../js/admin-auth.js"></script>
+
+</body>
+
+</html>
