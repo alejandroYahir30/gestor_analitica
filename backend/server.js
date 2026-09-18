@@ -11,8 +11,7 @@ const ventasRoutes = require("./routes/ventas.routes");
 const estadisticasRoutes = require("./routes/estadisticas.routes");
 
 const app = express();
-const PORT = 3000;
-
+const PORT = process.env.PORT || 3000;
 
 // =====================================================
 // MIDDLEWARES
