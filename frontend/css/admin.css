@@ -1,0 +1,512 @@
+/* =========================================================
+   CAFÉ NÉBULA
+   CARRITO Y CONFIRMACIÓN DE PEDIDO
+========================================================= */
+
+
+/* =========================================================
+   CARRITO VACÍO
+========================================================= */
+
+.carrito-vacio {
+    max-width: 760px;
+
+    margin: 20px auto 0;
+    padding: 80px 45px;
+
+    background: var(--blanco);
+
+    border: 1px solid var(--gris-borde);
+    border-radius: var(--radio);
+
+    text-align: center;
+
+    box-shadow: var(--sombra-sutil);
+}
+
+.carrito-vacio h2 {
+    margin-bottom: 10px;
+
+    color: var(--negro);
+
+    font-size: 25px;
+    font-weight: 800;
+
+    letter-spacing: -0.8px;
+}
+
+.carrito-vacio p {
+    max-width: 470px;
+
+    margin: 0 auto 28px;
+
+    color: var(--gris-texto);
+
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.carrito-vacio .btn-agregar {
+    display: inline-block;
+
+    width: auto;
+    min-width: 190px;
+
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   LISTA DEL CARRITO
+========================================================= */
+
+.lista-carrito {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+/* =========================================================
+   ELEMENTO DEL CARRITO
+========================================================= */
+
+.item-carrito {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 2fr)
+        120px
+        140px
+        auto;
+
+    align-items: center;
+
+    gap: 28px;
+
+    padding: 24px 26px;
+
+    background: var(--blanco);
+
+    border: 1px solid var(--gris-borde);
+    border-radius: var(--radio);
+
+    box-shadow: var(--sombra-sutil);
+
+    transition:
+        border-color var(--transicion),
+        box-shadow var(--transicion);
+}
+
+.item-carrito:hover {
+    border-color: #d5d5d2;
+
+    box-shadow: var(--sombra);
+}
+
+
+/* =========================================================
+   INFORMACIÓN DEL PRODUCTO
+========================================================= */
+
+.item-carrito h2 {
+    margin-bottom: 6px;
+
+    color: var(--negro);
+
+    font-size: 17px;
+    font-weight: 800;
+
+    letter-spacing: -0.4px;
+}
+
+.item-carrito p {
+    color: var(--gris-texto);
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   CANTIDAD
+========================================================= */
+
+.cantidad-carrito {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.cantidad-carrito label {
+    color: var(--gris-texto);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+
+    text-transform: uppercase;
+}
+
+.cantidad-carrito input {
+    width: 78px;
+
+    padding: 10px 11px;
+
+    border: 1px solid var(--gris-borde);
+    border-radius: 7px;
+
+    background: var(--blanco);
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.cantidad-carrito input:focus {
+    border-color: var(--azul);
+
+    box-shadow:
+        0 0 0 3px rgba(49, 94, 251, 0.08);
+}
+
+
+/* =========================================================
+   BOTÓN ELIMINAR
+========================================================= */
+
+.btn-eliminar {
+    width: fit-content;
+
+    padding: 7px 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: #777777;
+
+    cursor: pointer;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    transition:
+        color var(--transicion);
+}
+
+.btn-eliminar:hover {
+    color: var(--rojo);
+}
+
+
+/* =========================================================
+   RESUMEN DEL CARRITO
+========================================================= */
+
+.resumen-carrito {
+    width: min(410px, 100%);
+
+    margin-top: 22px;
+    margin-left: auto;
+
+    padding: 29px;
+
+    background: var(--blanco);
+
+    border: 1px solid var(--gris-borde);
+    border-radius: var(--radio);
+
+    box-shadow: var(--sombra);
+}
+
+.resumen-carrito p {
+    margin-bottom: 7px;
+
+    color: var(--gris-texto);
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.resumen-carrito h2 {
+    margin-bottom: 22px;
+
+    color: var(--negro);
+
+    font-size: 31px;
+    font-weight: 800;
+
+    line-height: 1;
+
+    letter-spacing: -1.2px;
+}
+
+.resumen-carrito .btn-agregar {
+    display: block;
+
+    width: 100%;
+
+    text-align: center;
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   FORMULARIO DE PEDIDO
+========================================================= */
+
+.formulario-pedido {
+    margin-top: 24px;
+
+    padding: 34px;
+
+    background: var(--blanco);
+
+    border: 1px solid var(--gris-borde);
+    border-radius: var(--radio);
+
+    box-shadow: var(--sombra-sutil);
+}
+
+.formulario-pedido h2 {
+    margin-bottom: 7px;
+
+    color: var(--negro);
+
+    font-size: 21px;
+    font-weight: 800;
+
+    letter-spacing: -0.5px;
+}
+
+.formulario-pedido > p {
+    margin-bottom: 28px;
+
+    color: var(--gris-texto);
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+#pedido-form {
+    width: min(100%, 560px);
+}
+
+
+/* =========================================================
+   CAMPOS
+========================================================= */
+
+.campo {
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 19px;
+}
+
+.campo label {
+    margin-bottom: 7px;
+
+    color: var(--negro);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 0.2px;
+}
+
+.campo input {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border: 1px solid var(--gris-borde);
+    border-radius: 8px;
+
+    background: var(--blanco);
+
+    color: var(--negro);
+
+    font-size: 13px;
+}
+
+.campo input::placeholder {
+    color: #a0a0a0;
+}
+
+.campo input:focus {
+    border-color: var(--azul);
+
+    box-shadow:
+        0 0 0 3px rgba(49, 94, 251, 0.08);
+}
+
+
+/* =========================================================
+   BOTÓN PRINCIPAL DEL FORMULARIO
+========================================================= */
+
+#pedido-form .btn-agregar {
+    margin-top: 4px;
+}
+
+
+/* =========================================================
+   SEPARACIÓN VISUAL
+========================================================= */
+
+.lista-carrito + .resumen-carrito {
+    position: relative;
+}
+
+.resumen-carrito::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 24px;
+
+    width: 45px;
+    height: 3px;
+
+    background: var(--negro);
+
+    border-radius: 0 0 4px 4px;
+}
+
+
+/* =========================================================
+   RESPONSIVE — 900 PX
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .item-carrito {
+        grid-template-columns:
+            minmax(0, 1fr)
+            100px
+            auto;
+
+        gap: 20px;
+    }
+
+    .item-carrito .btn-eliminar {
+        grid-column: 3;
+        grid-row: 1;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — 700 PX
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .item-carrito {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 18px;
+
+        padding: 22px;
+    }
+
+    .item-carrito > :first-child {
+        grid-column: 1 / -1;
+    }
+
+    .item-carrito .btn-eliminar {
+        grid-column: auto;
+        grid-row: auto;
+
+        justify-self: end;
+        align-self: end;
+    }
+
+    .cantidad-carrito input {
+        width: 75px;
+    }
+
+    .resumen-carrito {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — 600 PX
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .carrito-vacio {
+        padding: 60px 25px;
+    }
+
+    .carrito-vacio h2 {
+        font-size: 22px;
+    }
+
+    .carrito-vacio p {
+        font-size: 13px;
+    }
+
+    .item-carrito {
+        display: flex;
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 14px;
+
+        padding: 20px;
+    }
+
+    .item-carrito .btn-eliminar {
+        align-self: flex-start;
+    }
+
+    .cantidad-carrito input {
+        width: 100%;
+    }
+
+    .resumen-carrito {
+        padding: 24px;
+    }
+
+    .resumen-carrito h2 {
+        font-size: 28px;
+    }
+
+    .formulario-pedido {
+        padding: 24px 20px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — 400 PX
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .carrito-vacio {
+        padding: 50px 20px;
+    }
+
+    .resumen-carrito {
+        padding: 21px;
+    }
+
+    .formulario-pedido {
+        padding: 21px 17px;
+    }
+
+}

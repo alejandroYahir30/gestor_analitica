@@ -1,0 +1,657 @@
+/* =========================================================
+   CAFÉ NÉBULA
+   DASHBOARD ADMINISTRATIVO
+   ANALÍTICA / MÉTRICAS / IA
+========================================================= */
+
+
+/* =========================================================
+   RESUMEN PRINCIPAL
+========================================================= */
+
+.dashboard-resumen {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 16px;
+
+    margin-bottom: 52px;
+}
+
+
+/* =========================================================
+   TARJETAS KPI
+========================================================= */
+
+.dashboard-card {
+    position: relative;
+
+    min-height: 155px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 24px;
+
+    background: var(--blanco);
+
+    border: 1px solid var(--gris-borde);
+    border-radius: var(--radio);
+
+    box-shadow: var(--sombra-sutil);
+
+    overflow: hidden;
+
+    transition:
+        transform var(--transicion),
+        border-color var(--transicion),
+        box-shadow var(--transicion);
+}
+
+.dashboard-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background: var(--negro);
+}
+
+.dashboard-card:hover {
+    transform: translateY(-3px);
+
+    border-color: #d6d6d2;
+
+    box-shadow: var(--sombra);
+}
+
+
+/* =========================================================
+   TEXTO KPI
+========================================================= */
+
+.dashboard-card span {
+    color: var(--gris-texto);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+
+    text-transform: uppercase;
+}
+
+.dashboard-card strong {
+    display: block;
+
+    color: var(--negro);
+
+    font-size: 29px;
+    font-weight: 800;
+
+    line-height: 1.05;
+
+    letter-spacing: -1.2px;
+}
+
+
+/* =========================================================
+   GRÁFICAS
+========================================================= */
+
+.dashboard-graficas {
+    margin-top: 8px;
+
+    margin-bottom: 52px;
+}
+
+
+/* =========================================================
+   ENCABEZADO GRÁFICAS
+========================================================= */
+
+.dashboard-graficas-header {
+    margin-bottom: 21px;
+}
+
+.dashboard-graficas-header h2 {
+    margin-bottom: 6px;
+
+    color: var(--negro);
+
+    font-size: 24px;
+    font-weight: 800;
+
+    letter-spacing: -0.8px;
+}
+
+.dashboard-graficas-header > p:last-child {
+    color: var(--gris-texto);
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   GRID GRÁFICAS
+========================================================= */
+
+.graficas-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+
+/* =========================================================
+   TARJETA GRÁFICA
+========================================================= */
+
+.grafica-card {
+    min-width: 0;
+
+    padding: 25px;
+
+    background: var(--blanco);
+
+    border: 1px solid var(--gris-borde);
+    border-radius: var(--radio);
+
+    box-shadow: var(--sombra-sutil);
+}
+
+.grafica-card-completa {
+    grid-column: 1 / -1;
+}
+
+
+/* =========================================================
+   ENCABEZADO DE GRÁFICA
+========================================================= */
+
+.grafica-card-header {
+    margin-bottom: 20px;
+}
+
+.grafica-card-header h3 {
+    margin-bottom: 5px;
+
+    color: var(--negro);
+
+    font-size: 16px;
+    font-weight: 800;
+
+    letter-spacing: -0.35px;
+}
+
+.grafica-card-header p {
+    color: var(--gris-texto);
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   CONTENEDOR CHART.JS
+========================================================= */
+
+.grafica-contenedor {
+    position: relative;
+
+    width: 100%;
+    height: 300px;
+}
+
+.grafica-hora {
+    height: 330px;
+}
+
+
+/* =========================================================
+   ANÁLISIS INTELIGENTE
+========================================================= */
+
+.analisis-inteligente {
+    margin-bottom: 52px;
+}
+
+.analisis-inteligente-contenido {
+    position: relative;
+
+    padding: 32px;
+
+    background: var(--negro);
+
+    border: 1px solid var(--negro-3);
+    border-radius: var(--radio);
+
+    box-shadow: var(--sombra-grande);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   DETALLE VISUAL
+========================================================= */
+
+.analisis-inteligente-contenido::before {
+    content: "";
+
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    top: -150px;
+    right: -80px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(49, 94, 251, 0.13);
+
+    pointer-events: none;
+}
+
+.analisis-inteligente-contenido::after {
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    bottom: -55px;
+    left: 18%;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   BOTÓN ANALIZAR
+========================================================= */
+
+#btn-analizar {
+    position: relative;
+    z-index: 1;
+
+    padding: 12px 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+
+    background: var(--blanco);
+    color: var(--negro);
+
+    cursor: pointer;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    transition:
+        background var(--transicion),
+        transform var(--transicion),
+        box-shadow var(--transicion);
+}
+
+#btn-analizar:hover {
+    background: #eeeeec;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+#btn-analizar:active {
+    transform: translateY(0);
+}
+
+#btn-analizar:disabled {
+    opacity: 0.55;
+
+    cursor: wait;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   RESULTADO DE IA
+========================================================= */
+
+#resultado-analisis {
+    position: relative;
+    z-index: 1;
+
+    margin-top: 26px;
+    padding-top: 25px;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.12);
+
+    color: var(--blanco);
+}
+
+#resultado-analisis h3 {
+    margin-bottom: 12px;
+
+    color: var(--blanco);
+
+    font-size: 17px;
+    font-weight: 800;
+
+    letter-spacing: -0.3px;
+}
+
+#resultado-analisis p {
+    margin-bottom: 14px;
+
+    color: #bfc4cc;
+
+    font-size: 13px;
+
+    line-height: 1.75;
+}
+
+#resultado-analisis ul {
+    margin-bottom: 22px;
+
+    padding-left: 20px;
+}
+
+#resultado-analisis li {
+    margin-bottom: 7px;
+
+    color: #bfc4cc;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+#resultado-analisis strong {
+    color: var(--blanco);
+}
+
+
+/* =========================================================
+   ACCESOS RÁPIDOS
+========================================================= */
+
+.dashboard-accesos {
+    margin-top: 8px;
+}
+
+.dashboard-accesos h2 {
+    margin-bottom: 18px;
+
+    color: var(--negro);
+
+    font-size: 21px;
+    font-weight: 800;
+
+    letter-spacing: -0.6px;
+}
+
+.dashboard-accesos-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+
+/* =========================================================
+   TARJETAS DE ACCESO
+========================================================= */
+
+.dashboard-acceso {
+    position: relative;
+
+    min-height: 145px;
+
+    display: block;
+
+    padding: 25px;
+
+    background: var(--blanco);
+
+    border: 1px solid var(--gris-borde);
+    border-radius: var(--radio);
+
+    color: var(--negro);
+
+    text-decoration: none;
+
+    overflow: hidden;
+
+    transition:
+        transform var(--transicion),
+        border-color var(--transicion),
+        box-shadow var(--transicion);
+}
+
+.dashboard-acceso::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 0;
+    height: 3px;
+
+    background: var(--azul);
+
+    transition: width 0.3s ease;
+}
+
+.dashboard-acceso::after {
+    content: "→";
+
+    position: absolute;
+
+    top: 21px;
+    right: 23px;
+
+    color: #aaaaaa;
+
+    font-size: 18px;
+
+    transition:
+        color var(--transicion),
+        transform var(--transicion);
+}
+
+.dashboard-acceso:hover {
+    transform: translateY(-4px);
+
+    border-color: #d2d2ce;
+
+    box-shadow: var(--sombra);
+}
+
+.dashboard-acceso:hover::before {
+    width: 100%;
+}
+
+.dashboard-acceso:hover::after {
+    color: var(--azul);
+
+    transform: translateX(4px);
+}
+
+
+/* =========================================================
+   TEXTO DE ACCESOS
+========================================================= */
+
+.dashboard-acceso span {
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: var(--negro);
+
+    font-size: 16px;
+    font-weight: 800;
+
+    letter-spacing: -0.3px;
+}
+
+.dashboard-acceso p {
+    max-width: 300px;
+
+    color: var(--gris-texto);
+
+    font-size: 12px;
+
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   RESPONSIVE — 1100 PX
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .dashboard-resumen {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — 900 PX
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .graficas-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .grafica-card-completa {
+        grid-column: auto;
+    }
+
+    .dashboard-accesos-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — 600 PX
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .dashboard-resumen {
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+
+        margin-bottom: 40px;
+    }
+
+    .dashboard-card {
+        min-height: 130px;
+
+        padding: 22px;
+    }
+
+    .dashboard-card strong {
+        font-size: 27px;
+    }
+
+    .dashboard-graficas,
+    .analisis-inteligente {
+        margin-bottom: 40px;
+    }
+
+    .dashboard-graficas-header h2 {
+        font-size: 22px;
+    }
+
+    .grafica-card {
+        padding: 20px;
+    }
+
+    .grafica-contenedor {
+        height: 270px;
+    }
+
+    .grafica-hora {
+        height: 285px;
+    }
+
+    .analisis-inteligente-contenido {
+        padding: 23px;
+    }
+
+    .dashboard-acceso {
+        min-height: 130px;
+
+        padding: 22px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — 400 PX
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .dashboard-card {
+        padding: 20px;
+    }
+
+    .grafica-card {
+        padding: 18px;
+    }
+
+    .grafica-contenedor {
+        height: 250px;
+    }
+
+    .grafica-hora {
+        height: 265px;
+    }
+
+    .analisis-inteligente-contenido {
+        padding: 20px;
+    }
+
+}

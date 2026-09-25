@@ -1,0 +1,371 @@
+/* =========================================================
+   CAFÉ NÉBULA
+   VENTAS
+   ESTILO CORPORATIVO / FINANCIERO
+========================================================= */
+
+
+/* =========================================================
+   CONTENEDOR PRINCIPAL
+========================================================= */
+
+.ventas-tabla {
+    width: 100%;
+
+    margin-top: 10px;
+}
+
+
+/* =========================================================
+   TABLA DE VENTAS
+========================================================= */
+
+.ventas-tabla table {
+    min-width: 720px;
+}
+
+
+/* =========================================================
+   ENCABEZADOS
+========================================================= */
+
+.ventas-tabla th {
+    padding: 14px 18px;
+
+    background: #f7f7f5;
+
+    border-bottom: 1px solid var(--gris-borde);
+
+    color: #5c5c5c;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+
+    text-align: left;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   CELDAS
+========================================================= */
+
+.ventas-tabla td {
+    padding: 17px 18px;
+
+    color: var(--negro);
+
+    font-size: 13px;
+
+    vertical-align: middle;
+}
+
+
+/* =========================================================
+   IDENTIFICADOR DE VENTA
+========================================================= */
+
+.ventas-tabla td:first-child {
+    color: var(--negro);
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   MONTO DE VENTA
+========================================================= */
+
+.ventas-tabla td:last-child {
+    color: var(--negro);
+
+    font-size: 14px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   FILAS
+========================================================= */
+
+.ventas-tabla tbody tr {
+    transition:
+        background var(--transicion);
+}
+
+.ventas-tabla tbody tr:hover {
+    background: #fafafa;
+}
+
+
+/* =========================================================
+   RESUMEN DE VENTAS
+========================================================= */
+
+.ventas-resumen {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 16px;
+
+    margin-bottom: 28px;
+}
+
+
+/* =========================================================
+   TARJETA DE MÉTRICA
+========================================================= */
+
+.venta-card {
+    position: relative;
+
+    min-height: 135px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 23px;
+
+    background: var(--blanco);
+
+    border: 1px solid var(--gris-borde);
+    border-radius: var(--radio);
+
+    box-shadow: var(--sombra-sutil);
+
+    overflow: hidden;
+
+    transition:
+        transform var(--transicion),
+        box-shadow var(--transicion);
+}
+
+.venta-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background: var(--negro);
+}
+
+.venta-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow: var(--sombra);
+}
+
+
+/* =========================================================
+   TEXTO DE MÉTRICAS
+========================================================= */
+
+.venta-card span {
+    color: var(--gris-texto);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.7px;
+
+    text-transform: uppercase;
+}
+
+.venta-card strong {
+    color: var(--negro);
+
+    font-size: 27px;
+    font-weight: 800;
+
+    line-height: 1;
+
+    letter-spacing: -1px;
+}
+
+
+/* =========================================================
+   INFORMACIÓN FINANCIERA
+========================================================= */
+
+.venta-total {
+    color: var(--negro);
+
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.venta-secundaria {
+    color: var(--gris-texto);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   ESTADO DE VENTA
+========================================================= */
+
+.estado-venta {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: fit-content;
+
+    padding: 5px 9px;
+
+    border-radius: 999px;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 0.4px;
+
+    text-transform: uppercase;
+}
+
+.estado-venta-completada {
+    background: var(--verde-suave);
+
+    border: 1px solid #d7ecdf;
+
+    color: var(--verde);
+}
+
+.estado-venta-pendiente {
+    background: var(--amarillo-suave);
+
+    border: 1px solid #f0e3bc;
+
+    color: var(--amarillo);
+}
+
+.estado-venta-cancelada {
+    background: var(--rojo-suave);
+
+    border: 1px solid #efd4d4;
+
+    color: var(--rojo);
+}
+
+
+/* =========================================================
+   SECCIÓN DE INFORMACIÓN
+========================================================= */
+
+.ventas-info {
+    margin-bottom: 25px;
+}
+
+.ventas-info h2 {
+    margin-bottom: 6px;
+
+    color: var(--negro);
+
+    font-size: 23px;
+    font-weight: 800;
+
+    letter-spacing: -0.7px;
+}
+
+.ventas-info p {
+    max-width: 650px;
+
+    color: var(--gris-texto);
+
+    font-size: 13px;
+
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   RESPONSIVE — 1000 PX
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .ventas-resumen {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — 800 PX
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .ventas-tabla {
+        overflow-x: auto;
+
+        border-radius: var(--radio);
+    }
+
+    .ventas-tabla table {
+        min-width: 680px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — 600 PX
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .ventas-resumen {
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
+    .venta-card {
+        min-height: 120px;
+
+        padding: 21px;
+    }
+
+    .venta-card strong {
+        font-size: 25px;
+    }
+
+    .ventas-info h2 {
+        font-size: 21px;
+    }
+
+    .ventas-tabla th,
+    .ventas-tabla td {
+        padding: 13px 14px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — 400 PX
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .venta-card {
+        padding: 19px;
+    }
+
+}

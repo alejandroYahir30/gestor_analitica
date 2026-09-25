@@ -1,0 +1,477 @@
+/* =========================================================
+   CAFÉ NÉBULA
+   EXPERIENCIA DEL CLIENTE
+   ESTILO COMERCIAL / PREMIUM
+========================================================= */
+
+
+/* =========================================================
+   HEADER CLIENTE
+========================================================= */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    width: 100%;
+    min-height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 48px;
+
+    background: rgba(255, 255, 255, 0.94);
+
+    border-bottom: 1px solid rgba(229, 229, 226, 0.9);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.logo {
+    color: var(--negro);
+
+    font-size: 21px;
+    font-weight: 800;
+
+    letter-spacing: -0.8px;
+
+    text-decoration: none;
+}
+
+.header nav {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.header nav a {
+    position: relative;
+
+    padding: 9px 13px;
+
+    color: #626262;
+
+    border-radius: 7px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+        color var(--transicion),
+        background var(--transicion);
+}
+
+.header nav a:hover {
+    color: var(--negro);
+    background: #f5f5f3;
+}
+
+
+/* =========================================================
+   PRESENTACIÓN DE PRODUCTOS
+========================================================= */
+
+.presentacion {
+    max-width: 850px;
+}
+
+.presentacion .etiqueta {
+    color: var(--negro);
+}
+
+.presentacion h1 {
+    max-width: 800px;
+}
+
+.presentacion p:last-child {
+    max-width: 650px;
+}
+
+
+/* =========================================================
+   GRID DE PRODUCTOS
+========================================================= */
+
+.productos-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+
+/* =========================================================
+   TARJETA DE PRODUCTO
+========================================================= */
+
+.producto {
+    position: relative;
+
+    min-height: 330px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 25px;
+
+    background: var(--blanco);
+
+    border: 1px solid var(--gris-borde);
+    border-radius: var(--radio);
+
+    box-shadow: var(--sombra-sutil);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.producto::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background: var(--negro);
+
+    transform: scaleX(0);
+    transform-origin: left;
+
+    transition: transform 0.3s ease;
+}
+
+.producto:hover {
+    transform: translateY(-5px);
+
+    border-color: #d5d5d2;
+
+    box-shadow: var(--sombra-grande);
+}
+
+.producto:hover::before {
+    transform: scaleX(1);
+}
+
+
+/* =========================================================
+   CATEGORÍA
+========================================================= */
+
+.producto-categoria {
+    display: inline-flex;
+
+    width: fit-content;
+
+    margin-bottom: 22px;
+    padding: 6px 9px;
+
+    background: #f5f5f3;
+
+    border: 1px solid #e8e8e5;
+    border-radius: 6px;
+
+    color: #666666;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 1.1px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   NOMBRE DEL PRODUCTO
+========================================================= */
+
+.producto h2 {
+    margin-bottom: 10px;
+
+    color: var(--negro);
+
+    font-size: 20px;
+    font-weight: 800;
+
+    line-height: 1.2;
+
+    letter-spacing: -0.6px;
+}
+
+
+/* =========================================================
+   DESCRIPCIÓN
+========================================================= */
+
+.producto-descripcion {
+    margin-bottom: 24px;
+
+    color: var(--gris-texto);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   INFORMACIÓN INFERIOR
+========================================================= */
+
+.producto-info {
+    margin-top: auto;
+}
+
+
+/* =========================================================
+   PRECIO
+========================================================= */
+
+.producto-precio {
+    margin-bottom: 5px;
+
+    color: var(--negro);
+
+    font-size: 25px;
+    font-weight: 800;
+
+    line-height: 1;
+
+    letter-spacing: -1px;
+}
+
+
+/* =========================================================
+   STOCK
+========================================================= */
+
+.producto-stock {
+    margin-bottom: 16px;
+
+    color: var(--gris-texto-2);
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   BOTÓN AGREGAR
+========================================================= */
+
+.btn-agregar {
+    width: 100%;
+
+    padding: 13px 16px;
+
+    border: 1px solid var(--negro);
+    border-radius: 8px;
+
+    background: var(--negro);
+    color: var(--blanco);
+
+    cursor: pointer;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    transition:
+        background var(--transicion),
+        color var(--transicion),
+        transform var(--transicion),
+        box-shadow var(--transicion);
+}
+
+.btn-agregar:hover {
+    background: var(--azul);
+    border-color: var(--azul);
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 18px rgba(49, 94, 251, 0.18);
+}
+
+.btn-agregar:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   PRODUCTO AGOTADO
+========================================================= */
+
+.btn-agotado {
+    width: 100%;
+
+    padding: 13px 16px;
+
+    border: 1px solid #e2e2df;
+    border-radius: 8px;
+
+    background: #f0f0ee;
+    color: #999999;
+
+    cursor: not-allowed;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   EFECTO VISUAL DE TARJETAS
+========================================================= */
+
+.producto:nth-child(1),
+.producto:nth-child(2),
+.producto:nth-child(3),
+.producto:nth-child(4) {
+    animation: aparecerProducto 0.45s ease both;
+}
+
+.producto:nth-child(2) {
+    animation-delay: 0.04s;
+}
+
+.producto:nth-child(3) {
+    animation-delay: 0.08s;
+}
+
+.producto:nth-child(4) {
+    animation-delay: 0.12s;
+}
+
+@keyframes aparecerProducto {
+
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — 1100 PX
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .productos-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — 900 PX
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .header {
+        padding: 0 30px;
+    }
+
+    .productos-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — 600 PX
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .header {
+        min-height: auto;
+
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 12px;
+
+        padding: 17px 16px;
+    }
+
+    .logo {
+        text-align: center;
+    }
+
+    .header nav {
+        justify-content: center;
+        flex-wrap: wrap;
+
+        gap: 3px;
+    }
+
+    .header nav a {
+        padding: 8px 10px;
+
+        font-size: 10px;
+    }
+
+    .productos-grid {
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+    }
+
+    .producto {
+        min-height: 300px;
+
+        padding: 23px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — 400 PX
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .header {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .header nav a {
+        padding: 7px 8px;
+        font-size: 9px;
+    }
+
+    .producto {
+        padding: 20px;
+    }
+
+}

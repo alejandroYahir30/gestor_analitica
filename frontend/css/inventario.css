@@ -1,0 +1,257 @@
+/* =========================================================
+   CAFÉ NÉBULA
+   INVENTARIO
+   ESTILO CORPORATIVO / OPERATIVO
+========================================================= */
+
+
+/* =========================================================
+   CONTENEDOR
+========================================================= */
+
+.inventario-tabla {
+    width: 100%;
+}
+
+
+/* =========================================================
+   TABLA DE INVENTARIO
+========================================================= */
+
+.inventario-tabla table {
+    min-width: 680px;
+}
+
+
+/* =========================================================
+   ENCABEZADOS
+========================================================= */
+
+.inventario-tabla th {
+    height: 48px;
+
+    padding: 14px 18px;
+
+    background: #f7f7f5;
+
+    color: #5d5d5d;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   CELDAS
+========================================================= */
+
+.inventario-tabla td {
+    padding: 17px 18px;
+
+    vertical-align: middle;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   PRODUCTO
+========================================================= */
+
+.inventario-tabla td:first-child {
+    color: var(--negro);
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   STOCK
+========================================================= */
+
+.inventario-tabla td:nth-child(2) {
+    color: #555555;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   ESTADOS DE STOCK
+========================================================= */
+
+.stock-normal {
+    display: inline-flex;
+
+    align-items: center;
+
+    width: fit-content;
+
+    padding: 5px 9px;
+
+    background: var(--verde-suave);
+
+    border: 1px solid #d7ecdf;
+    border-radius: 999px;
+
+    color: var(--verde);
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 0.4px;
+
+    text-transform: uppercase;
+}
+
+.stock-bajo {
+    display: inline-flex;
+
+    align-items: center;
+
+    width: fit-content;
+
+    padding: 5px 9px;
+
+    background: var(--amarillo-suave);
+
+    border: 1px solid #f0e3bc;
+    border-radius: 999px;
+
+    color: var(--amarillo);
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 0.4px;
+
+    text-transform: uppercase;
+}
+
+.stock-agotado {
+    display: inline-flex;
+
+    align-items: center;
+
+    width: fit-content;
+
+    padding: 5px 9px;
+
+    background: var(--rojo-suave);
+
+    border: 1px solid #efd4d4;
+    border-radius: 999px;
+
+    color: var(--rojo);
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 0.4px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   ACCIONES DE INVENTARIO
+========================================================= */
+
+.inventario-tabla button {
+    padding: 8px 11px;
+
+    border: 1px solid var(--gris-borde);
+    border-radius: 7px;
+
+    background: var(--blanco);
+    color: var(--negro);
+
+    cursor: pointer;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    transition:
+        background var(--transicion),
+        border-color var(--transicion),
+        color var(--transicion),
+        transform var(--transicion);
+}
+
+.inventario-tabla button:hover {
+    background: var(--negro);
+
+    border-color: var(--negro);
+
+    color: var(--blanco);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   FILAS
+========================================================= */
+
+.inventario-tabla tbody tr {
+    transition:
+        background var(--transicion);
+}
+
+.inventario-tabla tbody tr:hover {
+    background: #fafafa;
+}
+
+
+/* =========================================================
+   SEPARACIÓN VISUAL DE STOCK
+========================================================= */
+
+.inventario-tabla tbody tr td:nth-child(2) {
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   CONTENEDOR RESPONSIVE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .inventario-tabla {
+        overflow-x: auto;
+
+        border-radius: var(--radio);
+    }
+
+    .inventario-tabla table {
+        min-width: 650px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .inventario-tabla th,
+    .inventario-tabla td {
+        padding: 13px 14px;
+    }
+
+    .inventario-tabla th {
+        font-size: 9px;
+    }
+
+    .inventario-tabla td {
+        font-size: 12px;
+    }
+
+}

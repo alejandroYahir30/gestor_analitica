@@ -7,27 +7,43 @@ const API_URL = "http://localhost:3000/api";
 
 async function cargarPedidos() {
 
-    const contenedor =
-        document.getElementById("pedidos");
+    const contenedor = document.getElementById("pedidos");
 
     try {
 
-        const respuesta =
-            await fetch(`${API_URL}/pedidos`);
-
+        const respuesta = await fetch(`${API_URL}/pedidos`);
 
         if (!respuesta.ok) {
-
-            throw new Error(
-                "No se pudieron obtener los pedidos."
-            );
-
+            throw new Error("No se pudieron obtener los pedidos.");
         }
 
+        const pedidos = await respuesta.json();
 
-        const pedidos =
-            await respuesta.json();
 
+        // =================================================
+        // ORDENAR PEDIDOS
+        // MÁS NUEVO PRIMERO
+        // MÁS ANTIGUO AL FINAL
+        // =================================================
+
+        pedidos.sort((a, b) => {
+
+            const fechaHoraA = new Date(
+                `${a.fecha_pedido}T${a.hora_pedido}`
+            );
+
+            const fechaHoraB = new Date(
+                `${b.fecha_pedido}T${b.hora_pedido}`
+            );
+
+            return fechaHoraB - fechaHoraA;
+
+        });
+
+
+        // =================================================
+        // SI NO HAY PEDIDOS
+        // =================================================
 
         if (pedidos.length === 0) {
 
@@ -53,6 +69,10 @@ async function cargarPedidos() {
 
         let pedidosHTML = "";
 
+
+        // =================================================
+        // RECORRER PEDIDOS
+        // =================================================
 
         pedidos.forEach(pedido => {
 
@@ -221,8 +241,11 @@ async function cargarPedidos() {
         });
 
 
-        contenedor.innerHTML =
-            pedidosHTML;
+        // =================================================
+        // MOSTRAR PEDIDOS
+        // =================================================
+
+        contenedor.innerHTML = pedidosHTML;
 
 
     } catch (error) {
@@ -331,9 +354,7 @@ function generarBotonesEstado(pedido) {
     // EN PREPARACIÓN
     // =============================================
 
-    if (
-        pedido.estado === "en_preparacion"
-    ) {
+    if (pedido.estado === "en_preparacion") {
 
         return `
 
@@ -398,29 +419,23 @@ async function cambiarEstado(
 
     try {
 
-        const respuesta =
-            await fetch(
-                `${API_URL}/pedidos/${idPedido}/estado`,
-                {
-                    method: "PUT",
+        const respuesta = await fetch(
+            `${API_URL}/pedidos/${idPedido}/estado`,
+            {
+                method: "PUT",
 
-                    headers: {
-                        "Content-Type":
-                            "application/json"
-                    },
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
-                    body: JSON.stringify({
-
-                        estado:
-                            nuevoEstado
-
-                    })
-                }
-            );
+                body: JSON.stringify({
+                    estado: nuevoEstado
+                })
+            }
+        );
 
 
-        const resultado =
-            await respuesta.json();
+        const resultado = await respuesta.json();
 
 
         if (!respuesta.ok) {
@@ -442,7 +457,10 @@ async function cambiarEstado(
         );
 
 
-        // Volver a cargar los pedidos
+        // =============================================
+        // VOLVER A CARGAR Y ORDENAR
+        // =============================================
+
         await cargarPedidos();
 
 
@@ -473,20 +491,15 @@ function formatearEstado(estado) {
 
     const estados = {
 
-        pendiente:
-            "Pendiente",
+        pendiente: "Pendiente",
 
-        aceptado:
-            "Aceptado",
+        aceptado: "Aceptado",
 
-        en_preparacion:
-            "En preparación",
+        en_preparacion: "En preparación",
 
-        completado:
-            "Completado",
+        completado: "Completado",
 
-        rechazado:
-            "Rechazado"
+        rechazado: "Rechazado"
 
     };
 
@@ -503,8 +516,7 @@ function formatearEstado(estado) {
 
 function formatearFecha(fecha) {
 
-    const fechaLocal =
-        new Date(fecha);
+    const fechaLocal = new Date(fecha);
 
 
     return fechaLocal.toLocaleDateString(

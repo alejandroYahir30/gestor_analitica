@@ -1,0 +1,484 @@
+/* =========================================================
+   CAFÉ NÉBULA
+   ADMINISTRACIÓN DE PEDIDOS
+   ESTILO OPERATIVO / CORPORATIVO
+========================================================= */
+
+
+/* =========================================================
+   CONTENEDOR DE PEDIDOS
+========================================================= */
+
+#pedidos {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 16px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   TARJETA DE PEDIDO
+========================================================= */
+
+.pedido-admin {
+    position: relative;
+
+    min-width: 0;
+
+    padding: 20px;
+
+    background: var(--blanco);
+
+    border: 1px solid var(--gris-borde);
+    border-radius: var(--radio-mediano);
+
+    box-shadow: var(--sombra-sutil);
+
+    overflow: hidden;
+
+    transition:
+        transform var(--transicion),
+        border-color var(--transicion),
+        box-shadow var(--transicion);
+}
+
+.pedido-admin:hover {
+    transform: translateY(-2px);
+
+    border-color: #d3d3cf;
+
+    box-shadow: var(--sombra);
+}
+
+
+/* =========================================================
+   INDICADOR SUPERIOR
+========================================================= */
+
+.pedido-admin::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background: #d9d9d6;
+}
+
+
+/* =========================================================
+   ENCABEZADO DEL PEDIDO
+========================================================= */
+
+.pedido-admin-header {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 14px;
+
+    padding-bottom: 15px;
+
+    border-bottom: 1px solid #eeeeec;
+}
+
+.pedido-admin-header h2 {
+    margin: 0;
+
+    color: var(--negro);
+
+    font-size: 16px;
+    font-weight: 800;
+
+    line-height: 1.25;
+
+    letter-spacing: -0.4px;
+}
+
+
+/* =========================================================
+   ETIQUETA DEL PEDIDO
+========================================================= */
+
+.pedido-admin-header .producto-categoria {
+    margin-bottom: 7px;
+
+    padding: 5px 8px;
+
+    background: #f5f5f3;
+
+    border: 1px solid #e6e6e3;
+
+    border-radius: 5px;
+
+    color: #707070;
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+}
+
+
+/* =========================================================
+   INFORMACIÓN DEL CLIENTE
+========================================================= */
+
+.pedido-admin-info {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 8px;
+
+    padding: 15px 0;
+
+    border-bottom: 1px solid #eeeeec;
+}
+
+.pedido-admin-info p {
+    margin: 0;
+
+    color: var(--gris-texto);
+
+    font-size: 11px;
+
+    line-height: 1.45;
+}
+
+.pedido-admin-info strong {
+    color: var(--negro);
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   PRODUCTOS DEL PEDIDO
+========================================================= */
+
+.pedido-productos {
+    padding: 15px 0;
+}
+
+.pedido-productos h3 {
+    margin-bottom: 8px;
+
+    color: var(--negro);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 0.2px;
+
+    text-transform: uppercase;
+}
+
+.producto-pedido {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto
+        auto;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 8px 0;
+
+    border-bottom: 1px solid #f0f0ee;
+
+    font-size: 11px;
+}
+
+.producto-pedido:last-child {
+    border-bottom: none;
+}
+
+.producto-pedido strong {
+    min-width: 0;
+
+    color: var(--negro);
+
+    font-weight: 700;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.producto-pedido span {
+    color: var(--gris-texto);
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   TOTAL
+========================================================= */
+
+.pedido-admin-total {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 14px 0;
+
+    border-top: 1px solid #eeeeec;
+}
+
+.pedido-admin-total span {
+    color: var(--gris-texto);
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.3px;
+
+    text-transform: uppercase;
+}
+
+.pedido-admin-total strong {
+    color: var(--negro);
+
+    font-size: 20px;
+    font-weight: 800;
+
+    letter-spacing: -0.6px;
+}
+
+
+/* =========================================================
+   ACCIONES
+========================================================= */
+
+.pedido-acciones {
+    display: flex;
+
+    gap: 7px;
+
+    padding-top: 3px;
+}
+
+.btn-estado {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 10px 9px;
+
+    border: 1px solid var(--negro);
+    border-radius: 7px;
+
+    background: var(--negro);
+    color: var(--blanco);
+
+    cursor: pointer;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    transition:
+        background var(--transicion),
+        border-color var(--transicion),
+        transform var(--transicion),
+        box-shadow var(--transicion);
+}
+
+.btn-estado:hover {
+    background: var(--azul);
+    border-color: var(--azul);
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 7px 16px rgba(49, 94, 251, 0.16);
+}
+
+
+/* =========================================================
+   BOTÓN RECHAZAR
+========================================================= */
+
+.btn-rechazar {
+    background: var(--blanco);
+
+    border-color: #dededb;
+
+    color: var(--rojo);
+}
+
+.btn-rechazar:hover {
+    background: var(--rojo-suave);
+
+    border-color: #efcccc;
+
+    color: var(--rojo);
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   PEDIDO FINALIZADO
+========================================================= */
+
+.pedido-finalizado {
+    margin: 0;
+
+    padding: 10px 0 2px;
+
+    color: var(--gris-texto-2);
+
+    font-size: 10px;
+    font-weight: 600;
+
+    line-height: 1.5;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   ESTADOS VISUALES
+========================================================= */
+
+.pedido-admin:has(.estado-pendiente)::before {
+    background: #c99a27;
+}
+
+.pedido-admin:has(.estado-aceptado)::before {
+    background: var(--azul);
+}
+
+.pedido-admin:has(.estado-en_preparacion)::before {
+    background: var(--morado);
+}
+
+.pedido-admin:has(.estado-completado)::before {
+    background: var(--verde);
+}
+
+.pedido-admin:has(.estado-rechazado)::before {
+    background: var(--rojo);
+}
+
+
+/* =========================================================
+   PEDIDOS COMPLETADOS
+========================================================= */
+
+.pedido-admin:has(.estado-completado) {
+    background: #fcfdfc;
+}
+
+
+/* =========================================================
+   RESPONSIVE — 1100 PX
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    #pedidos {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — 800 PX
+========================================================= */
+
+@media (max-width: 800px) {
+
+    #pedidos {
+        grid-template-columns: 1fr;
+    }
+
+    .pedido-admin {
+        padding: 19px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — 600 PX
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .pedido-admin {
+        padding: 18px;
+    }
+
+    .pedido-admin-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 10px;
+    }
+
+    .pedido-admin-info {
+        gap: 9px;
+    }
+
+    .producto-pedido {
+        grid-template-columns:
+            minmax(0, 1fr)
+            auto;
+    }
+
+    .producto-pedido span:last-child {
+        grid-column: 2;
+    }
+
+    .pedido-acciones {
+        flex-direction: column;
+    }
+
+    .btn-estado {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — 400 PX
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .pedido-admin {
+        padding: 16px;
+    }
+
+    .pedido-admin-header h2 {
+        font-size: 15px;
+    }
+
+    .pedido-admin-total strong {
+        font-size: 18px;
+    }
+
+}
