@@ -106,17 +106,14 @@ textarea {
     -webkit-backdrop-filter: blur(16px);
 }
 
-
 .header-contenido {
     width: min(1440px, calc(100% - 4rem));
-
     min-height: 72px;
 
     margin: 0 auto;
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
 
     gap: 2rem;
 }
@@ -130,6 +127,8 @@ textarea {
     display: inline-flex;
     align-items: center;
 
+    flex-shrink: 0;
+
     color: #ffffff;
 
     text-decoration: none;
@@ -141,7 +140,6 @@ textarea {
 
     white-space: nowrap;
 }
-
 
 .logo::before {
     content: "ADMIN";
@@ -169,15 +167,20 @@ textarea {
 
 /* ==========================================================================
    NAVEGACIÓN
+   Logo a la izquierda / menú siempre a la derecha
 ========================================================================== */
 
 .header nav {
+    margin-left: auto;
+
     display: flex;
     align-items: center;
+    justify-content: flex-end;
 
     gap: 4px;
-}
 
+    min-width: 0;
+}
 
 .header nav a {
     position: relative;
@@ -199,17 +202,18 @@ textarea {
     font-size: 0.72rem;
     font-weight: 600;
 
+    white-space: nowrap;
+
     transition:
         color 0.2s ease,
-        background 0.2s ease;
+        background 0.2s ease,
+        transform 0.2s ease;
 }
-
 
 .header nav a:hover {
     background: var(--admin-sidebar-hover);
     color: #ffffff;
 }
-
 
 .header nav a:active {
     transform: translateY(1px);
@@ -241,7 +245,6 @@ textarea {
     text-align: left;
 }
 
-
 .presentacion .etiqueta {
     display: inline-flex;
     align-items: center;
@@ -258,21 +261,17 @@ textarea {
     text-transform: uppercase;
 }
 
-
 .presentacion h1 {
     margin: 0 0 8px;
 
     color: var(--admin-text);
 
     font-size: clamp(1.7rem, 2vw, 2.1rem);
-
     font-weight: 800;
 
     letter-spacing: -0.045em;
-
     line-height: 1.15;
 }
-
 
 .presentacion p {
     max-width: 680px;
@@ -282,7 +281,6 @@ textarea {
     color: var(--admin-text-secondary);
 
     font-size: 0.82rem;
-
     line-height: 1.7;
 }
 
@@ -297,7 +295,6 @@ textarea {
     justify-content: center;
 
     width: fit-content;
-
     min-height: 28px;
 
     padding: 0 10px;
@@ -312,18 +309,15 @@ textarea {
     white-space: nowrap;
 }
 
-
 .estado-pendiente {
     background: var(--admin-warning-soft);
     color: var(--admin-warning);
 }
 
-
 .estado-completado {
     background: var(--admin-success-soft);
     color: var(--admin-success);
 }
-
 
 .estado-cancelado {
     background: var(--admin-danger-soft);
@@ -337,9 +331,9 @@ textarea {
 
 button {
     border: 0;
+
     font-family: inherit;
 }
-
 
 button:not(.btn-eliminar) {
     cursor: pointer;
@@ -373,7 +367,6 @@ button:not(.btn-eliminar) {
         #111114;
 }
 
-
 .login-admin .login-contenedor {
     position: relative;
 
@@ -392,7 +385,6 @@ button:not(.btn-eliminar) {
         0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-
 .login-admin .login-contenedor::before {
     content: "CAFÉ NÉBULA";
 
@@ -408,19 +400,16 @@ button:not(.btn-eliminar) {
     letter-spacing: 0.16em;
 }
 
-
 .login-admin h1 {
     margin: 0 0 8px;
 
     color: var(--admin-text);
 
     font-size: 1.65rem;
-
     font-weight: 800;
 
     letter-spacing: -0.04em;
 }
-
 
 .login-admin p {
     margin: 0 0 28px;
@@ -428,7 +417,6 @@ button:not(.btn-eliminar) {
     color: var(--admin-text-secondary);
 
     font-size: 0.78rem;
-
     line-height: 1.7;
 }
 
@@ -448,7 +436,6 @@ button:not(.btn-eliminar) {
     font-weight: 700;
 }
 
-
 .login-admin input {
     width: 100%;
     height: 46px;
@@ -462,7 +449,6 @@ button:not(.btn-eliminar) {
     border-radius: 9px;
 
     background: #ffffff;
-
     color: var(--admin-text);
 
     font-size: 0.78rem;
@@ -473,16 +459,13 @@ button:not(.btn-eliminar) {
         background 0.2s ease;
 }
 
-
 .login-admin input::placeholder {
     color: #b0b1b7;
 }
 
-
 .login-admin input:hover {
     border-color: #d5d5da;
 }
-
 
 .login-admin input:focus {
     border-color: var(--admin-accent);
@@ -490,7 +473,6 @@ button:not(.btn-eliminar) {
     box-shadow:
         0 0 0 4px rgba(121, 87, 213, 0.10);
 }
-
 
 .login-admin button {
     width: 100%;
@@ -501,7 +483,6 @@ button:not(.btn-eliminar) {
     border-radius: 9px;
 
     background: var(--admin-sidebar);
-
     color: #ffffff;
 
     font-size: 0.74rem;
@@ -515,7 +496,6 @@ button:not(.btn-eliminar) {
         box-shadow 0.2s ease;
 }
 
-
 .login-admin button:hover {
     background: var(--admin-accent);
 
@@ -525,7 +505,6 @@ button:not(.btn-eliminar) {
     transform: translateY(-1px);
 }
 
-
 .login-admin button:active {
     transform: translateY(0);
 }
@@ -533,8 +512,6 @@ button:not(.btn-eliminar) {
 
 /* ==========================================================================
    ELEMENTOS DE TARJETA
-   Estas reglas sirven como base para dashboard,
-   pedidos, inventario y ventas.
 ========================================================================== */
 
 .card,
@@ -563,7 +540,6 @@ table {
     background: var(--admin-card);
 }
 
-
 th {
     padding: 14px 16px;
 
@@ -583,7 +559,6 @@ th {
     text-transform: uppercase;
 }
 
-
 td {
     padding: 15px 16px;
 
@@ -594,16 +569,13 @@ td {
     font-size: 0.74rem;
 }
 
-
 tr:last-child td {
     border-bottom: 0;
 }
 
-
 tbody tr {
     transition: background 0.15s ease;
 }
-
 
 tbody tr:hover {
     background: #fafafd;
@@ -616,20 +588,20 @@ tbody tr:hover {
 
 * {
     scrollbar-width: thin;
-    scrollbar-color: #d5d5da transparent;
-}
 
+    scrollbar-color:
+        #d5d5da
+        transparent;
+}
 
 *::-webkit-scrollbar {
     width: 7px;
     height: 7px;
 }
 
-
 *::-webkit-scrollbar-track {
     background: transparent;
 }
-
 
 *::-webkit-scrollbar-thumb {
     background: #d5d5da;
@@ -646,36 +618,33 @@ tbody tr:hover {
 
     .header-contenido {
         width: calc(100% - 2.5rem);
+
         gap: 1rem;
     }
 
-
     .header nav {
-        overflow-x: auto;
-
         max-width: 65vw;
+
+        overflow-x: auto;
 
         scrollbar-width: none;
     }
-
 
     .header nav::-webkit-scrollbar {
         display: none;
     }
 
-
     .header nav a {
         flex-shrink: 0;
+
         white-space: nowrap;
     }
-
 
     .contenedor {
         width: calc(100% - 2.5rem);
 
         padding-top: 34px;
     }
-
 }
 
 
@@ -689,7 +658,6 @@ tbody tr:hover {
         position: relative;
     }
 
-
     .header-contenido {
         width: calc(100% - 1.5rem);
 
@@ -697,38 +665,49 @@ tbody tr:hover {
 
         padding: 14px 0;
 
-        flex-direction: column;
+        display: flex;
+        flex-direction: row;
 
-        align-items: stretch;
+        align-items: center;
 
         gap: 12px;
     }
 
-
     .logo {
-        justify-content: center;
+        flex-shrink: 0;
     }
-
 
     .header nav {
-        max-width: none;
+        width: auto;
 
-        width: 100%;
+        max-width: calc(100vw - 145px);
 
-        justify-content: flex-start;
+        margin-left: auto;
+
+        display: flex;
+
+        justify-content: flex-end;
+
+        overflow-x: auto;
 
         padding-bottom: 2px;
+
+        scrollbar-width: none;
     }
 
+    .header nav::-webkit-scrollbar {
+        display: none;
+    }
 
     .header nav a {
         min-height: 36px;
 
-        padding: 0 11px;
+        padding: 0 10px;
+
+        flex-shrink: 0;
 
         font-size: 0.65rem;
     }
-
 
     .contenedor {
         width: calc(100% - 1.5rem);
@@ -736,33 +715,27 @@ tbody tr:hover {
         padding: 28px 0 55px;
     }
 
-
     .presentacion {
         margin-bottom: 24px;
     }
-
 
     .presentacion h1 {
         font-size: 1.5rem;
     }
 
-
     .presentacion p {
         font-size: 0.76rem;
     }
 
-
     .login-admin {
         padding: 18px;
     }
-
 
     .login-admin .login-contenedor {
         padding: 30px 24px;
 
         border-radius: 15px;
     }
-
 }
 
 
@@ -776,15 +749,24 @@ tbody tr:hover {
         padding: 26px 20px;
     }
 
-
     .logo {
         font-size: 0.92rem;
     }
-
 
     .logo::before {
         display: none;
     }
 
+    .header nav {
+        max-width: calc(100vw - 110px);
+
+        gap: 2px;
+    }
+
+    .header nav a {
+        padding: 0 8px;
+
+        font-size: 0.61rem;
+    }
 }
 

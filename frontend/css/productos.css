@@ -1,0 +1,439 @@
+
+/* ==========================================================================
+   CAFÉ NÉBULA — PRODUCTOS
+   Cliente / Catálogo
+========================================================================== */
+
+
+/* ==========================================================================
+   GRID
+========================================================================== */
+
+.productos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+
+    width: 100%;
+}
+
+
+/* ==========================================================================
+   CARD
+========================================================================== */
+
+.producto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 390px;
+
+    padding: 30px 28px 26px;
+
+    background: #ffffff;
+
+    border: 1px solid #e6e0d7;
+    border-radius: 18px;
+
+    box-shadow:
+        0 2px 6px rgba(35, 30, 24, 0.035),
+        0 12px 30px rgba(35, 30, 24, 0.045);
+
+    text-align: center;
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease;
+}
+
+.producto:hover {
+    border-color: #d6c7b8;
+
+    box-shadow:
+        0 8px 18px rgba(35, 30, 24, 0.05),
+        0 18px 38px rgba(35, 30, 24, 0.08);
+
+    transform: translateY(-4px);
+}
+
+
+/* ==========================================================================
+   CATEGORÍA
+========================================================================== */
+
+.producto .categoria,
+.producto .producto-categoria {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: fit-content;
+    max-width: 100%;
+
+    margin: 0 0 18px;
+    padding: 7px 11px;
+
+    background: #f5f0e9;
+
+    border-radius: 6px;
+
+    color: #806149;
+
+    font-size: 0.57rem;
+    font-weight: 800;
+
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+
+
+/* ==========================================================================
+   NOMBRE
+========================================================================== */
+
+.producto h2 {
+    width: 100%;
+
+    margin: 0 0 12px;
+
+    color: #211f1c;
+
+    font-family:
+        "Manrope",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    font-size: 1.18rem;
+    font-weight: 800;
+
+    letter-spacing: -0.035em;
+    line-height: 1.3;
+
+    text-align: center;
+
+    overflow-wrap: break-word;
+}
+
+
+/* ==========================================================================
+   DESCRIPCIÓN
+========================================================================== */
+
+.producto p,
+.producto .producto-descripcion {
+    width: 100%;
+    max-width: 300px;
+
+    margin: 0 auto;
+
+    color: #77716a;
+
+    font-size: 0.73rem;
+    font-weight: 500;
+
+    line-height: 1.7;
+
+    text-align: center;
+
+    overflow-wrap: break-word;
+}
+
+
+/* ==========================================================================
+   ZONA INFERIOR
+========================================================================== */
+
+.producto .producto-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    gap: 18px;
+
+    margin-top: auto;
+    padding: 20px 0 18px;
+
+    border-top: 1px solid #eeeae4;
+}
+
+
+/* ==========================================================================
+   PRECIO
+========================================================================== */
+
+.producto .precio,
+.producto .producto-precio {
+    margin: 0;
+    padding: 0;
+
+    color: #211f1c;
+
+    font-family:
+        "Manrope",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    font-size: 1.25rem;
+    font-weight: 800;
+
+    letter-spacing: -0.04em;
+
+    text-align: center;
+}
+
+
+/* ==========================================================================
+   STOCK
+========================================================================== */
+
+.producto .producto-stock {
+    color: #8a847c;
+
+    font-size: 0.62rem;
+    font-weight: 600;
+
+    text-align: center;
+}
+
+
+/* ==========================================================================
+   BOTÓN
+========================================================================== */
+
+.producto button,
+.producto .btn-agregar,
+.producto .btn-agotado {
+    width: 100%;
+    max-width: 300px;
+
+    min-height: 46px;
+
+    margin: 0;
+
+    padding: 0 18px;
+
+    border-radius: 9px;
+
+    font-family:
+        "Manrope",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    font-size: 0.68rem;
+    font-weight: 800;
+
+    letter-spacing: 0.01em;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Disponible */
+
+.producto button,
+.producto .btn-agregar {
+    border: 1px solid #211f1c;
+
+    background: #211f1c;
+    color: #ffffff;
+}
+
+.producto button:hover,
+.producto .btn-agregar:hover {
+    border-color: #6f4e37;
+
+    background: #6f4e37;
+
+    box-shadow:
+        0 7px 16px rgba(111, 78, 55, 0.16);
+
+    transform: translateY(-1px);
+}
+
+.producto button:active,
+.producto .btn-agregar:active {
+    transform: translateY(0);
+}
+
+
+/* ==========================================================================
+   AGOTADO
+========================================================================== */
+
+.producto button:disabled,
+.producto .btn-agotado {
+    border: 1px solid #e5e1db;
+
+    background: #f5f3f0;
+    color: #99938b;
+
+    cursor: not-allowed;
+
+    transform: none;
+    box-shadow: none;
+}
+
+
+/* ==========================================================================
+   CARGANDO
+========================================================================== */
+
+.productos-grid > p {
+    grid-column: 1 / -1;
+
+    width: 100%;
+
+    margin: 0;
+    padding: 60px 20px;
+
+    background: #ffffff;
+
+    border: 1px solid #e8e4dd;
+    border-radius: 16px;
+
+    color: #817b73;
+
+    font-size: 0.76rem;
+    font-weight: 600;
+
+    text-align: center;
+}
+
+
+/* ==========================================================================
+   ANIMACIÓN
+========================================================================== */
+
+.producto {
+    animation: aparecerProducto 0.4s ease both;
+}
+
+@keyframes aparecerProducto {
+
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ==========================================================================
+   TABLET
+========================================================================== */
+
+@media (max-width: 1000px) {
+
+    .productos-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .producto {
+        min-height: 380px;
+    }
+}
+
+
+/* ==========================================================================
+   MÓVIL
+========================================================================== */
+
+@media (max-width: 650px) {
+
+    .productos-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .producto {
+        min-height: 350px;
+
+        padding: 28px 24px 24px;
+    }
+
+    .producto h2 {
+        font-size: 1.1rem;
+    }
+
+    .producto p,
+    .producto .producto-descripcion {
+        max-width: 340px;
+    }
+
+    .producto button,
+    .producto .btn-agregar,
+    .producto .btn-agotado {
+        max-width: 340px;
+    }
+}
+
+
+/* ==========================================================================
+   CELULARES PEQUEÑOS
+========================================================================== */
+
+@media (max-width: 380px) {
+
+    .producto {
+        min-height: 340px;
+
+        padding: 25px 20px 22px;
+    }
+
+    .producto .categoria,
+    .producto .producto-categoria {
+        margin-bottom: 15px;
+    }
+
+    .producto h2 {
+        font-size: 1.05rem;
+    }
+
+    .producto p,
+    .producto .producto-descripcion {
+        font-size: 0.7rem;
+    }
+
+    .producto .producto-info {
+        gap: 12px;
+        padding-top: 17px;
+    }
+
+    .producto .precio,
+    .producto .producto-precio {
+        font-size: 1.15rem;
+    }
+
+    .producto button,
+    .producto .btn-agregar,
+    .producto .btn-agotado {
+        min-height: 44px;
+    }
+}
+

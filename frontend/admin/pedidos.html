@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -38,13 +37,16 @@
             Café Nébula
         </div>
 
-
         <nav>
+
             <a href="dashboard.html">
                 Dashboard
             </a>
 
-            <a href="pedidos.html">
+            <a
+                href="pedidos.html"
+                class="activo"
+            >
                 Pedidos
             </a>
 
@@ -63,31 +65,159 @@
 
     <main class="contenedor">
 
-        <section class="presentacion">
+        <!-- ENCABEZADO -->
 
-            <p class="etiqueta">
-                PANEL DEL NEGOCIO
-            </p>
+        <section class="pedidos-encabezado">
 
-            <h1>
-                Pedidos
-            </h1>
+            <div>
 
-            <p>
-                Consulta y administra los pedidos realizados
-                por los clientes.
-            </p>
+                <p class="pedidos-etiqueta">
+                    OPERACIÓN
+                </p>
+
+                <h1>
+                    Pedidos
+                </h1>
+
+                <p class="pedidos-descripcion">
+                    Administra y da seguimiento a los pedidos
+                    realizados por los clientes.
+                </p>
+
+            </div>
 
         </section>
 
 
-        <section>
+        <!-- RESUMEN -->
 
-            <div id="pedidos">
+        <section class="pedidos-resumen">
 
-                <p>
-                    Cargando pedidos...
-                </p>
+            <article class="pedido-resumen-item">
+
+                <div class="resumen-icono resumen-pendiente">
+                    !
+                </div>
+
+                <div>
+
+                    <span>
+                        Pendientes
+                    </span>
+
+                    <strong id="contador-pendientes">
+                        0
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+            <article class="pedido-resumen-item">
+
+                <div class="resumen-icono resumen-aceptado">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span>
+                        Aceptados
+                    </span>
+
+                    <strong id="contador-aceptados">
+                        0
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+            <article class="pedido-resumen-item">
+
+                <div class="resumen-icono resumen-preparacion">
+                    ◷
+                </div>
+
+                <div>
+
+                    <span>
+                        En preparación
+                    </span>
+
+                    <strong id="contador-preparacion">
+                        0
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+            <article class="pedido-resumen-item">
+
+                <div class="resumen-icono resumen-finalizado">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span>
+                        Finalizados
+                    </span>
+
+                    <strong id="contador-finalizados">
+                        0
+                    </strong>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- LISTADO -->
+
+        <section class="pedidos-panel">
+
+            <div class="pedidos-panel-header">
+
+                <div>
+
+                    <p>
+                        REGISTRO
+                    </p>
+
+                    <h2>
+                        Pedidos recibidos
+                    </h2>
+
+                </div>
+
+                <span class="pedidos-total-label">
+                    Actualización en tiempo real
+                </span>
+
+            </div>
+
+
+            <div
+                id="pedidos"
+                class="pedidos-lista"
+            >
+
+                <div class="pedidos-cargando">
+
+                    <span></span>
+
+                    <p>
+                        Cargando pedidos...
+                    </p>
+
+                </div>
 
             </div>
 
@@ -103,4 +233,3 @@
 </body>
 
 </html>
-```

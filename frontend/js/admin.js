@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000/api";
+const API_URL_ADMIN = "http://localhost:3000/api";
 
 
 // =====================================================
@@ -7,34 +7,47 @@ const API_URL = "http://localhost:3000/api";
 
 async function cargarPedidos() {
 
-    const contenedor = document.getElementById("pedidos");
+    const contenedor =
+        document.getElementById("pedidos");
+
+    // Si esta página no tiene pedidos,
+    // no ejecutar esta función.
+    if (!contenedor) {
+        return;
+    }
 
     try {
 
-        const respuesta = await fetch(`${API_URL}/pedidos`);
+        const respuesta =
+            await fetch(`${API_URL_ADMIN}/pedidos`);
 
         if (!respuesta.ok) {
-            throw new Error("No se pudieron obtener los pedidos.");
+
+            throw new Error(
+                "No se pudieron obtener los pedidos."
+            );
+
         }
 
-        const pedidos = await respuesta.json();
+        const pedidos =
+            await respuesta.json();
 
 
         // =================================================
-        // ORDENAR PEDIDOS
-        // MÁS NUEVO PRIMERO
-        // MÁS ANTIGUO AL FINAL
+        // ORDENAR DEL MÁS RECIENTE AL MÁS ANTIGUO
         // =================================================
 
         pedidos.sort((a, b) => {
 
-            const fechaHoraA = new Date(
-                `${a.fecha_pedido}T${a.hora_pedido}`
-            );
+            const fechaHoraA =
+                new Date(
+                    `${a.fecha_pedido}T${a.hora_pedido}`
+                );
 
-            const fechaHoraB = new Date(
-                `${b.fecha_pedido}T${b.hora_pedido}`
-            );
+            const fechaHoraB =
+                new Date(
+                    `${b.fecha_pedido}T${b.hora_pedido}`
+                );
 
             return fechaHoraB - fechaHoraA;
 
@@ -42,18 +55,29 @@ async function cargarPedidos() {
 
 
         // =================================================
-        // SI NO HAY PEDIDOS
+        // ACTUALIZAR CONTADORES
+        // =================================================
+
+        actualizarContadores(pedidos);
+
+
+        // =================================================
+        // SIN PEDIDOS
         // =================================================
 
         if (pedidos.length === 0) {
 
             contenedor.innerHTML = `
 
-                <div class="carrito-vacio">
+                <div class="pedidos-vacio">
 
-                    <h2>
+                    <div class="vacio-icono">
+                        —
+                    </div>
+
+                    <h3>
                         No hay pedidos
-                    </h2>
+                    </h3>
 
                     <p>
                         Todavía no se han recibido pedidos.
@@ -64,44 +88,41 @@ async function cargarPedidos() {
             `;
 
             return;
+
         }
 
 
+        // =================================================
+        // GENERAR PEDIDOS
+        // =================================================
+
         let pedidosHTML = "";
 
-
-        // =================================================
-        // RECORRER PEDIDOS
-        // =================================================
 
         pedidos.forEach(pedido => {
 
             let productosHTML = "";
 
 
-            // =============================================
-            // PRODUCTOS DEL PEDIDO
-            // =============================================
-
             pedido.productos.forEach(producto => {
 
                 productosHTML += `
 
-                    <div class="producto-pedido">
+                    <div class="pedido-producto">
 
-                        <strong>
-                            ${producto.nombre}
-                        </strong>
-
-                        <span>
-                            × ${producto.cantidad}
+                        <span class="producto-cantidad">
+                            ${producto.cantidad}×
                         </span>
 
-                        <span>
+                        <span class="producto-nombre">
+                            ${producto.nombre}
+                        </span>
+
+                        <strong class="producto-subtotal">
                             $${Number(
                                 producto.subtotal
                             ).toFixed(2)}
-                        </span>
+                        </strong>
 
                     </div>
 
@@ -110,104 +131,63 @@ async function cargarPedidos() {
             });
 
 
-            // =============================================
-            // TARJETA DEL PEDIDO
-            // =============================================
-
             pedidosHTML += `
 
-                <article class="pedido-admin">
+                <article class="pedido-fila">
 
+                    <!-- IDENTIFICACIÓN -->
 
-                    <!-- ENCABEZADO -->
+                    <div class="pedido-identificacion">
 
-                    <div class="pedido-admin-header">
+                        <span class="pedido-numero">
+                            #${pedido.id_pedido}
+                        </span>
 
                         <div>
 
-                            <p class="producto-categoria">
-                                PEDIDO #${pedido.id_pedido}
-                            </p>
-
-                            <h2>
+                            <h3>
                                 ${pedido.cliente}
-                            </h2>
+                            </h3>
+
+                            <p>
+                                ${pedido.telefono ||
+                                "Sin teléfono"}
+                            </p>
 
                         </div>
 
-
-                        <span
-                            class="estado-pedido estado-${pedido.estado}"
-                        >
-                            ${formatearEstado(pedido.estado)}
-                        </span>
-
                     </div>
 
 
+                    <!-- FECHA -->
 
-                    <!-- INFORMACIÓN DEL CLIENTE -->
+                    <div class="pedido-fecha">
 
-                    <div class="pedido-admin-info">
-
-                        <p>
-
-                            <strong>
-                                Teléfono:
-                            </strong>
-
-                            ${
-                                pedido.telefono ||
-                                "No proporcionado"
-                            }
-
-                        </p>
-
-
-                        <p>
-
-                            <strong>
-                                Fecha:
-                            </strong>
-
+                        <span>
                             ${formatearFecha(
                                 pedido.fecha_pedido
                             )}
+                        </span>
 
-                        </p>
-
-
-                        <p>
-
-                            <strong>
-                                Hora:
-                            </strong>
-
+                        <small>
                             ${pedido.hora_pedido}
-
-                        </p>
+                        </small>
 
                     </div>
-
 
 
                     <!-- PRODUCTOS -->
 
                     <div class="pedido-productos">
 
-                        <h3>
-                            Productos
-                        </h3>
-
                         ${productosHTML}
 
                     </div>
 
 
-
                     <!-- TOTAL -->
 
-                    <div class="pedido-admin-total">
+                    <div class="pedido-total">
 
                         <span>
                             Total
@@ -222,6 +202,23 @@ async function cargarPedidos() {
                     </div>
 
 
+                    <!-- ESTADO -->
+
+                    <div class="pedido-estado">
+
+                        <span
+                            class="
+                                estado-pedido
+                                estado-${pedido.estado}
+                            "
+                        >
+                            ${formatearEstado(
+                                pedido.estado
+                            )}
+                        </span>
+
+                    </div>
+
 
                     <!-- ACCIONES -->
 
@@ -233,7 +230,6 @@ async function cargarPedidos() {
 
                     </div>
 
-
                 </article>
 
             `;
@@ -241,11 +237,8 @@ async function cargarPedidos() {
         });
 
 
-        // =================================================
-        // MOSTRAR PEDIDOS
-        // =================================================
-
-        contenedor.innerHTML = pedidosHTML;
+        contenedor.innerHTML =
+            pedidosHTML;
 
 
     } catch (error) {
@@ -258,11 +251,11 @@ async function cargarPedidos() {
 
         contenedor.innerHTML = `
 
-            <div class="carrito-vacio">
+            <div class="pedidos-error">
 
-                <h2>
-                    Error al cargar pedidos
-                </h2>
+                <h3>
+                    No fue posible cargar los pedidos
+                </h3>
 
                 <p>
                     Verifica que el servidor esté funcionando.
@@ -277,24 +270,125 @@ async function cargarPedidos() {
 }
 
 
+// =====================================================
+// CONTADORES
+// =====================================================
+
+function actualizarContadores(pedidos) {
+
+    let pendientes = 0;
+    let aceptados = 0;
+    let preparacion = 0;
+    let finalizados = 0;
+
+
+    pedidos.forEach(pedido => {
+
+        if (pedido.estado === "pendiente") {
+
+            pendientes++;
+
+        }
+
+
+        if (pedido.estado === "aceptado") {
+
+            aceptados++;
+
+        }
+
+
+        if (pedido.estado === "en_preparacion") {
+
+            preparacion++;
+
+        }
+
+
+        if (
+            pedido.estado === "completado" ||
+            pedido.estado === "rechazado"
+        ) {
+
+            finalizados++;
+
+        }
+
+    });
+
+
+    // =================================================
+    // CONTADORES
+    // =================================================
+
+    const contadorPendientes =
+        document.getElementById(
+            "contador-pendientes"
+        );
+
+    const contadorAceptados =
+        document.getElementById(
+            "contador-aceptados"
+        );
+
+    const contadorPreparacion =
+        document.getElementById(
+            "contador-preparacion"
+        );
+
+    const contadorFinalizados =
+        document.getElementById(
+            "contador-finalizados"
+        );
+
+
+    if (contadorPendientes) {
+
+        contadorPendientes.textContent =
+            pendientes;
+
+    }
+
+
+    if (contadorAceptados) {
+
+        contadorAceptados.textContent =
+            aceptados;
+
+    }
+
+
+    if (contadorPreparacion) {
+
+        contadorPreparacion.textContent =
+            preparacion;
+
+    }
+
+
+    if (contadorFinalizados) {
+
+        contadorFinalizados.textContent =
+            finalizados;
+
+    }
+
+}
+
 
 // =====================================================
-// GENERAR BOTONES SEGÚN EL ESTADO
+// BOTONES SEGÚN ESTADO
 // =====================================================
 
 function generarBotonesEstado(pedido) {
 
-
-    // =============================================
-    // PEDIDO PENDIENTE
-    // =============================================
 
     if (pedido.estado === "pendiente") {
 
         return `
 
             <button
-                class="btn-estado"
+                class="btn-accion btn-aceptar"
                 onclick="
                     cambiarEstado(
                         ${pedido.id_pedido},
@@ -302,12 +396,11 @@ function generarBotonesEstado(pedido) {
                     )
                 "
             >
-                Aceptar pedido
+                Aceptar
             </button>
 
-
             <button
-                class="btn-estado btn-rechazar"
+                class="btn-accion btn-rechazar"
                 onclick="
                     cambiarEstado(
                         ${pedido.id_pedido},
@@ -323,17 +416,12 @@ function generarBotonesEstado(pedido) {
     }
 
 
-
-    // =============================================
-    // PEDIDO ACEPTADO
-    // =============================================
-
     if (pedido.estado === "aceptado") {
 
         return `
 
             <button
-                class="btn-estado"
+                class="btn-accion btn-preparar"
                 onclick="
                     cambiarEstado(
                         ${pedido.id_pedido},
@@ -341,7 +429,7 @@ function generarBotonesEstado(pedido) {
                     )
                 "
             >
-                Comenzar preparación
+                Preparar
             </button>
 
         `;
@@ -349,17 +437,12 @@ function generarBotonesEstado(pedido) {
     }
 
 
-
-    // =============================================
-    // EN PREPARACIÓN
-    // =============================================
-
     if (pedido.estado === "en_preparacion") {
 
         return `
 
             <button
-                class="btn-estado"
+                class="btn-accion btn-completar"
                 onclick="
                     cambiarEstado(
                         ${pedido.id_pedido},
@@ -367,18 +450,13 @@ function generarBotonesEstado(pedido) {
                     )
                 "
             >
-                Marcar como completado
+                Completar
             </button>
 
         `;
 
     }
 
-
-
-    // =============================================
-    // PEDIDOS FINALIZADOS
-    // =============================================
 
     if (
         pedido.estado === "completado" ||
@@ -387,15 +465,9 @@ function generarBotonesEstado(pedido) {
 
         return `
 
-            <p class="pedido-finalizado">
-
-                ${
-                    pedido.estado === "completado"
-                        ? "Pedido completado"
-                        : "Pedido rechazado"
-                }
-
-            </p>
+            <span class="pedido-sin-accion">
+                Finalizado
+            </span>
 
         `;
 
@@ -407,9 +479,8 @@ function generarBotonesEstado(pedido) {
 }
 
 
-
 // =====================================================
-// CAMBIAR ESTADO DEL PEDIDO
+// CAMBIAR ESTADO
 // =====================================================
 
 async function cambiarEstado(
@@ -419,23 +490,26 @@ async function cambiarEstado(
 
     try {
 
-        const respuesta = await fetch(
-            `${API_URL}/pedidos/${idPedido}/estado`,
-            {
-                method: "PUT",
+        const respuesta =
+            await fetch(
+                `${API_URL_ADMIN}/pedidos/${idPedido}/estado`,
+                {
+                    method: "PUT",
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
 
-                body: JSON.stringify({
-                    estado: nuevoEstado
-                })
-            }
-        );
+                    body: JSON.stringify({
+                        estado: nuevoEstado
+                    })
+                }
+            );
 
 
-        const resultado = await respuesta.json();
+        const resultado =
+            await respuesta.json();
 
 
         if (!respuesta.ok) {
@@ -451,15 +525,10 @@ async function cambiarEstado(
 
         alert(
             `Pedido #${idPedido} actualizado.\n\n` +
-            `Nuevo estado: ${formatearEstado(
-                nuevoEstado
-            )}`
+            `Nuevo estado: ` +
+            `${formatearEstado(nuevoEstado)}`
         );
 
-
-        // =============================================
-        // VOLVER A CARGAR Y ORDENAR
-        // =============================================
 
         await cargarPedidos();
 
@@ -482,7 +551,6 @@ async function cambiarEstado(
 }
 
 
-
 // =====================================================
 // FORMATEAR ESTADO
 // =====================================================
@@ -491,15 +559,20 @@ function formatearEstado(estado) {
 
     const estados = {
 
-        pendiente: "Pendiente",
+        pendiente:
+            "Pendiente",
 
-        aceptado: "Aceptado",
+        aceptado:
+            "Aceptado",
 
-        en_preparacion: "En preparación",
+        en_preparacion:
+            "En preparación",
 
-        completado: "Completado",
+        completado:
+            "Completado",
 
-        rechazado: "Rechazado"
+        rechazado:
+            "Rechazado"
 
     };
 
@@ -509,14 +582,14 @@ function formatearEstado(estado) {
 }
 
 
-
 // =====================================================
 // FORMATEAR FECHA
 // =====================================================
 
 function formatearFecha(fecha) {
 
-    const fechaLocal = new Date(fecha);
+    const fechaLocal =
+        new Date(fecha);
 
 
     return fechaLocal.toLocaleDateString(
@@ -531,9 +604,17 @@ function formatearFecha(fecha) {
 }
 
 
-
 // =====================================================
 // INICIAR
 // =====================================================
 
-cargarPedidos();
+// Solo cargar pedidos cuando estamos
+// realmente en la página de pedidos.
+
+if (
+    document.getElementById("pedidos")
+) {
+
+    cargarPedidos();
+
+}

@@ -1,7 +1,7 @@
 
 /* ==========================================================================
    CAFÉ NÉBULA — VENTAS
-   Estilo Premium / SaaS
+   Historial administrativo
 ========================================================================== */
 
 
@@ -10,349 +10,508 @@
 ========================================================================== */
 
 .ventas-resumen {
+
+    width: 100%;
+
+    margin-bottom: 28px;
+
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
-    margin-bottom: 24px;
-}
 
-.venta-card {
-    position: relative;
-    min-width: 0;
-    min-height: 145px;
-    padding: 24px;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
-    background: #ffffff;
-    border: 1px solid #e7e7ea;
-    border-radius: 14px;
-
-    box-shadow:
-        0 1px 2px rgba(15, 15, 20, 0.025),
-        0 8px 25px rgba(15, 15, 20, 0.025);
-
-    overflow: hidden;
-
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        transform 0.2s ease;
-}
-
-.venta-card:hover {
-    border-color: #dcd6ef;
-
-    box-shadow:
-        0 12px 30px rgba(15, 15, 20, 0.05);
-
-    transform: translateY(-2px);
-}
-
-.venta-card::after {
-    content: "";
-
-    position: absolute;
-    top: -32px;
-    right: -32px;
-
-    width: 95px;
-    height: 95px;
-
-    border-radius: 50%;
-
-    background: rgba(121, 87, 213, 0.055);
-
-    pointer-events: none;
-}
-
-.venta-card p {
-    position: relative;
-    z-index: 1;
-
-    margin: 0;
-
-    color: #85858d;
-
-    font-size: 0.61rem;
-    font-weight: 800;
-    letter-spacing: 0.06em;
-
-    text-transform: uppercase;
-}
-
-.venta-total {
-    position: relative;
-    z-index: 1;
-
-    margin-top: 15px;
-
-    color: #17171a;
-
-    font-family:
-        "Manrope",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    font-size: 2.2rem;
-    font-weight: 800;
-    letter-spacing: -0.055em;
-    line-height: 1;
-}
-
-.venta-secundaria {
-    position: relative;
-    z-index: 1;
-
-    margin-top: 9px;
-
-    color: #9b9ba3;
-
-    font-size: 0.65rem;
-    font-weight: 500;
-    line-height: 1.5;
+    gap: 18px;
 }
 
 
 /* ==========================================================================
-   TABLA DE VENTAS
+   INDICADORES
 ========================================================================== */
 
-.ventas-tabla {
+.ventas-resumen > div {
+
+    min-width: 0;
+
+    min-height: 125px;
+
+    padding: 24px 26px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    background: var(--admin-card);
+
+    border: 1px solid var(--admin-border);
+
+    border-radius: var(--admin-radius);
+
+    box-shadow: var(--admin-shadow);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.ventas-resumen > div:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 30px rgba(15, 15, 20, 0.06);
+}
+
+
+.ventas-resumen span {
+
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: var(--admin-text-secondary);
+
+    font-size: 0.62rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.10em;
+
+    text-transform: uppercase;
+}
+
+
+.ventas-resumen strong {
+
+    display: block;
+
+    color: var(--admin-text);
+
+    font-size: 1.65rem;
+
+    line-height: 1;
+
+    font-weight: 800;
+
+    letter-spacing: -0.045em;
+}
+
+
+/* ==========================================================================
+   CONTENEDOR PRINCIPAL
+========================================================================== */
+
+#ventas {
+
+    width: 100%;
+}
+
+
+/* ==========================================================================
+   PANEL DE HISTORIAL
+========================================================================== */
+
+.ventas-panel {
+
     width: 100%;
 
-    background: #ffffff;
-    border: 1px solid #e7e7ea;
-    border-radius: 14px;
+    overflow: hidden;
+
+    background: var(--admin-card);
+
+    border: 1px solid var(--admin-border);
+
+    border-radius: var(--admin-radius);
+
+    box-shadow: var(--admin-shadow);
+}
+
+
+/* ==========================================================================
+   CABECERA DEL HISTORIAL
+========================================================================== */
+
+.ventas-panel-header {
+
+    min-height: 88px;
+
+    padding: 22px 26px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 24px;
+
+    border-bottom: 1px solid var(--admin-border);
+}
+
+
+.ventas-panel-etiqueta {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--admin-text-light);
+
+    font-size: 0.59rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+
+}
+
+
+.ventas-panel-header h2 {
+
+    margin: 0;
+
+    color: var(--admin-text);
+
+    font-size: 1rem;
+
+    font-weight: 800;
+
+    letter-spacing: -0.025em;
+}
+
+
+.ventas-panel-header p {
+
+    margin: 0;
+
+    color: var(--admin-text-secondary);
+
+    font-size: 0.68rem;
+
+    white-space: nowrap;
+}
+
+
+/* ==========================================================================
+   TABLA
+========================================================================== */
+
+.ventas-tabla-contenedor {
+
+    width: 100%;
 
     overflow-x: auto;
 
-    box-shadow:
-        0 1px 2px rgba(15, 15, 20, 0.025),
-        0 8px 25px rgba(15, 15, 20, 0.025);
+    -webkit-overflow-scrolling: touch;
 }
 
-.ventas-tabla table {
+
+.ventas-tabla {
+
     width: 100%;
-    min-width: 700px;
+
+    min-width: 650px;
 
     border-collapse: collapse;
 }
 
-.ventas-tabla thead {
-    background: #fafafb;
-}
 
-.ventas-tabla th {
-    padding: 13px 20px;
+.ventas-tabla thead th {
 
-    border-bottom: 1px solid #e7e7ea;
+    height: 48px;
 
-    color: #898991;
+    padding: 0 22px;
 
-    font-size: 0.59rem;
+    background: #fafafa;
+
+    border-bottom: 1px solid var(--admin-border);
+
+    color: var(--admin-text-secondary);
+
+    font-size: 0.60rem;
+
     font-weight: 800;
-    letter-spacing: 0.055em;
+
+    letter-spacing: 0.06em;
 
     text-align: left;
+
     text-transform: uppercase;
 
     white-space: nowrap;
 }
 
-.ventas-tabla td {
-    padding: 16px 20px;
 
-    border-bottom: 1px solid #eeeeef;
+.ventas-tabla tbody td {
 
-    color: #777780;
+    height: 62px;
 
-    font-size: 0.69rem;
-    font-weight: 500;
+    padding: 0 22px;
 
-    vertical-align: middle;
+    border-bottom: 1px solid var(--admin-border);
+
+    color: var(--admin-text);
+
+    font-size: 0.72rem;
 
     white-space: nowrap;
 }
 
-.ventas-tabla tbody tr {
-    transition: background 0.18s ease;
-}
-
-.ventas-tabla tbody tr:hover {
-    background: #faf9fd;
-}
 
 .ventas-tabla tbody tr:last-child td {
-    border-bottom: none;
+
+    border-bottom: 0;
+}
+
+
+.ventas-tabla tbody tr {
+
+    transition:
+        background 0.15s ease;
+}
+
+
+.ventas-tabla tbody tr:hover {
+
+    background: #fafafd;
 }
 
 
 /* ==========================================================================
-   ESTADO DE VENTA
+   IDENTIFICADORES
 ========================================================================== */
 
-.estado-venta {
+.venta-id {
+
     display: inline-flex;
 
     align-items: center;
+
     justify-content: center;
 
+    min-width: 44px;
+
     min-height: 26px;
-    padding: 5px 10px;
 
-    border-radius: 100px;
+    padding: 0 8px;
 
-    font-size: 0.59rem;
+    background: var(--admin-accent-soft);
+
+    border-radius: 6px;
+
+    color: var(--admin-accent);
+
+    font-size: 0.63rem;
+
     font-weight: 800;
-    letter-spacing: 0.035em;
-
-    text-transform: uppercase;
-
-    white-space: nowrap;
 }
 
-.estado-venta.completada {
-    background: #eaf4ee;
-    color: #3d8061;
-}
 
-.estado-venta.pendiente {
-    background: #f8f1e3;
-    color: #9a712d;
-}
+.pedido-id {
 
-.estado-venta.cancelada {
-    background: #f8ebeb;
-    color: #a55454;
+    color: var(--admin-text-secondary);
+
+    font-weight: 700;
 }
 
 
 /* ==========================================================================
-   INFORMACIÓN
+   TOTAL
 ========================================================================== */
 
-.ventas-info {
-    display: flex;
+.venta-total {
 
-    flex-direction: column;
-    gap: 7px;
+    color: var(--admin-success) !important;
 
-    margin-top: 18px;
-    padding: 20px 22px;
+    font-size: 0.76rem !important;
 
-    background: #f5f2ff;
-
-    border: 1px solid #e2d9f7;
-    border-left: 3px solid #7957d5;
-
-    border-radius: 10px;
-}
-
-.ventas-info h2 {
-    margin: 0;
-
-    color: #29232f;
-
-    font-family:
-        "Manrope",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    font-size: 0.9rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-}
-
-.ventas-info p {
-    max-width: 800px;
-
-    margin: 0;
-
-    color: #716b7b;
-
-    font-size: 0.68rem;
-    font-weight: 500;
-    line-height: 1.75;
+    font-weight: 800 !important;
 }
 
 
 /* ==========================================================================
-   RESPONSIVE — TABLET
+   SIN VENTAS / ERROR
+========================================================================== */
+
+.ventas-vacio {
+
+    width: 100%;
+
+    padding: 65px 30px;
+
+    background: var(--admin-card);
+
+    border: 1px solid var(--admin-border);
+
+    border-radius: var(--admin-radius);
+
+    box-shadow: var(--admin-shadow);
+
+    text-align: center;
+}
+
+
+.ventas-vacio h2 {
+
+    margin: 0 0 8px;
+
+    color: var(--admin-text);
+
+    font-size: 1rem;
+
+    font-weight: 800;
+}
+
+
+.ventas-vacio p {
+
+    max-width: 450px;
+
+    margin: 0 auto;
+
+    color: var(--admin-text-secondary);
+
+    font-size: 0.72rem;
+
+    line-height: 1.6;
+}
+
+
+/* ==========================================================================
+   TABLET
 ========================================================================== */
 
 @media (max-width: 800px) {
 
     .ventas-resumen {
-        grid-template-columns: 1fr;
+
+        gap: 14px;
     }
 
-    .venta-card {
-        min-height: 130px;
+
+    .ventas-resumen > div {
+
+        padding: 22px;
     }
+
+
+    .ventas-panel-header {
+
+        padding: 20px 22px;
+    }
+
+
+    .ventas-tabla thead th,
+    .ventas-tabla tbody td {
+
+        padding-left: 18px;
+
+        padding-right: 18px;
+    }
+
 }
 
 
 /* ==========================================================================
-   RESPONSIVE — MÓVIL
+   CELULAR
 ========================================================================== */
 
-@media (max-width: 700px) {
+@media (max-width: 600px) {
 
-    .venta-card {
+    .ventas-resumen {
+
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
+
+    .ventas-resumen > div {
+
+        min-height: 105px;
+
         padding: 20px;
     }
 
-    .venta-total {
-        font-size: 2rem;
+
+    .ventas-resumen strong {
+
+        font-size: 1.45rem;
     }
+
+
+    .ventas-panel-header {
+
+        min-height: auto;
+
+        padding: 20px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 7px;
+    }
+
+
+    .ventas-panel-header p {
+
+        white-space: normal;
+
+        line-height: 1.5;
+    }
+
 
     .ventas-tabla {
-        border-radius: 12px;
 
-        -webkit-overflow-scrolling: touch;
+        min-width: 620px;
     }
 
-    .ventas-tabla table {
-        min-width: 700px;
+
+    .ventas-tabla thead th {
+
+        height: 44px;
+
+        padding-left: 14px;
+
+        padding-right: 14px;
     }
 
-    .ventas-tabla th,
-    .ventas-tabla td {
-        padding: 13px 15px;
+
+    .ventas-tabla tbody td {
+
+        height: 56px;
+
+        padding-left: 14px;
+
+        padding-right: 14px;
     }
 
-    .ventas-info {
-        padding: 18px 20px;
-    }
 }
 
 
 /* ==========================================================================
-   MÓVIL PEQUEÑO
+   CELULAR PEQUEÑO
 ========================================================================== */
 
-@media (max-width: 480px) {
+@media (max-width: 400px) {
 
-    .venta-card {
-        min-height: 125px;
+    .ventas-resumen > div {
+
         padding: 18px;
     }
 
-    .venta-total {
-        font-size: 1.85rem;
+
+    .ventas-panel-header {
+
+        padding: 18px;
     }
 
-    .ventas-info h2 {
-        font-size: 0.84rem;
+
+    .ventas-vacio {
+
+        padding: 50px 20px;
     }
 
-    .ventas-info p {
-        font-size: 0.64rem;
-    }
 }
-

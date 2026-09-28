@@ -1,429 +1,356 @@
 
 /* ==========================================================================
    CAFÉ NÉBULA — INVENTARIO
-   Estilo Premium / SaaS
 ========================================================================== */
 
 
 /* ==========================================================================
-   RESUMEN DE INVENTARIO
+   RESUMEN
 ========================================================================== */
 
 .inventario-resumen {
-    display: flex;
+    width: 100%;
+    margin-bottom: 28px;
 
+    display: flex;
     align-items: center;
     justify-content: space-between;
-
     gap: 24px;
 
-    margin-bottom: 20px;
+    padding: 24px 26px;
 
-    padding: 22px 24px;
+    background: var(--admin-card);
+    border: 1px solid var(--admin-border);
+    border-radius: var(--admin-radius);
 
-    background: #ffffff;
-
-    border: 1px solid #e7e7ea;
-
-    border-radius: 14px;
-
-    box-shadow:
-        0 1px 2px rgba(15, 15, 20, 0.025),
-        0 8px 25px rgba(15, 15, 20, 0.025);
-
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
+    box-shadow: var(--admin-shadow);
 }
-
-
-.inventario-resumen:hover {
-    border-color: #ddd7ed;
-
-    box-shadow:
-        0 8px 28px rgba(15, 15, 20, 0.045);
-}
-
-
-/* ==========================================================================
-   INFORMACIÓN
-========================================================================== */
 
 .inventario-info {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 5px;
+    min-width: 0;
 }
-
 
 .inventario-info-label {
-    color: #7957d5;
+    display: block;
+    margin-bottom: 7px;
 
-    font-size: 0.61rem;
+    color: var(--admin-accent);
 
+    font-size: 0.62rem;
     font-weight: 800;
-
-    letter-spacing: 0.07em;
-
-    text-transform: uppercase;
+    letter-spacing: 0.12em;
 }
-
 
 .inventario-info strong {
-    color: #17171a;
+    display: block;
+    margin-bottom: 5px;
 
-    font-size: 1.15rem;
+    color: var(--admin-text);
 
+    font-size: 0.95rem;
     font-weight: 800;
-
-    letter-spacing: -0.025em;
 }
-
 
 .inventario-info p {
     margin: 0;
 
-    color: #85858d;
+    color: var(--admin-text-secondary);
 
-    font-size: 0.69rem;
-
-    font-weight: 500;
-
-    line-height: 1.5;
+    font-size: 0.72rem;
+    line-height: 1.6;
 }
 
-
-/* ==========================================================================
-   INDICADOR
-========================================================================== */
-
 .inventario-indicador {
+    flex-shrink: 0;
+
     display: inline-flex;
-
     align-items: center;
+    gap: 9px;
 
-    gap: 8px;
+    min-height: 36px;
+    padding: 0 13px;
 
-    min-height: 32px;
+    background: var(--admin-success-soft);
 
-    padding:
-        6px
-        11px;
+    border: 1px solid rgba(38, 132, 95, 0.12);
+    border-radius: 999px;
 
-    background: #eaf4ee;
+    color: var(--admin-success);
 
-    border: 1px solid #d7e9de;
-
-    border-radius: 100px;
-
-    color: #3d8061;
-
-    font-size: 0.62rem;
-
-    font-weight: 800;
+    font-size: 0.65rem;
+    font-weight: 700;
 
     white-space: nowrap;
 }
-
 
 .indicador-punto {
     width: 7px;
     height: 7px;
 
-    flex: 0 0 7px;
-
-    background: #3d8061;
+    flex-shrink: 0;
 
     border-radius: 50%;
 
-    box-shadow:
-        0 0 0 3px rgba(61, 128, 97, 0.10);
+    background: var(--admin-success);
+
+    box-shadow: 0 0 0 4px rgba(38, 132, 95, 0.10);
 }
 
 
 /* ==========================================================================
-   PANEL DE INVENTARIO
+   PANEL DE EXISTENCIAS
 ========================================================================== */
 
 .inventario-panel {
     width: 100%;
 
-    background: #ffffff;
-
-    border: 1px solid #e7e7ea;
-
-    border-radius: 14px;
-
-    box-shadow:
-        0 1px 2px rgba(15, 15, 20, 0.025),
-        0 8px 25px rgba(15, 15, 20, 0.025);
-
     overflow: hidden;
+
+    background: var(--admin-card);
+
+    border: 1px solid var(--admin-border);
+    border-radius: var(--admin-radius);
+
+    box-shadow: var(--admin-shadow);
 }
 
 
-.inventario-panel-header {
-    display: flex;
+/* ==========================================================================
+   CABECERA
+========================================================================== */
 
+.inventario-panel-header {
+    width: 100%;
+
+    min-height: 88px;
+
+    padding: 22px 26px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 24px;
+
+    border-bottom: 1px solid var(--admin-border);
+}
+
+.panel-etiqueta {
+    display: block;
+    margin-bottom: 5px;
+
+    color: var(--admin-text-light);
+
+    font-size: 0.59rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+}
+
+.inventario-panel-header h2 {
+    margin: 0;
+
+    color: var(--admin-text);
+
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+}
+
+.panel-descripcion {
+    color: var(--admin-text-secondary);
+
+    font-size: 0.68rem;
+
+    white-space: nowrap;
+}
+
+
+/* ==========================================================================
+   LISTA DE PRODUCTOS
+========================================================================== */
+
+.inventario-lista {
+    width: 100%;
+
+    padding: 24px;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+
+/* ==========================================================================
+   TARJETA DE PRODUCTO
+========================================================================== */
+
+.inventario-producto {
+    min-width: 0;
+
+    min-height: 300px;
+
+    padding: 22px;
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--admin-card-soft);
+
+    border: 1px solid var(--admin-border);
+
+    border-radius: 12px;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.inventario-producto:hover {
+    transform: translateY(-2px);
+
+    background: #ffffff;
+
+    border-color: #dddddf;
+
+    box-shadow:
+        0 8px 24px rgba(15, 15, 20, 0.06);
+}
+
+
+/* ==========================================================================
+   INFORMACIÓN DEL PRODUCTO
+========================================================================== */
+
+.inventario-producto-info {
+    margin-bottom: 22px;
+}
+
+.inventario-producto-info .producto-categoria {
+    margin: 0 0 8px;
+
+    color: var(--admin-accent);
+
+    font-size: 0.58rem;
+    font-weight: 800;
+
+    letter-spacing: 0.11em;
+
+    text-transform: uppercase;
+}
+
+.inventario-producto-info h2 {
+    margin: 0 0 7px;
+
+    color: var(--admin-text);
+
+    font-size: 1rem;
+    font-weight: 800;
+
+    letter-spacing: -0.025em;
+
+    line-height: 1.25;
+}
+
+.inventario-producto-info > p:last-child {
+    margin: 0;
+
+    color: var(--admin-text-secondary);
+
+    font-size: 0.69rem;
+
+    line-height: 1.6;
+}
+
+
+/* ==========================================================================
+   DATOS DEL PRODUCTO
+========================================================================== */
+
+.inventario-dato {
+    min-height: 47px;
+
+    display: flex;
     align-items: center;
     justify-content: space-between;
 
     gap: 20px;
 
-    padding: 21px 24px;
-
-    border-bottom: 1px solid #e7e7ea;
+    border-top: 1px solid var(--admin-border);
 }
 
-
-.panel-etiqueta {
-    display: block;
-
-    margin-bottom: 5px;
-
-    color: #7957d5;
-
-    font-size: 0.58rem;
-
-    font-weight: 800;
-
-    letter-spacing: 0.07em;
-
-    text-transform: uppercase;
-}
-
-
-.inventario-panel-header h2 {
-    margin: 0;
-
-    color: #1a1a1e;
-
-    font-family: "Manrope", sans-serif;
-
-    font-size: 0.98rem;
-
-    font-weight: 800;
-
-    letter-spacing: -0.025em;
-}
-
-
-.panel-descripcion {
-    color: #9999a1;
+.inventario-dato span {
+    color: var(--admin-text-secondary);
 
     font-size: 0.66rem;
-
-    font-weight: 500;
 }
 
+.inventario-dato strong {
+    color: var(--admin-text);
 
-/* ==========================================================================
-   CONTENIDO
-========================================================================== */
-
-.inventario-contenido {
-    width: 100%;
-}
-
-
-/* ==========================================================================
-   TABLA
-========================================================================== */
-
-.inventario-tabla {
-    width: 100%;
-
-    overflow-x: auto;
-}
-
-
-.inventario-tabla table {
-    width: 100%;
-
-    border-collapse: collapse;
-
-    border-spacing: 0;
-}
-
-
-.inventario-tabla thead {
-    background: #fafafb;
-}
-
-
-.inventario-tabla th {
-    padding:
-        13px
-        24px;
-
-    border-bottom: 1px solid #e7e7ea;
-
-    color: #8a8a92;
-
-    font-size: 0.59rem;
-
+    font-size: 0.75rem;
     font-weight: 800;
 
-    letter-spacing: 0.055em;
-
-    text-align: left;
-
-    text-transform: uppercase;
-
     white-space: nowrap;
 }
 
 
-.inventario-tabla td {
-    padding:
-        16px
-        24px;
-
-    border-bottom: 1px solid #eeeeef;
-
-    color: #777780;
-
-    font-size: 0.69rem;
-
-    font-weight: 500;
-
-    vertical-align: middle;
-
-    white-space: nowrap;
-}
-
-
-.inventario-tabla tbody tr {
-    transition:
-        background 0.18s ease;
-}
-
-
-.inventario-tabla tbody tr:hover {
-    background: #faf9fd;
-}
-
-
-.inventario-tabla tbody tr:last-child td {
-    border-bottom: none;
-}
-
-
 /* ==========================================================================
-   PRODUCTO
+   ESTADO
 ========================================================================== */
 
-.inventario-tabla td:first-child {
-    color: #1a1a1e;
+.inventario-producto > div:last-child {
+    margin-top: auto;
 
-    font-weight: 750;
+    padding-top: 17px;
 }
 
-
-/* ==========================================================================
-   STOCK
-========================================================================== */
-
-.stock-normal,
-.stock-bajo,
-.stock-agotado {
+.estado-inventario {
     display: inline-flex;
 
     align-items: center;
     justify-content: center;
 
-    min-height: 26px;
+    min-height: 29px;
 
-    padding:
-        5px
-        10px;
+    padding: 0 11px;
 
-    border-radius: 100px;
+    border-radius: 999px;
 
-    font-size: 0.59rem;
-
+    font-size: 0.61rem;
     font-weight: 800;
 
     white-space: nowrap;
 }
 
 
-.stock-normal {
-    background: #eaf4ee;
+/* Disponible */
 
-    color: #3d8061;
+.inventario-disponible {
+    background: var(--admin-success-soft);
+
+    color: var(--admin-success);
 }
 
 
-.stock-bajo {
-    background: #f8f1e3;
+/* Stock bajo */
 
-    color: #9a712d;
+.inventario-bajo {
+    background: var(--admin-warning-soft);
+
+    color: var(--admin-warning);
 }
 
 
-.stock-agotado {
-    background: #f8ebeb;
+/* Agotado */
 
-    color: #a55454;
-}
+.inventario-agotado {
+    background: var(--admin-danger-soft);
 
-
-/* ==========================================================================
-   BOTONES
-========================================================================== */
-
-.inventario-tabla button {
-    min-height: 31px;
-
-    padding:
-        0
-        11px;
-
-    background: #ffffff;
-
-    border:
-        1px solid
-        #dedee3;
-
-    border-radius: 7px;
-
-    color: #64646c;
-
-    font-family: "Manrope", sans-serif;
-
-    font-size: 0.59rem;
-
-    font-weight: 750;
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease,
-        transform 0.2s ease;
-}
-
-
-.inventario-tabla button:hover {
-    background: #7957d5;
-
-    border-color: #7957d5;
-
-    color: #ffffff;
-
-    box-shadow:
-        0 5px 14px rgba(121, 87, 213, 0.18);
-
-    transform: translateY(-1px);
-}
-
-
-.inventario-tabla button:active {
-    transform: translateY(0);
+    color: var(--admin-danger);
 }
 
 
@@ -432,153 +359,703 @@
 ========================================================================== */
 
 .inventario-cargando {
+    min-height: 220px;
+
     display: flex;
+    flex-direction: column;
 
     align-items: center;
     justify-content: center;
 
-    gap: 9px;
-
-    min-height: 150px;
-
-    color: #85858d;
-
-    font-size: 0.7rem;
-
-    font-weight: 500;
+    gap: 12px;
 }
-
 
 .inventario-cargando p {
     margin: 0;
+
+    color: var(--admin-text-secondary);
+
+    font-size: 0.72rem;
 }
 
-
 .cargando-punto {
-    width: 6px;
-    height: 6px;
+    width: 22px;
+    height: 22px;
 
-    background: #7957d5;
+    border: 2px solid var(--admin-border);
+    border-top-color: var(--admin-accent);
 
     border-radius: 50%;
 
-    animation:
-        inventario-pulso 1.2s ease-in-out infinite;
+    animation: inventario-loading 0.8s linear infinite;
 }
 
+@keyframes inventario-loading {
 
-@keyframes inventario-pulso {
-
-    0%,
-    100% {
-        opacity: 0.35;
-
-        transform: scale(0.8);
-    }
-
-    50% {
-        opacity: 1;
-
-        transform: scale(1);
+    to {
+        transform: rotate(360deg);
     }
 
 }
 
 
 /* ==========================================================================
-   RESPONSIVE — TABLET
+   ESTADOS VACÍO / ERROR
 ========================================================================== */
 
-@media (max-width: 900px) {
+.inventario-contenido .carrito-vacio {
+    padding: 60px 30px;
+
+    text-align: center;
+}
+
+.inventario-contenido .carrito-vacio h2 {
+    margin: 0 0 8px;
+
+    color: var(--admin-text);
+
+    font-size: 1rem;
+}
+
+.inventario-contenido .carrito-vacio p {
+    margin: 0;
+
+    color: var(--admin-text-secondary);
+
+    font-size: 0.72rem;
+}
+
+
+/* ==========================================================================
+   TABLET
+========================================================================== */
+
+@media (max-width: 1100px) {
+
+    .inventario-lista {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* ==========================================================================
+   TABLET PEQUEÑA
+========================================================================== */
+
+@media (max-width: 750px) {
 
     .inventario-resumen {
         align-items: flex-start;
-
-        flex-direction: column;
     }
 
+    .inventario-panel-header {
+        padding: 20px 22px;
+    }
+
+    .inventario-lista {
+        padding: 20px;
+
+        gap: 16px;
+    }
+
+}
+
+
+/* ==========================================================================
+   CELULAR
+========================================================================== */
+
+@media (max-width: 600px) {
+
+    .inventario-resumen {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 18px;
+
+        padding: 20px;
+    }
 
     .inventario-indicador {
         align-self: flex-start;
     }
 
-}
-
-
-/* ==========================================================================
-   RESPONSIVE — MÓVIL
-========================================================================== */
-
-@media (max-width: 700px) {
-
-    .inventario-resumen {
-        padding: 20px;
-    }
-
 
     .inventario-panel-header {
-        align-items: flex-start;
+
+        min-height: auto;
+
+        padding: 20px;
 
         flex-direction: column;
 
-        gap: 6px;
+        align-items: flex-start;
 
-        padding: 19px 20px;
+        gap: 8px;
     }
-
 
     .panel-descripcion {
-        font-size: 0.64rem;
+
+        white-space: normal;
+
+        line-height: 1.5;
     }
 
 
-    .inventario-tabla {
-        overflow-x: auto;
+    .inventario-lista {
 
-        -webkit-overflow-scrolling: touch;
+        grid-template-columns: 1fr;
+
+        padding: 16px;
     }
 
 
-    .inventario-tabla table {
-        min-width: 680px;
-    }
+    .inventario-producto {
 
+        min-height: 0;
 
-    .inventario-tabla th,
-    .inventario-tabla td {
-        padding:
-            13px
-            16px;
+        padding: 20px;
     }
 
 }
 
 
 /* ==========================================================================
-   MÓVIL PEQUEÑO
+   CELULAR PEQUEÑO
 ========================================================================== */
 
-@media (max-width: 480px) {
+@media (max-width: 400px) {
 
     .inventario-resumen {
-        gap: 14px;
+        padding: 18px;
     }
-
 
     .inventario-info strong {
-        font-size: 1.05rem;
+        font-size: 0.88rem;
     }
 
-
-    .inventario-indicador {
-        font-size: 0.58rem;
+    .inventario-info p {
+        font-size: 0.68rem;
     }
-
 
     .inventario-panel-header {
-        padding:
-            17px;
+        padding: 18px;
+    }
+
+    .inventario-lista {
+        padding: 12px;
+    }
+
+    .inventario-producto {
+        padding: 18px;
     }
 
 }
 
+/* =====================================================
+   AGREGAR PRODUCTO
+===================================================== */
+
+.inventario-encabezado {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 28px;
+}
+
+.inventario-etiqueta {
+    margin-bottom: 8px;
+    color: var(--admin-accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.inventario-encabezado h1 {
+    margin-bottom: 7px;
+    color: var(--admin-text);
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+}
+
+.inventario-descripcion {
+    color: var(--admin-text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.btn-agregar-producto {
+    min-height: 42px;
+    padding: 0 17px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: var(--admin-accent);
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 650;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease;
+}
+
+.btn-agregar-producto:hover {
+    background: var(--admin-accent-hover);
+    transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   FORMULARIO
+===================================================== */
+
+.producto-formulario-panel {
+    margin-bottom: 28px;
+
+    background: var(--admin-card);
+
+    border: 1px solid var(--admin-border);
+    border-radius: var(--admin-radius);
+
+    box-shadow: var(--admin-shadow);
+
+    overflow: hidden;
+}
+
+.producto-formulario-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 22px;
+
+    border-bottom: 1px solid var(--admin-border);
+}
+
+.producto-formulario-header p {
+    margin-bottom: 5px;
+
+    color: var(--admin-accent);
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+}
+
+.producto-formulario-header h2 {
+    margin-bottom: 5px;
+
+    color: var(--admin-text);
+
+    font-size: 18px;
+}
+
+.producto-formulario-header span {
+    color: var(--admin-text-secondary);
+
+    font-size: 12px;
+}
+
+.btn-cerrar-formulario {
+    width: 32px;
+    height: 32px;
+
+    border: 1px solid var(--admin-border);
+    border-radius: 8px;
+
+    background: var(--admin-card-soft);
+    color: var(--admin-text-secondary);
+
+    font-size: 20px;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+.btn-cerrar-formulario:hover {
+    background: var(--admin-danger-soft);
+    color: var(--admin-danger);
+}
+
+
+/* =====================================================
+   CAMPOS
+===================================================== */
+
+.producto-formulario {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+
+    padding: 22px;
+}
+
+.campo-producto {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.campo-producto-completo {
+    grid-column: 1 / -1;
+}
+
+.campo-producto label {
+    color: var(--admin-text);
+
+    font-size: 11px;
+    font-weight: 650;
+}
+
+.campo-producto input,
+.campo-producto textarea {
+    width: 100%;
+
+    border: 1px solid var(--admin-border);
+    border-radius: 8px;
+
+    background: #ffffff;
+    color: var(--admin-text);
+
+    font-family: inherit;
+    font-size: 12px;
+
+    outline: none;
+
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.campo-producto input {
+    height: 40px;
+    padding: 0 12px;
+}
+
+.campo-producto textarea {
+    min-height: 82px;
+
+    padding: 11px 12px;
+
+    resize: vertical;
+}
+
+.campo-producto input:focus,
+.campo-producto textarea:focus {
+    border-color: var(--admin-accent);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(121, 87, 213, 0.10);
+}
+
+.campo-producto input::placeholder,
+.campo-producto textarea::placeholder {
+    color: var(--admin-text-light);
+}
+
+
+/* =====================================================
+   ACCIONES
+===================================================== */
+
+.producto-formulario-acciones {
+    grid-column: 1 / -1;
+
+    display: flex;
+    justify-content: flex-end;
+
+    gap: 8px;
+
+    padding-top: 5px;
+}
+
+.btn-cancelar-producto,
+.btn-guardar-producto {
+    min-height: 39px;
+
+    padding: 0 15px;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 11px;
+    font-weight: 650;
+
+    cursor: pointer;
+}
+
+.btn-cancelar-producto {
+    border: 1px solid var(--admin-border);
+
+    background: #ffffff;
+
+    color: var(--admin-text-secondary);
+}
+
+.btn-cancelar-producto:hover {
+    background: var(--admin-card-soft);
+}
+
+.btn-guardar-producto {
+    border: none;
+
+    background: var(--admin-accent);
+
+    color: #ffffff;
+}
+
+.btn-guardar-producto:hover {
+    background: var(--admin-accent-hover);
+}
+
+
+/* =====================================================
+   MÓVIL
+===================================================== */
+
+@media (max-width: 800px) {
+
+    .inventario-encabezado {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .producto-formulario {
+        grid-template-columns: 1fr;
+    }
+
+    .campo-producto-completo {
+        grid-column: 1;
+    }
+
+    .producto-formulario-acciones {
+        grid-column: 1;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .btn-agregar-producto {
+        width: 100%;
+    }
+
+    .producto-formulario-header {
+        padding: 18px;
+    }
+
+    .producto-formulario {
+        padding: 18px;
+    }
+
+    .producto-formulario-acciones {
+        flex-direction: column;
+    }
+
+    .btn-cancelar-producto,
+    .btn-guardar-producto {
+        width: 100%;
+    }
+
+}
+
+/* =====================================================
+   ÚLTIMOS PRODUCTOS AGREGADOS
+===================================================== */
+
+.ultimos-productos-panel {
+    margin-bottom: 28px;
+    background: var(--admin-card);
+    border: 1px solid var(--admin-border);
+    border-radius: var(--admin-radius);
+    box-shadow: var(--admin-shadow);
+    overflow: hidden;
+}
+
+.ultimos-productos-header {
+    padding: 22px;
+    border-bottom: 1px solid var(--admin-border);
+}
+
+.ultimos-productos-header p {
+    margin-bottom: 6px;
+    color: var(--admin-accent);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.ultimos-productos-header h2 {
+    margin-bottom: 5px;
+    color: var(--admin-text);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.ultimos-productos-header span {
+    color: var(--admin-text-secondary);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+#ultimos-productos {
+    display: flex;
+    flex-direction: column;
+}
+
+.producto-reciente {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 18px 22px;
+    border-bottom: 1px solid var(--admin-border);
+    transition: background 0.15s ease;
+}
+
+.producto-reciente:last-child {
+    border-bottom: none;
+}
+
+.producto-reciente:hover {
+    background: var(--admin-card-soft);
+}
+
+.producto-reciente-info {
+    min-width: 0;
+}
+
+.producto-reciente-info p {
+    margin-bottom: 4px;
+    color: var(--admin-accent);
+    font-size: 10px;
+    font-weight: 650;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.producto-reciente-info h3 {
+    margin-bottom: 5px;
+    color: var(--admin-text);
+    font-size: 14px;
+    font-weight: 650;
+}
+
+.producto-reciente-info span {
+    color: var(--admin-text-secondary);
+    font-size: 12px;
+}
+
+.producto-reciente-fecha {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.producto-reciente-fecha span {
+    color: var(--admin-text-light);
+    font-size: 10px;
+}
+
+.producto-reciente-fecha strong {
+    color: var(--admin-text);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .producto-reciente {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .producto-reciente-fecha {
+        align-items: flex-start;
+    }
+
+}
+
+.ultimos-productos-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 22px;
+    border-bottom: 1px solid var(--admin-border);
+}
+
+.btn-mostrar-recientes {
+    min-height: 38px;
+    padding: 0 15px;
+    border: 1px solid var(--admin-border);
+    border-radius: 8px;
+    background: var(--admin-card);
+    color: var(--admin-text);
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 650;
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.btn-mostrar-recientes:hover {
+    background: var(--admin-accent-soft);
+    border-color: var(--admin-accent);
+    color: var(--admin-accent);
+}
+
+.ultimos-productos-contenido {
+    display: flex;
+    flex-direction: column;
+}
+
+.ultimos-productos-contenido[hidden] {
+    display: none;
+}
+
+@media (max-width: 600px) {
+
+    .ultimos-productos-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .btn-mostrar-recientes {
+        width: 100%;
+    }
+
+}

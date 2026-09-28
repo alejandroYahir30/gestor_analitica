@@ -1,3 +1,4 @@
+
 const API_URL = "http://localhost:3000/api";
 
 
@@ -40,8 +41,7 @@ async function cargarVentas() {
         // RESUMEN
         // =================================================
 
-        let total =
-            0;
+        let total = 0;
 
 
         ventas.forEach(venta => {
@@ -67,7 +67,7 @@ async function cargarVentas() {
 
             contenedor.innerHTML = `
 
-                <div class="carrito-vacio">
+                <div class="ventas-vacio">
 
                     <h2>
                         No hay ventas registradas
@@ -87,7 +87,7 @@ async function cargarVentas() {
 
 
         // =================================================
-        // LISTA DE VENTAS
+        // HISTORIAL
         // =================================================
 
         let ventasHTML = "";
@@ -97,68 +97,41 @@ async function cargarVentas() {
 
             ventasHTML += `
 
-                <article class="venta-admin">
+                <tr>
 
-                    <div>
-
-                        <p class="producto-categoria">
-                            VENTA #${venta.id_venta}
-                        </p>
-
-                        <h2>
-                            Pedido #${venta.id_pedido}
-                        </h2>
-
-                    </div>
+                    <td>
+                        <span class="venta-id">
+                            #${venta.id_venta}
+                        </span>
+                    </td>
 
 
-                    <div class="venta-info">
-
-                        <div>
-
-                            <span>
-                                Fecha
-                            </span>
-
-                            <strong>
-                                ${formatearFecha(
-                                    venta.fecha_venta
-                                )}
-                            </strong>
-
-                        </div>
+                    <td>
+                        <span class="pedido-id">
+                            #${venta.id_pedido}
+                        </span>
+                    </td>
 
 
-                        <div>
-
-                            <span>
-                                Hora
-                            </span>
-
-                            <strong>
-                                ${venta.hora_venta}
-                            </strong>
-
-                        </div>
+                    <td>
+                        ${formatearFecha(
+                            venta.fecha_venta
+                        )}
+                    </td>
 
 
-                        <div>
+                    <td>
+                        ${venta.hora_venta}
+                    </td>
 
-                            <span>
-                                Total
-                            </span>
 
-                            <strong>
-                                $${Number(
-                                    venta.total
-                                ).toFixed(2)}
-                            </strong>
+                    <td class="venta-total">
+                        $${Number(
+                            venta.total
+                        ).toFixed(2)}
+                    </td>
 
-                        </div>
-
-                    </div>
-
-                </article>
+                </tr>
 
             `;
 
@@ -167,9 +140,71 @@ async function cargarVentas() {
 
         contenedor.innerHTML = `
 
-            <div class="ventas-lista">
+            <div class="ventas-panel">
 
-                ${ventasHTML}
+                <div class="ventas-panel-header">
+
+                    <div>
+
+                        <span class="ventas-panel-etiqueta">
+                            REGISTRO
+                        </span>
+
+                        <h2>
+                            Historial de ventas
+                        </h2>
+
+                    </div>
+
+                    <p>
+                        Operaciones completadas
+                    </p>
+
+                </div>
+
+
+                <div class="ventas-tabla-contenedor">
+
+                    <table class="ventas-tabla">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Venta
+                                </th>
+
+                                <th>
+                                    Pedido
+                                </th>
+
+                                <th>
+                                    Fecha
+                                </th>
+
+                                <th>
+                                    Hora
+                                </th>
+
+                                <th>
+                                    Total
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            ${ventasHTML}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
 
             </div>
 
@@ -194,7 +229,7 @@ async function cargarVentas() {
 
         contenedor.innerHTML = `
 
-            <div class="carrito-vacio">
+            <div class="ventas-vacio">
 
                 <h2>
                     Error al cargar ventas
@@ -240,3 +275,4 @@ function formatearFecha(fecha) {
 // =====================================================
 
 cargarVentas();
+

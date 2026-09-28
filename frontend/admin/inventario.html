@@ -12,6 +12,11 @@
 
     <title>Café Nébula | Inventario</title>
 
+
+    <!-- =====================================================
+         ESTILOS
+    ====================================================== -->
+
     <link
         rel="stylesheet"
         href="../css/global.css"
@@ -29,41 +34,43 @@
 
 </head>
 
+
 <body>
 
+
     <!-- =====================================================
-         ENCABEZADO ADMINISTRATIVO
+         HEADER
     ====================================================== -->
 
     <header class="header">
 
-        <div class="header-contenido">
+        <div class="logo">
+            Café Nébula
+        </div>
 
-            <a href="dashboard.html" class="logo">
-                Café Nébula
+
+        <nav>
+
+            <a href="dashboard.html">
+                Dashboard
             </a>
 
-            <nav>
+            <a href="pedidos.html">
+                Pedidos
+            </a>
 
-                <a href="dashboard.html">
-                    Dashboard
-                </a>
+            <a
+                href="inventario.html"
+                class="activo"
+            >
+                Inventario
+            </a>
 
-                <a href="pedidos.html">
-                    Pedidos
-                </a>
+            <a href="ventas.html">
+                Ventas
+            </a>
 
-                <a href="inventario.html" class="activo">
-                    Inventario
-                </a>
-
-                <a href="ventas.html">
-                    Ventas
-                </a>
-
-            </nav>
-
-        </div>
+        </nav>
 
     </header>
 
@@ -74,26 +81,237 @@
 
     <main class="contenedor">
 
-        <!-- Encabezado de página -->
 
-        <section class="presentacion">
+        <!-- =================================================
+             ENCABEZADO
+        ================================================== -->
+
+        <section class="inventario-encabezado">
 
             <div>
 
-                <p class="etiqueta">
-                    CONTROL DEL NEGOCIO
+                <p class="inventario-etiqueta">
+                    OPERACIÓN
                 </p>
 
                 <h1>
                     Inventario
                 </h1>
 
-                <p>
-                    Consulta y supervisa las existencias actuales
-                    de los productos de Café Nébula.
+                <p class="inventario-descripcion">
+                    Consulta y administra las existencias
+                    disponibles del negocio.
                 </p>
 
             </div>
+
+
+            <button
+                id="btn-agregar-producto"
+                class="btn-agregar-producto"
+                type="button"
+            >
+                + Agregar producto
+            </button>
+
+        </section>
+
+
+        <!-- =================================================
+             FORMULARIO PARA AGREGAR PRODUCTO
+        ================================================== -->
+
+        <section
+            id="formulario-producto"
+            class="producto-formulario-panel"
+            hidden
+        >
+
+            <div class="producto-formulario-header">
+
+                <div>
+
+                    <p>
+                        NUEVO REGISTRO
+                    </p>
+
+                    <h2>
+                        Agregar producto
+                    </h2>
+
+                    <span>
+                        El producto se agregará al inventario
+                        y estará disponible para los clientes.
+                    </span>
+
+                </div>
+
+
+                <button
+                    id="btn-cerrar-formulario"
+                    class="btn-cerrar-formulario"
+                    type="button"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form
+                id="form-agregar-producto"
+                class="producto-formulario"
+            >
+
+
+                <!-- NOMBRE -->
+
+                <div class="campo-producto">
+
+                    <label for="nombre-producto">
+                        Nombre
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nombre-producto"
+                        name="nombre"
+                        maxlength="100"
+                        placeholder="Ej. Mocha"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- CATEGORÍA -->
+
+                <div class="campo-producto">
+
+                    <label for="categoria-producto">
+                        Categoría
+                    </label>
+
+                    <input
+                        type="text"
+                        id="categoria-producto"
+                        name="categoria"
+                        maxlength="50"
+                        placeholder="Ej. Bebidas calientes"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- DESCRIPCIÓN -->
+
+                <div
+                    class="
+                        campo-producto
+                        campo-producto-completo
+                    "
+                >
+
+                    <label for="descripcion-producto">
+                        Descripción
+                    </label>
+
+                    <textarea
+                        id="descripcion-producto"
+                        name="descripcion"
+                        maxlength="255"
+                        placeholder="Describe brevemente el producto..."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- PRECIO -->
+
+                <div class="campo-producto">
+
+                    <label for="precio-producto">
+                        Precio
+                    </label>
+
+                    <input
+                        type="number"
+                        id="precio-producto"
+                        name="precio"
+                        min="0"
+                        step="0.01"
+                        placeholder="0.00"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- STOCK -->
+
+                <div class="campo-producto">
+
+                    <label for="stock-producto">
+                        Stock inicial
+                    </label>
+
+                    <input
+                        type="number"
+                        id="stock-producto"
+                        name="stock"
+                        min="0"
+                        step="1"
+                        placeholder="0"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- STOCK MÍNIMO -->
+
+                <div class="campo-producto">
+
+                    <label for="stock-minimo-producto">
+                        Stock mínimo
+                    </label>
+
+                    <input
+                        type="number"
+                        id="stock-minimo-producto"
+                        name="stock_minimo"
+                        min="0"
+                        step="1"
+                        value="5"
+                    >
+
+                </div>
+
+
+                <!-- ACCIONES -->
+
+                <div class="producto-formulario-acciones">
+
+                    <button
+                        type="button"
+                        id="btn-cancelar-producto"
+                        class="btn-cancelar-producto"
+                    >
+                        Cancelar
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn-guardar-producto"
+                    >
+                        Guardar producto
+                    </button>
+
+                </div>
+
+            </form>
 
         </section>
 
@@ -107,26 +325,26 @@
             <div class="inventario-info">
 
                 <span class="inventario-info-label">
-                    ESTADO DEL INVENTARIO
+                    PRODUCTOS
                 </span>
 
-                <strong>
-                    Existencias actuales
+                <strong id="cantidad-productos">
+                    0
                 </strong>
 
                 <p>
-                    Revisa las cantidades disponibles
-                    antes de procesar nuevos pedidos.
+                    Registrados actualmente
                 </p>
 
             </div>
+
 
             <div class="inventario-indicador">
 
                 <span class="indicador-punto"></span>
 
                 <span>
-                    Inventario activo
+                    Inventario conectado
                 </span>
 
             </div>
@@ -135,7 +353,53 @@
 
 
         <!-- =================================================
-             TABLA / CONTENEDOR DE PRODUCTOS
+             ÚLTIMOS PRODUCTOS AGREGADOS
+        ================================================== -->
+
+        <section class="ultimos-productos-panel">
+
+            <div class="ultimos-productos-header">
+
+                <div>
+
+                    <p>
+                        REGISTROS RECIENTES
+                    </p>
+
+                    <h2>
+                        Últimos productos agregados
+                    </h2>
+
+                    <span>
+                        Consulta los productos registrados
+                        recientemente.
+                    </span>
+
+                </div>
+
+
+                <button
+                    id="btn-mostrar-recientes"
+                    class="btn-mostrar-recientes"
+                    type="button"
+                >
+                    Mostrar
+                </button>
+
+            </div>
+
+
+            <div
+                id="ultimos-productos"
+                class="ultimos-productos-contenido"
+                hidden
+            ></div>
+
+        </section>
+
+
+        <!-- =================================================
+             INVENTARIO
         ================================================== -->
 
         <section class="inventario-panel">
@@ -144,19 +408,19 @@
 
                 <div>
 
-                    <span class="panel-etiqueta">
-                        PRODUCTOS
-                    </span>
+                    <p class="panel-etiqueta">
+                        EXISTENCIAS
+                    </p>
 
                     <h2>
-                        Existencias
+                        Productos
                     </h2>
 
-                </div>
+                    <p class="panel-descripcion">
+                        Control de productos y niveles de stock.
+                    </p>
 
-                <span class="panel-descripcion">
-                    Cantidad disponible por producto
-                </span>
+                </div>
 
             </div>
 
@@ -184,12 +448,17 @@
 
 
     <!-- =====================================================
-         JAVASCRIPT
+         SCRIPTS
     ====================================================== -->
 
     <script src="../js/inventario.js"></script>
 
+    <script src="../js/admin.js"></script>
+
     <script src="../js/admin-auth.js"></script>
+
+
+
 
 </body>
 

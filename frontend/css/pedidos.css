@@ -1,172 +1,191 @@
-
-/* ==========================================================================
+/* =========================================================
    CAFÉ NÉBULA — PEDIDOS
-   Estilo Premium / SaaS
-========================================================================== */
+   PANEL ADMINISTRATIVO
+========================================================= */
 
 
-/* ==========================================================================
-   CONTENEDOR DE PEDIDOS
-========================================================================== */
+/* =========================================================
+   ENCABEZADO
+========================================================= */
 
-#pedidos {
-    display: grid;
-
-    gap: 16px;
+.pedidos-encabezado {
+    margin-bottom: 28px;
 }
 
+.pedidos-etiqueta {
+    margin-bottom: 8px;
 
-/* ==========================================================================
-   PEDIDO
-========================================================================== */
+    font-size: 11px;
+    font-weight: 700;
 
-.pedido-admin {
-    position: relative;
+    letter-spacing: 0.12em;
 
-    padding: 24px;
-
-    background: #ffffff;
-
-    border: 1px solid #e7e7ea;
-
-    border-radius: 14px;
-
-    box-shadow:
-        0 1px 2px rgba(15, 15, 20, 0.025),
-        0 8px 25px rgba(15, 15, 20, 0.025);
-
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        transform 0.2s ease;
+    color: var(--admin-accent);
 }
 
+.pedidos-encabezado h1 {
+    margin-bottom: 7px;
 
-.pedido-admin:hover {
-    border-color: #d9d2eb;
+    font-size: 32px;
+    font-weight: 700;
 
-    box-shadow:
-        0 12px 30px rgba(15, 15, 20, 0.05);
-
-    transform: translateY(-2px);
-}
-
-
-/* ==========================================================================
-   CABECERA
-========================================================================== */
-
-.pedido-admin-header {
-    display: flex;
-
-    align-items: flex-start;
-    justify-content: space-between;
-
-    gap: 24px;
-
-    padding-bottom: 18px;
-
-    border-bottom: 1px solid #e9e9ec;
-}
-
-
-.pedido-admin-header h2 {
-    margin: 0;
-
-    color: #18181c;
-
-    font-family: "Manrope", sans-serif;
-
-    font-size: 1rem;
-
-    font-weight: 800;
+    color: var(--admin-text);
 
     letter-spacing: -0.025em;
 }
 
+.pedidos-descripcion {
+    color: var(--admin-text-secondary);
 
-.pedido-admin-header p {
-    margin: 5px 0 0;
+    font-size: 14px;
 
-    color: #9999a1;
+    max-width: 600px;
 
-    font-size: 0.65rem;
-
-    font-weight: 500;
+    line-height: 1.6;
 }
 
 
-/* ==========================================================================
-   INFORMACIÓN DEL PEDIDO
-========================================================================== */
+/* =========================================================
+   RESUMEN
+========================================================= */
 
-.pedido-admin-info {
+.pedidos-resumen {
     display: grid;
 
     grid-template-columns:
-        repeat(
-            3,
-            minmax(0, 1fr)
-        );
+        repeat(4, minmax(0, 1fr));
 
-    gap: 20px;
+    gap: 14px;
 
-    padding: 20px 0;
+    margin-bottom: 28px;
 }
 
 
-.pedido-admin-info p {
-    margin: 0;
+.pedido-resumen-item {
+    min-height: 92px;
 
-    color: #92929a;
+    display: flex;
 
-    font-size: 0.59rem;
+    align-items: center;
 
-    font-weight: 800;
+    gap: 14px;
 
-    letter-spacing: 0.055em;
+    padding: 18px;
 
-    text-transform: uppercase;
-}
-
-
-.pedido-admin-info strong {
-    display: block;
-
-    margin-top: 6px;
-
-    color: #26262b;
-
-    font-size: 0.72rem;
-
-    font-weight: 650;
-
-    line-height: 1.5;
-
-    text-transform: none;
-}
-
-
-/* ==========================================================================
-   PRODUCTOS DEL PEDIDO
-========================================================================== */
-
-.pedido-productos {
-    padding:
-        8px
-        16px;
-
-    background: #fafafb;
+    background: var(--admin-card);
 
     border:
         1px solid
-        #eeeeef;
+        var(--admin-border);
 
-    border-radius: 10px;
+    border-radius:
+        var(--admin-radius);
+
+    box-shadow:
+        0 3px 14px
+        rgba(15, 15, 20, 0.025);
 }
 
 
-.producto-pedido {
+.resumen-icono {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+    font-weight: 700;
+}
+
+
+.resumen-pendiente {
+    color: var(--admin-warning);
+
+    background:
+        var(--admin-warning-soft);
+}
+
+
+.resumen-aceptado {
+    color: var(--admin-info);
+
+    background:
+        var(--admin-info-soft);
+}
+
+
+.resumen-preparacion {
+    color: var(--admin-accent);
+
+    background:
+        var(--admin-accent-soft);
+}
+
+
+.resumen-finalizado {
+    color: var(--admin-success);
+
+    background:
+        var(--admin-success-soft);
+}
+
+
+.pedido-resumen-item span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color:
+        var(--admin-text-secondary);
+
+    font-size: 12px;
+}
+
+
+.pedido-resumen-item strong {
+    display: block;
+
+    color:
+        var(--admin-text);
+
+    font-size: 24px;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   PANEL PRINCIPAL
+========================================================= */
+
+.pedidos-panel {
+    overflow: hidden;
+
+    background:
+        var(--admin-card);
+
+    border:
+        1px solid
+        var(--admin-border);
+
+    border-radius:
+        var(--admin-radius);
+
+    box-shadow:
+        var(--admin-shadow);
+}
+
+
+.pedidos-panel-header {
+    min-height: 76px;
+
     display: flex;
 
     align-items: center;
@@ -174,309 +193,813 @@
 
     gap: 20px;
 
-    padding: 11px 0;
+    padding:
+        18px 22px;
+
+    border-bottom:
+        1px solid
+        var(--admin-border);
 }
 
 
-.producto-pedido:not(:last-child) {
-    border-bottom: 1px solid #e8e8eb;
+.pedidos-panel-header p {
+    margin-bottom: 4px;
+
+    color:
+        var(--admin-accent);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
 }
 
 
-.producto-pedido p {
-    margin: 0;
+.pedidos-panel-header h2 {
+    color:
+        var(--admin-text);
 
-    color: #72727a;
+    font-size: 17px;
 
-    font-size: 0.68rem;
-
-    font-weight: 550;
-
-    line-height: 1.5;
+    font-weight: 650;
 }
 
 
-.producto-pedido strong {
-    color: #242429;
+.pedidos-total-label {
+    padding:
+        7px 10px;
 
-    font-size: 0.68rem;
+    color:
+        var(--admin-text-secondary);
 
-    font-weight: 800;
+    background:
+        var(--admin-card-soft);
+
+    border:
+        1px solid
+        var(--admin-border);
+
+    border-radius: 7px;
+
+    font-size: 11px;
 
     white-space: nowrap;
 }
 
 
-/* ==========================================================================
-   TOTAL
-========================================================================== */
+/* =========================================================
+   LISTA
+========================================================= */
 
-.pedido-admin-total {
+.pedidos-lista {
+    width: 100%;
+}
+
+
+/* =========================================================
+   PEDIDO
+========================================================= */
+
+.pedido-fila {
+    display: grid;
+
+    grid-template-columns:
+        minmax(190px, 1.3fr)
+        100px
+        minmax(190px, 1.4fr)
+        100px
+        125px
+        150px;
+
+    align-items: center;
+
+    gap: 20px;
+
+    min-height: 118px;
+
+    padding:
+        18px 22px;
+
+    border-bottom:
+        1px solid
+        var(--admin-border);
+
+    transition:
+        background 0.15s ease;
+}
+
+
+.pedido-fila:last-child {
+    border-bottom: none;
+}
+
+
+.pedido-fila:hover {
+    background:
+        #fcfcfd;
+}
+
+
+/* =========================================================
+   IDENTIFICACIÓN
+========================================================= */
+
+.pedido-identificacion {
     display: flex;
 
     align-items: center;
-    justify-content: flex-end;
 
-    gap: 10px;
+    gap: 12px;
 
-    margin-top: 18px;
+    min-width: 0;
+}
 
-    color: #85858d;
 
-    font-size: 0.62rem;
+.pedido-numero {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        var(--admin-sidebar);
+
+    color:
+        #ffffff;
+
+    border-radius: 9px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.pedido-identificacion h3 {
+    margin-bottom: 4px;
+
+    color:
+        var(--admin-text);
+
+    font-size: 14px;
 
     font-weight: 650;
 
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+.pedido-identificacion p {
+    color:
+        var(--admin-text-light);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   FECHA
+========================================================= */
+
+.pedido-fecha span,
+.pedido-fecha small {
+    display: block;
+}
+
+
+.pedido-fecha span {
+    color:
+        var(--admin-text);
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+.pedido-fecha small {
+    margin-top: 4px;
+
+    color:
+        var(--admin-text-light);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   PRODUCTOS
+========================================================= */
+
+.pedido-productos {
+    min-width: 0;
+}
+
+
+.pedido-producto {
+    display: grid;
+
+    grid-template-columns:
+        30px minmax(0, 1fr) auto;
+
+    align-items: center;
+
+    gap: 6px;
+
+    min-height: 22px;
+}
+
+
+.producto-cantidad {
+    color:
+        var(--admin-accent);
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.producto-nombre {
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+
+    color:
+        var(--admin-text-secondary);
+
+    font-size: 11px;
+}
+
+
+.producto-subtotal {
+    color:
+        var(--admin-text);
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   TOTAL
+========================================================= */
+
+.pedido-total span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color:
+        var(--admin-text-light);
+
+    font-size: 10px;
+
     text-transform: uppercase;
 
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
 }
 
 
-.pedido-admin-total strong {
-    color: #17171a;
+.pedido-total strong {
+    color:
+        var(--admin-text);
 
-    font-family: "Manrope", sans-serif;
+    font-size: 16px;
 
-    font-size: 1.4rem;
-
-    font-weight: 800;
-
-    letter-spacing: -0.04em;
+    font-weight: 700;
 }
 
 
-/* ==========================================================================
+/* =========================================================
+   ESTADOS
+========================================================= */
+
+.pedido-estado {
+    display: flex;
+
+    align-items: center;
+}
+
+
+.estado-pedido {
+    display: inline-flex;
+
+    align-items: center;
+
+    min-height: 27px;
+
+    padding:
+        0 9px;
+
+    border-radius: 7px;
+
+    font-size: 10px;
+
+    font-weight: 650;
+
+    white-space: nowrap;
+}
+
+
+.estado-pendiente {
+    color:
+        var(--admin-warning);
+
+    background:
+        var(--admin-warning-soft);
+}
+
+
+.estado-aceptado {
+    color:
+        var(--admin-info);
+
+    background:
+        var(--admin-info-soft);
+}
+
+
+.estado-en_preparacion {
+    color:
+        var(--admin-accent);
+
+    background:
+        var(--admin-accent-soft);
+}
+
+
+.estado-completado {
+    color:
+        var(--admin-success);
+
+    background:
+        var(--admin-success-soft);
+}
+
+
+.estado-rechazado {
+    color:
+        var(--admin-danger);
+
+    background:
+        var(--admin-danger-soft);
+}
+
+
+/* =========================================================
    ACCIONES
-========================================================================== */
+========================================================= */
 
 .pedido-acciones {
     display: flex;
 
     align-items: center;
+
     justify-content: flex-end;
 
-    gap: 8px;
-
-    margin-top: 18px;
-
-    padding-top: 18px;
-
-    border-top: 1px solid #eeeeef;
+    gap: 6px;
 }
 
 
-.btn-estado,
-.btn-rechazar {
-    min-height: 37px;
+.btn-accion {
+    min-height: 34px;
 
     padding:
-        0
-        14px;
+        0 11px;
 
-    border-radius: 8px;
+    border: none;
 
-    font-family: "Manrope", sans-serif;
+    border-radius: 7px;
 
-    font-size: 0.6rem;
+    font-family: inherit;
 
-    font-weight: 800;
+    font-size: 10px;
 
-    letter-spacing: 0.035em;
-
-    text-transform: uppercase;
+    font-weight: 650;
 
     cursor: pointer;
 
     transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease,
-        box-shadow 0.2s ease,
-        transform 0.2s ease;
+        background 0.15s ease,
+        transform 0.15s ease;
 }
 
 
-/* ==========================================================================
-   COMPLETAR
-========================================================================== */
+.btn-accion:hover {
+    transform:
+        translateY(-1px);
+}
 
-.btn-estado {
-    background: #7957d5;
 
-    border: 1px solid #7957d5;
-
+.btn-aceptar {
     color: #ffffff;
 
-    box-shadow:
-        0 4px 12px rgba(121, 87, 213, 0.14);
+    background:
+        var(--admin-accent);
 }
 
 
-.btn-estado:hover {
-    background: #6846c5;
-
-    border-color: #6846c5;
-
-    box-shadow:
-        0 7px 18px rgba(121, 87, 213, 0.22);
-
-    transform: translateY(-1px);
+.btn-aceptar:hover {
+    background:
+        var(--admin-accent-hover);
 }
 
 
-.btn-estado:active {
-    transform: translateY(0);
+.btn-preparar {
+    color: #ffffff;
+
+    background:
+        var(--admin-info);
 }
 
 
-/* ==========================================================================
-   RECHAZAR
-========================================================================== */
+.btn-preparar:hover {
+    opacity: 0.9;
+}
+
+
+.btn-completar {
+    color: #ffffff;
+
+    background:
+        var(--admin-success);
+}
+
+
+.btn-completar:hover {
+    opacity: 0.9;
+}
+
 
 .btn-rechazar {
-    background: #ffffff;
+    color:
+        var(--admin-danger);
 
-    border: 1px solid #e0e0e4;
-
-    color: #777780;
+    background:
+        var(--admin-danger-soft);
 }
 
 
 .btn-rechazar:hover {
-    background: #f8ebeb;
-
-    border-color: #eccdcd;
-
-    color: #a55454;
+    background:
+        #f8dfe4;
 }
 
 
-/* ==========================================================================
-   PEDIDO FINALIZADO
-========================================================================== */
+.pedido-sin-accion {
+    color:
+        var(--admin-text-light);
 
-.pedido-finalizado {
-    opacity: 0.62;
-
-    box-shadow: none;
+    font-size: 10px;
 }
 
 
-.pedido-finalizado:hover {
-    transform: none;
+/* =========================================================
+   CARGANDO
+========================================================= */
 
-    border-color: #e7e7ea;
+.pedidos-cargando {
+    min-height: 180px;
 
-    box-shadow: none;
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    color:
+        var(--admin-text-light);
 }
 
 
-/* ==========================================================================
-   RESPONSIVE — TABLET
-========================================================================== */
+.pedidos-cargando span {
+    width: 20px;
+    height: 20px;
+
+    border:
+        2px solid
+        var(--admin-border);
+
+    border-top-color:
+        var(--admin-accent);
+
+    border-radius: 50%;
+
+    animation:
+        pedidosCarga 0.8s
+        linear infinite;
+}
+
+
+@keyframes pedidosCarga {
+
+    to {
+        transform:
+            rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   VACÍO
+========================================================= */
+
+.pedidos-vacio {
+    min-height: 240px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+
+.vacio-icono {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 14px;
+
+    color:
+        var(--admin-text-light);
+
+    background:
+        var(--admin-card-soft);
+
+    border:
+        1px solid
+        var(--admin-border);
+
+    border-radius: 10px;
+
+    font-size: 18px;
+}
+
+
+.pedidos-vacio h3 {
+    margin-bottom: 5px;
+
+    color:
+        var(--admin-text);
+
+    font-size: 15px;
+}
+
+
+.pedidos-vacio p {
+    color:
+        var(--admin-text-secondary);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.pedidos-error {
+    padding: 50px 30px;
+
+    text-align: center;
+}
+
+
+.pedidos-error h3 {
+    margin-bottom: 6px;
+
+    color:
+        var(--admin-danger);
+
+    font-size: 15px;
+}
+
+
+.pedidos-error p {
+    color:
+        var(--admin-text-secondary);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .pedido-fila {
+
+        grid-template-columns:
+            minmax(170px, 1.2fr)
+            90px
+            minmax(160px, 1fr)
+            90px
+            115px;
+
+    }
+
+    .pedido-estado {
+        grid-column: 5;
+    }
+
+    .pedido-acciones {
+        grid-column: 6;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET PEQUEÑA
+========================================================= */
 
 @media (max-width: 900px) {
 
-    .pedido-admin-info {
+    .pedidos-resumen {
         grid-template-columns:
-            repeat(
-                3,
-                minmax(0, 1fr)
-            );
-
-        gap: 14px;
-    }
-
-}
-
-
-/* ==========================================================================
-   RESPONSIVE — MÓVIL
-========================================================================== */
-
-@media (max-width: 700px) {
-
-    .pedido-admin {
-        padding: 18px;
+            repeat(2, 1fr);
     }
 
 
-    .pedido-admin-header {
-        flex-direction: column;
+    .pedido-fila {
 
-        gap: 12px;
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 18px;
+
+        padding:
+            20px;
+
     }
 
 
-    .pedido-admin-info {
-        grid-template-columns: 1fr;
+    .pedido-identificacion {
+        grid-column: 1;
+    }
 
-        gap: 14px;
 
-        padding: 18px 0;
+    .pedido-fecha {
+        grid-column: 2;
+
+        text-align: right;
     }
 
 
     .pedido-productos {
-        padding:
-            7px
-            13px;
+        grid-column:
+            1 / -1;
     }
 
 
-    .producto-pedido {
-        gap: 12px;
-
-        padding: 10px 0;
+    .pedido-total {
+        grid-column: 1;
     }
 
 
-    .pedido-admin-total {
-        justify-content: space-between;
+    .pedido-estado {
+        grid-column: 2;
+
+        justify-content: flex-end;
     }
 
 
     .pedido-acciones {
+        grid-column:
+            1 / -1;
+
+        justify-content: flex-start;
+
+        padding-top: 4px;
+
+        border-top:
+            1px solid
+            var(--admin-border);
+    }
+
+}
+
+
+/* =========================================================
+   MÓVIL
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .pedidos-encabezado h1 {
+        font-size: 27px;
+    }
+
+
+    .pedidos-resumen {
+        grid-template-columns: 1fr;
+    }
+
+
+    .pedidos-panel-header {
+
+        align-items: flex-start;
+
         flex-direction: column;
 
-        align-items: stretch;
+        gap: 10px;
+
+        padding:
+            17px;
+
     }
 
 
-    .btn-estado,
-    .btn-rechazar {
-        width: 100%;
+    .pedido-fila {
+
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+
+        padding:
+            18px 16px;
+
+    }
+
+
+    .pedido-identificacion,
+    .pedido-fecha,
+    .pedido-productos,
+    .pedido-total,
+    .pedido-estado,
+    .pedido-acciones {
+
+        grid-column:
+            1;
+
+    }
+
+
+    .pedido-fecha {
+
+        text-align: left;
+
+        padding-bottom: 10px;
+
+        border-bottom:
+            1px solid
+            var(--admin-border);
+
+    }
+
+
+    .pedido-estado {
+
+        justify-content: flex-start;
+    }
+
+
+    .pedido-acciones {
+
+        justify-content: flex-start;
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .btn-accion {
+
+        flex: 1;
+
+        min-width: 100px;
+
     }
 
 }
-
-
-/* ==========================================================================
-   MÓVIL PEQUEÑO
-========================================================================== */
-
-@media (max-width: 480px) {
-
-    .pedido-admin {
-        padding: 16px;
-    }
-
-
-    .pedido-admin-header h2 {
-        font-size: 0.94rem;
-    }
-
-
-    .pedido-admin-total strong {
-        font-size: 1.3rem;
-    }
-
-
-    .producto-pedido p,
-    .producto-pedido strong {
-        font-size: 0.64rem;
-    }
-
-}
-
