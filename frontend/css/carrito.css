@@ -1,512 +1,980 @@
-/* =========================================================
-   CAFÉ NÉBULA
-   CARRITO Y CONFIRMACIÓN DE PEDIDO
-========================================================= */
+
+/* ==========================================================================
+   CAFÉ NÉBULA — CARRITO
+   Estilo Premium / Minimal / Moderno
+========================================================================== */
 
 
-/* =========================================================
-   CARRITO VACÍO
-========================================================= */
+/* ==========================================================================
+   FONDO GENERAL
+========================================================================== */
 
-.carrito-vacio {
-    max-width: 760px;
+body {
+    background:
+        radial-gradient(
+            circle at 85% 5%,
+            rgba(121, 87, 213, 0.07),
+            transparent 28%
+        ),
+        #f7f7f8;
 
-    margin: 20px auto 0;
-    padding: 80px 45px;
-
-    background: var(--blanco);
-
-    border: 1px solid var(--gris-borde);
-    border-radius: var(--radio);
-
-    text-align: center;
-
-    box-shadow: var(--sombra-sutil);
+    color: #17171a;
 }
 
-.carrito-vacio h2 {
-    margin-bottom: 10px;
 
-    color: var(--negro);
+/* ==========================================================================
+   NAVBAR
+========================================================================== */
 
-    font-size: 25px;
-    font-weight: 800;
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
 
-    letter-spacing: -0.8px;
+    width: 100%;
+
+    background: rgba(17, 17, 20, 0.96);
+
+    border-bottom: 1px solid #29292f;
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 }
 
-.carrito-vacio p {
-    max-width: 470px;
 
-    margin: 0 auto 28px;
+.header-contenido {
+    width: min(1240px, calc(100% - 4rem));
 
-    color: var(--gris-texto);
+    min-height: 72px;
 
-    font-size: 14px;
-    line-height: 1.7;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 2rem;
 }
 
-.carrito-vacio .btn-agregar {
-    display: inline-block;
 
-    width: auto;
-    min-width: 190px;
+.logo {
+    color: #ffffff;
 
     text-decoration: none;
-}
 
+    font-family:
+        "Manrope",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
 
-/* =========================================================
-   LISTA DEL CARRITO
-========================================================= */
+    font-size: 1rem;
+    font-weight: 800;
 
-.lista-carrito {
-    display: flex;
-    flex-direction: column;
-
-    gap: 12px;
-}
-
-
-/* =========================================================
-   ELEMENTO DEL CARRITO
-========================================================= */
-
-.item-carrito {
-    display: grid;
-
-    grid-template-columns:
-        minmax(0, 2fr)
-        120px
-        140px
-        auto;
-
-    align-items: center;
-
-    gap: 28px;
-
-    padding: 24px 26px;
-
-    background: var(--blanco);
-
-    border: 1px solid var(--gris-borde);
-    border-radius: var(--radio);
-
-    box-shadow: var(--sombra-sutil);
+    letter-spacing: -0.035em;
 
     transition:
-        border-color var(--transicion),
-        box-shadow var(--transicion);
-}
-
-.item-carrito:hover {
-    border-color: #d5d5d2;
-
-    box-shadow: var(--sombra);
+        color 0.2s ease;
 }
 
 
-/* =========================================================
-   INFORMACIÓN DEL PRODUCTO
-========================================================= */
-
-.item-carrito h2 {
-    margin-bottom: 6px;
-
-    color: var(--negro);
-
-    font-size: 17px;
-    font-weight: 800;
-
-    letter-spacing: -0.4px;
-}
-
-.item-carrito p {
-    color: var(--gris-texto);
-
-    font-size: 13px;
-    line-height: 1.5;
+.logo:hover {
+    color: #b49bea;
 }
 
 
-/* =========================================================
-   CANTIDAD
-========================================================= */
-
-.cantidad-carrito {
+.header nav {
     display: flex;
-    flex-direction: column;
+    align-items: center;
 
-    gap: 6px;
+    gap: 5px;
 }
 
-.cantidad-carrito label {
-    color: var(--gris-texto);
 
-    font-size: 10px;
+.header nav a {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 40px;
+
+    padding: 0 14px;
+
+    border-radius: 8px;
+
+    color: #9898a1;
+
+    text-decoration: none;
+
+    font-family:
+        "Manrope",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    font-size: 0.72rem;
+    font-weight: 600;
+
+    letter-spacing: 0;
+
+    text-transform: none;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.header nav a::after {
+    display: none;
+}
+
+
+.header nav a:hover {
+    background: #1d1d22;
+
+    color: #ffffff;
+}
+
+
+/* ==========================================================================
+   ENCABEZADO
+========================================================================== */
+
+.presentacion {
+    width: min(900px, 100%);
+
+    margin: 0 auto 46px;
+
+    text-align: left;
+}
+
+
+.presentacion .etiqueta {
+    display: inline-flex;
+    align-items: center;
+
+    margin-bottom: 12px;
+
+    color: #7957d5;
+
+    font-size: 0.64rem;
     font-weight: 800;
 
-    letter-spacing: 0.5px;
+    letter-spacing: 0.14em;
 
     text-transform: uppercase;
 }
 
-.cantidad-carrito input {
-    width: 78px;
 
-    padding: 10px 11px;
+.presentacion h1 {
+    margin: 0 0 12px;
 
-    border: 1px solid var(--gris-borde);
-    border-radius: 7px;
+    color: #17171a;
 
-    background: var(--blanco);
+    font-family:
+        "Manrope",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
 
-    font-size: 13px;
-    font-weight: 600;
+    font-size: clamp(2.3rem, 5vw, 4rem);
+
+    font-weight: 800;
+
+    letter-spacing: -0.055em;
+
+    line-height: 1.02;
 }
 
-.cantidad-carrito input:focus {
-    border-color: var(--azul);
+
+.presentacion p:last-child {
+    max-width: 570px;
+
+    margin: 0;
+
+    color: #707078;
+
+    font-size: 0.82rem;
+    font-weight: 500;
+
+    line-height: 1.75;
+}
+
+
+/* ==========================================================================
+   LISTA DEL CARRITO
+========================================================================== */
+
+.lista-carrito {
+    width: min(900px, 100%);
+
+    margin: 0 auto;
+
+    background: #ffffff;
+
+    border: 1px solid #e7e7ea;
+
+    border-radius: 16px;
+
+    overflow: hidden;
 
     box-shadow:
-        0 0 0 3px rgba(49, 94, 251, 0.08);
+        0 1px 2px rgba(15, 15, 20, 0.02),
+        0 12px 35px rgba(15, 15, 20, 0.035);
 }
 
 
-/* =========================================================
-   BOTÓN ELIMINAR
-========================================================= */
+/* ==========================================================================
+   ITEM
+========================================================================== */
 
-.btn-eliminar {
-    width: fit-content;
+.item-carrito {
+    display: grid;
 
-    padding: 7px 0;
+    grid-template-columns: 1fr auto;
 
-    border: none;
+    align-items: center;
 
-    background: transparent;
+    gap: 2rem;
 
-    color: #777777;
+    padding: 24px 26px;
 
-    cursor: pointer;
+    background: #ffffff;
 
-    font-size: 11px;
-    font-weight: 700;
+    border-bottom: 1px solid #ededf0;
 
     transition:
-        color var(--transicion);
-}
-
-.btn-eliminar:hover {
-    color: var(--rojo);
+        background 0.2s ease;
 }
 
 
-/* =========================================================
-   RESUMEN DEL CARRITO
-========================================================= */
-
-.resumen-carrito {
-    width: min(410px, 100%);
-
-    margin-top: 22px;
-    margin-left: auto;
-
-    padding: 29px;
-
-    background: var(--blanco);
-
-    border: 1px solid var(--gris-borde);
-    border-radius: var(--radio);
-
-    box-shadow: var(--sombra);
-}
-
-.resumen-carrito p {
-    margin-bottom: 7px;
-
-    color: var(--gris-texto);
-
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.resumen-carrito h2 {
-    margin-bottom: 22px;
-
-    color: var(--negro);
-
-    font-size: 31px;
-    font-weight: 800;
-
-    line-height: 1;
-
-    letter-spacing: -1.2px;
-}
-
-.resumen-carrito .btn-agregar {
-    display: block;
-
-    width: 100%;
-
-    text-align: center;
-    text-decoration: none;
+.item-carrito:last-child {
+    border-bottom: 0;
 }
 
 
-/* =========================================================
-   FORMULARIO DE PEDIDO
-========================================================= */
+.item-carrito:hover {
+    padding-left: 26px;
+    padding-right: 26px;
 
-.formulario-pedido {
-    margin-top: 24px;
-
-    padding: 34px;
-
-    background: var(--blanco);
-
-    border: 1px solid var(--gris-borde);
-    border-radius: var(--radio);
-
-    box-shadow: var(--sombra-sutil);
+    background: #fafafd;
 }
 
-.formulario-pedido h2 {
-    margin-bottom: 7px;
 
-    color: var(--negro);
+.item-carrito h3 {
+    margin: 0 0 6px;
 
-    font-size: 21px;
-    font-weight: 800;
+    color: #1a1a1e;
 
-    letter-spacing: -0.5px;
+    font-family:
+        "Manrope",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    font-size: 0.92rem;
+
+    font-weight: 750;
+
+    letter-spacing: -0.02em;
 }
 
-.formulario-pedido > p {
-    margin-bottom: 28px;
 
-    color: var(--gris-texto);
+.item-carrito p {
+    margin: 0;
 
-    font-size: 13px;
+    color: #85858d;
+
+    font-size: 0.72rem;
+    font-weight: 500;
+
     line-height: 1.6;
 }
 
-#pedido-form {
-    width: min(100%, 560px);
-}
 
+/* ==========================================================================
+   PARTE DERECHA
+========================================================================== */
 
-/* =========================================================
-   CAMPOS
-========================================================= */
-
-.campo {
+.item-carrito .cantidad-carrito {
     display: flex;
-    flex-direction: column;
 
-    margin-bottom: 19px;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 10px;
 }
 
-.campo label {
-    margin-bottom: 7px;
 
-    color: var(--negro);
+/* ==========================================================================
+   CONTROL DE CANTIDAD
+========================================================================== */
 
-    font-size: 11px;
-    font-weight: 800;
+.cantidad-carrito button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    letter-spacing: 0.2px;
-}
+    width: 32px;
+    height: 32px;
 
-.campo input {
-    width: 100%;
+    padding: 0;
 
-    padding: 13px 14px;
+    border: 1px solid #dedee3;
 
-    border: 1px solid var(--gris-borde);
     border-radius: 8px;
 
-    background: var(--blanco);
+    background: #ffffff;
 
-    color: var(--negro);
+    color: #55555d;
 
-    font-size: 13px;
+    font-size: 0.8rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
-.campo input::placeholder {
-    color: #a0a0a0;
+
+.cantidad-carrito button:hover {
+    border-color: #7957d5;
+
+    background: #7957d5;
+
+    color: #ffffff;
+
+    transform: translateY(-1px);
 }
 
-.campo input:focus {
-    border-color: var(--azul);
+
+.cantidad-carrito button:active {
+    transform: translateY(0);
+}
+
+
+.cantidad-carrito span {
+    min-width: 28px;
+
+    color: #1c1c20;
+
+    font-size: 0.76rem;
+    font-weight: 750;
+
+    text-align: center;
+}
+
+
+/* ==========================================================================
+   ELIMINAR
+========================================================================== */
+
+.btn-eliminar {
+    margin-left: 10px;
+
+    padding: 7px 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #a0a0a7;
+
+    font-size: 0.62rem;
+    font-weight: 700;
+
+    letter-spacing: 0.04em;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease;
+}
+
+
+.btn-eliminar:hover {
+    color: #c14d58;
+}
+
+
+/* ==========================================================================
+   CARRITO VACÍO
+========================================================================== */
+
+.carrito-vacio {
+    width: min(700px, 100%);
+
+    margin: 0 auto;
+
+    padding: 70px 30px;
+
+    background: #ffffff;
+
+    border: 1px solid #e7e7ea;
+
+    border-radius: 16px;
+
+    text-align: center;
 
     box-shadow:
-        0 0 0 3px rgba(49, 94, 251, 0.08);
+        0 10px 30px rgba(15, 15, 20, 0.03);
 }
 
 
-/* =========================================================
-   BOTÓN PRINCIPAL DEL FORMULARIO
-========================================================= */
+.carrito-vacio h2 {
+    margin: 0 0 10px;
 
-#pedido-form .btn-agregar {
+    color: #1a1a1e;
+
+    font-size: 1.55rem;
+
+    font-weight: 800;
+
+    letter-spacing: -0.04em;
+}
+
+
+.carrito-vacio p {
+    margin: 0;
+
+    color: #85858d;
+
+    font-size: 0.78rem;
+
+    line-height: 1.7;
+}
+
+
+/* ==========================================================================
+   RESUMEN
+========================================================================== */
+
+.resumen-carrito {
+    width: min(900px, 100%);
+
+    margin: 24px auto 0;
+
+    padding: 26px 28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #17171b 0%,
+            #202027 100%
+        );
+
+    border: 1px solid #2c2c34;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 15px 40px rgba(15, 15, 20, 0.10);
+}
+
+
+.resumen-carrito h2 {
+    margin: 0 0 9px;
+
+    color: #a999e6;
+
+    font-size: 0.62rem;
+    font-weight: 800;
+
+    letter-spacing: 0.14em;
+
+    text-transform: uppercase;
+}
+
+
+.resumen-carrito .total {
+    color: #ffffff;
+
+    font-family:
+        "Manrope",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    font-size: 2.45rem;
+
+    font-weight: 800;
+
+    letter-spacing: -0.055em;
+
+    line-height: 1;
+}
+
+
+/* ==========================================================================
+   FORMULARIO
+========================================================================== */
+
+.formulario-pedido {
+    width: min(900px, 100%);
+
+    margin: 54px auto 0;
+
+    padding: 0;
+
+    border-top: 0;
+}
+
+
+.formulario-pedido h2 {
+    margin: 0 0 24px;
+
+    color: #19191d;
+
+    font-size: 1.5rem;
+
+    font-weight: 800;
+
+    letter-spacing: -0.04em;
+}
+
+
+#pedido-form {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 18px;
+
+    padding: 28px;
+
+    background: #ffffff;
+
+    border: 1px solid #e7e7ea;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 10px 30px rgba(15, 15, 20, 0.025);
+}
+
+
+/* ==========================================================================
+   CAMPOS
+========================================================================== */
+
+.campo {
+    display: grid;
+
+    gap: 7px;
+}
+
+
+.campo label {
+    color: #56565e;
+
+    font-size: 0.64rem;
+    font-weight: 750;
+
+    letter-spacing: 0.02em;
+}
+
+
+.campo input,
+.campo textarea,
+.campo select {
+    width: 100%;
+
+    padding: 12px 13px;
+
+    border: 1px solid #dedee3;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #202025;
+
+    font-family:
+        "Manrope",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    font-size: 0.74rem;
+    font-weight: 500;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.campo input {
+    height: 44px;
+}
+
+
+.campo textarea {
+    min-height: 115px;
+
+    resize: vertical;
+}
+
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+    color: #aaaab1;
+}
+
+
+.campo input:hover,
+.campo textarea:hover,
+.campo select:hover {
+    border-color: #cfcfd5;
+}
+
+
+.campo input:focus,
+.campo textarea:focus,
+.campo select:focus {
+    border-color: #7957d5;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 4px rgba(121, 87, 213, 0.09);
+}
+
+
+.campo select option {
+    background: #ffffff;
+
+    color: #202025;
+}
+
+
+/* ==========================================================================
+   CAMPO COMPLETO
+========================================================================== */
+
+.campo.full {
+    grid-column: 1 / -1;
+}
+
+
+/* ==========================================================================
+   BOTÓN ENVIAR
+========================================================================== */
+
+.formulario-pedido button[type="submit"] {
+    grid-column: 1 / -1;
+
+    width: 100%;
+
+    min-height: 46px;
+
     margin-top: 4px;
+
+    padding: 0 18px;
+
+    border: 0;
+
+    border-radius: 9px;
+
+    background: #17171a;
+
+    color: #ffffff;
+
+    font-size: 0.7rem;
+    font-weight: 750;
+
+    letter-spacing: 0.01em;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 
-/* =========================================================
-   SEPARACIÓN VISUAL
-========================================================= */
+.formulario-pedido button[type="submit"]:hover {
+    background: #7957d5;
 
-.lista-carrito + .resumen-carrito {
-    position: relative;
-}
+    box-shadow:
+        0 8px 22px rgba(121, 87, 213, 0.20);
 
-.resumen-carrito::before {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: 24px;
-
-    width: 45px;
-    height: 3px;
-
-    background: var(--negro);
-
-    border-radius: 0 0 4px 4px;
+    transform: translateY(-1px);
 }
 
 
-/* =========================================================
-   RESPONSIVE — 900 PX
-========================================================= */
+.formulario-pedido button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+
+/* ==========================================================================
+   MENSAJE
+========================================================================== */
+
+#mensaje-pedido {
+    grid-column: 1 / -1;
+
+    margin: 0;
+
+    color: #7957d5;
+
+    font-size: 0.72rem;
+    font-weight: 650;
+
+    line-height: 1.6;
+
+    text-align: center;
+}
+
+
+/* ==========================================================================
+   TABLET
+========================================================================== */
 
 @media (max-width: 900px) {
 
-    .item-carrito {
-        grid-template-columns:
-            minmax(0, 1fr)
-            100px
-            auto;
-
-        gap: 20px;
+    .header-contenido {
+        width: calc(100% - 2.5rem);
     }
 
-    .item-carrito .btn-eliminar {
-        grid-column: 3;
-        grid-row: 1;
+
+    .presentacion,
+    .lista-carrito,
+    .resumen-carrito,
+    .formulario-pedido {
+        width: calc(100% - 2.5rem);
     }
 
-}
 
-
-/* =========================================================
-   RESPONSIVE — 700 PX
-========================================================= */
-
-@media (max-width: 700px) {
-
-    .item-carrito {
-        grid-template-columns: 1fr 1fr;
-
-        gap: 18px;
-
-        padding: 22px;
-    }
-
-    .item-carrito > :first-child {
-        grid-column: 1 / -1;
-    }
-
-    .item-carrito .btn-eliminar {
-        grid-column: auto;
-        grid-row: auto;
-
-        justify-self: end;
-        align-self: end;
-    }
-
-    .cantidad-carrito input {
-        width: 75px;
-    }
-
-    .resumen-carrito {
-        width: 100%;
+    #pedido-form {
+        gap: 15px;
     }
 
 }
 
 
-/* =========================================================
-   RESPONSIVE — 600 PX
-========================================================= */
+/* ==========================================================================
+   MÓVIL
+========================================================================== */
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
 
-    .carrito-vacio {
-        padding: 60px 25px;
+    .header {
+        position: relative;
     }
 
-    .carrito-vacio h2 {
-        font-size: 22px;
-    }
 
-    .carrito-vacio p {
-        font-size: 13px;
-    }
+    .header-contenido {
+        width: calc(100% - 1.5rem);
 
-    .item-carrito {
-        display: flex;
+        min-height: auto;
+
+        padding: 13px 0;
+
         flex-direction: column;
 
-        align-items: stretch;
+        gap: 10px;
+    }
 
-        gap: 14px;
+
+    .logo {
+        font-size: 0.95rem;
+    }
+
+
+    .header nav {
+        width: 100%;
+
+        justify-content: center;
+
+        gap: 3px;
+
+        overflow-x: auto;
+
+        scrollbar-width: none;
+    }
+
+
+    .header nav::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    .header nav a {
+        min-height: 34px;
+
+        padding: 0 10px;
+
+        white-space: nowrap;
+
+        font-size: 0.64rem;
+    }
+
+
+    .presentacion,
+    .lista-carrito,
+    .resumen-carrito,
+    .formulario-pedido {
+        width: calc(100% - 1.5rem);
+    }
+
+
+    .presentacion {
+        margin-bottom: 30px;
+    }
+
+
+    .presentacion h1 {
+        font-size: 2.5rem;
+    }
+
+
+    .presentacion p:last-child {
+        font-size: 0.76rem;
+    }
+
+
+    .lista-carrito {
+        border-radius: 13px;
+    }
+
+
+    .item-carrito {
+        grid-template-columns: 1fr;
+
+        gap: 16px;
 
         padding: 20px;
     }
 
-    .item-carrito .btn-eliminar {
-        align-self: flex-start;
+
+    .item-carrito:hover {
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
-    .cantidad-carrito input {
-        width: 100%;
+
+    .item-carrito .cantidad-carrito {
+        justify-content: flex-start;
     }
+
+
+    .btn-eliminar {
+        margin-left: 5px;
+    }
+
 
     .resumen-carrito {
-        padding: 24px;
+        padding: 23px;
+
+        border-radius: 13px;
     }
 
-    .resumen-carrito h2 {
-        font-size: 28px;
+
+    .resumen-carrito .total {
+        font-size: 2.2rem;
     }
+
 
     .formulario-pedido {
-        padding: 24px 20px;
+        margin-top: 40px;
+    }
+
+
+    .formulario-pedido h2 {
+        font-size: 1.35rem;
+    }
+
+
+    #pedido-form {
+        grid-template-columns: 1fr;
+
+        padding: 20px;
+
+        border-radius: 13px;
+    }
+
+
+    .campo.full {
+        grid-column: auto;
+    }
+
+
+    .formulario-pedido button[type="submit"] {
+        grid-column: auto;
+    }
+
+
+    #mensaje-pedido {
+        grid-column: auto;
     }
 
 }
 
 
-/* =========================================================
-   RESPONSIVE — 400 PX
-========================================================= */
+/* ==========================================================================
+   MÓVIL PEQUEÑO
+========================================================================== */
 
 @media (max-width: 400px) {
 
-    .carrito-vacio {
-        padding: 50px 20px;
+    .header nav a {
+        padding: 0 8px;
+
+        font-size: 0.59rem;
     }
 
-    .resumen-carrito {
-        padding: 21px;
+
+    .presentacion h1 {
+        font-size: 2.2rem;
     }
 
-    .formulario-pedido {
-        padding: 21px 17px;
+
+    .item-carrito {
+        padding: 18px;
+    }
+
+
+    .item-carrito:hover {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+
+    .resumen-carrito .total {
+        font-size: 2rem;
+    }
+
+
+    #pedido-form {
+        padding: 17px;
     }
 
 }
+

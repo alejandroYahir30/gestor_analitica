@@ -1,301 +1,354 @@
-/* =========================================================
-   VELORA / CAFÉ NÉBULA
-   SISTEMA GLOBAL
-========================================================= */
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+/* ==========================================================================
+   CAFÉ NÉBULA — GLOBAL
+   Identidad visual moderna / premium / SaaS
+========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+
+/* ==========================================================================
+   VARIABLES
+========================================================================== */
 
 :root {
 
-    /* ---------------------------------------------
-       COLORES PRINCIPALES
-    --------------------------------------------- */
+    /* Fondos */
+    --bg-body: #f7f7f8;
+    --bg-card: #ffffff;
+    --bg-soft: #f1f1f3;
+    --bg-dark: #111114;
+    --bg-dark-soft: #19191d;
 
-    --negro: #111111;
-    --negro-2: #181818;
-    --negro-3: #222222;
+    /* Texto */
+    --text-primary: #17171a;
+    --text-secondary: #73737b;
+    --text-light: #9b9ba3;
+    --text-white: #ffffff;
 
-    --blanco: #ffffff;
+    /* Acento */
+    --accent: #7957d5;
+    --accent-dark: #6846c5;
+    --accent-soft: #f0ebff;
+    --accent-border: #ddd3f7;
 
-    --gris-fondo: #f5f5f3;
-    --gris-claro: #fafafa;
-    --gris-borde: #e5e5e2;
+    /* Bordes */
+    --border-light: #e7e7ea;
+    --border-medium: #dcdce1;
+    --border-dark: #2b2b31;
 
-    --gris-texto: #666666;
-    --gris-texto-2: #8a8a8a;
+    /* Estados */
+    --success: #3d8061;
+    --success-bg: #eaf4ee;
 
-    /* ---------------------------------------------
-       ACENTO
-    --------------------------------------------- */
+    --warning: #9a712d;
+    --warning-bg: #f8f1e3;
 
-    --azul: #315efb;
-    --azul-oscuro: #244bd0;
-    --azul-suave: #eef2ff;
+    --danger: #a55454;
+    --danger-bg: #f8ebeb;
 
-    /* ---------------------------------------------
-       ESTADOS
-    --------------------------------------------- */
+    --info: #55749b;
+    --info-bg: #edf2f8;
 
-    --verde: #237a4b;
-    --verde-suave: #eaf6ef;
+    /* Tipografía */
+    --font-main:
+        "Manrope",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
 
-    --rojo: #a63d3d;
-    --rojo-suave: #fff0f0;
+    /* Bordes */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
 
-    --amarillo: #8a6500;
-    --amarillo-suave: #fff7df;
+    /* Sombras */
+    --shadow-sm:
+        0 1px 2px rgba(15, 15, 20, 0.025);
 
-    --morado: #6346a5;
-    --morado-suave: #f2edff;
+    --shadow-md:
+        0 8px 25px rgba(15, 15, 20, 0.045);
 
-    /* ---------------------------------------------
-       SOMBRAS
-    --------------------------------------------- */
+    --shadow-lg:
+        0 18px 45px rgba(15, 15, 20, 0.08);
 
-    --sombra-sutil:
-        0 2px 8px rgba(0, 0, 0, 0.035);
-
-    --sombra:
-        0 10px 30px rgba(0, 0, 0, 0.06);
-
-    --sombra-grande:
-        0 20px 50px rgba(0, 0, 0, 0.09);
-
-    /* ---------------------------------------------
-       RADIOS
-    --------------------------------------------- */
-
-    --radio: 16px;
-    --radio-mediano: 12px;
-    --radio-pequeno: 8px;
-
-    /* ---------------------------------------------
-       TRANSICIONES
-    --------------------------------------------- */
-
-    --transicion:
-        0.22s ease;
+    /* Transiciones */
+    --transition:
+        0.2s ease;
 }
 
 
-/* =========================================================
-   HTML / BODY
-========================================================= */
+/* ==========================================================================
+   RESET
+========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+}
+
 
 html {
     scroll-behavior: smooth;
 }
 
+
 body {
     min-height: 100vh;
 
-    background: var(--gris-fondo);
-    color: var(--negro);
+    background:
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(121, 87, 213, 0.035),
+            transparent 30%
+        ),
+        var(--bg-body);
 
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+    color: var(--text-primary);
 
-    font-size: 14px;
-    line-height: 1.5;
+    font-family: var(--font-main);
 
     -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-
-/* =========================================================
-   ELEMENTOS GENERALES
-========================================================= */
 
 button,
 input,
-select,
-textarea {
-    font-family: inherit;
-}
-
-button {
+textarea,
+select {
     font: inherit;
 }
 
+
+button {
+    cursor: pointer;
+}
+
+
 a {
     color: inherit;
+
+    text-decoration: none;
 }
+
 
 img {
-    max-width: 100%;
     display: block;
-}
 
-::selection {
-    background: var(--negro);
-    color: var(--blanco);
+    max-width: 100%;
 }
 
 
-/* =========================================================
-   CONTENEDOR PRINCIPAL
-========================================================= */
+/* ==========================================================================
+   CONTENEDOR GENERAL
+========================================================================== */
 
 .contenedor {
-    width: min(1380px, calc(100% - 64px));
+    width: 100%;
+    max-width: 1440px;
+
     margin: 0 auto;
-    padding: 64px 0 90px;
+
+    padding:
+        56px
+        32px
+        80px;
 }
 
 
-/* =========================================================
-   ENCABEZADO DE SECCIÓN
-========================================================= */
+/* ==========================================================================
+   PRESENTACIÓN DE PÁGINA
+========================================================================== */
 
 .presentacion {
-    margin-bottom: 42px;
+    max-width: 760px;
+
+    margin:
+        0 auto
+        56px;
+
+    text-align: center;
 }
+
 
 .etiqueta {
     display: inline-flex;
+
     align-items: center;
 
-    width: fit-content;
+    min-height: 27px;
 
     margin-bottom: 16px;
-    padding: 6px 10px;
 
-    border: 1px solid #dfe3ea;
-    border-radius: 6px;
+    padding:
+        5px
+        10px;
 
-    background: var(--blanco);
+    background: var(--accent-soft);
 
-    color: var(--gris-texto);
+    border: 1px solid var(--accent-border);
 
-    font-size: 10px;
+    border-radius: 100px;
+
+    color: var(--accent-dark);
+
+    font-size: 0.62rem;
+
     font-weight: 800;
 
-    letter-spacing: 1.4px;
+    letter-spacing: 0.07em;
+
     text-transform: uppercase;
 }
+
 
 .presentacion h1 {
-    margin-bottom: 13px;
+    margin-bottom: 16px;
 
-    color: var(--negro);
+    color: var(--text-primary);
 
-    font-size: clamp(32px, 4vw, 48px);
+    font-family: var(--font-main);
+
+    font-size:
+        clamp(
+            2.4rem,
+            5vw,
+            4rem
+        );
+
     font-weight: 800;
 
-    line-height: 1.05;
-    letter-spacing: -2px;
-}
+    letter-spacing: -0.055em;
 
-.presentacion p:last-child {
-    max-width: 700px;
-
-    color: var(--gris-texto);
-
-    font-size: 15px;
-    line-height: 1.75;
+    line-height: 1.03;
 }
 
 
-/* =========================================================
-   INPUTS GENERALES
-========================================================= */
+.presentacion p {
+    max-width: 620px;
+
+    margin: 0 auto;
+
+    color: var(--text-secondary);
+
+    font-size: 0.82rem;
+
+    font-weight: 500;
+
+    line-height: 1.8;
+}
+
+
+/* ==========================================================================
+   TIPOGRAFÍA GENERAL
+========================================================================== */
+
+h1,
+h2,
+h3,
+h4 {
+    color: var(--text-primary);
+
+    font-family: var(--font-main);
+}
+
+
+h1,
+h2,
+h3,
+h4,
+p {
+    overflow-wrap: break-word;
+}
+
+
+h2,
+h3,
+h4 {
+    font-weight: 700;
+}
+
+
+/* ==========================================================================
+   FORMULARIOS
+========================================================================== */
 
 input,
-select,
-textarea {
-    color: var(--negro);
-
-    border: 1px solid var(--gris-borde);
-    background: var(--blanco);
-
-    transition:
-        border-color var(--transicion),
-        box-shadow var(--transicion);
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-    outline: none;
-
-    border-color: var(--azul);
-
-    box-shadow:
-        0 0 0 3px rgba(49, 94, 251, 0.09);
-}
-
-
-/* =========================================================
-   TABLAS GENERALES
-========================================================= */
-
-table {
+textarea,
+select {
     width: 100%;
 
-    border-collapse: separate;
-    border-spacing: 0;
+    background: var(--bg-card);
 
-    overflow: hidden;
+    border:
+        1px solid
+        var(--border-light);
 
-    background: var(--blanco);
+    border-radius: var(--radius-sm);
 
-    border: 1px solid var(--gris-borde);
-    border-radius: var(--radio);
+    color: var(--text-primary);
 
-    box-shadow: var(--sombra-sutil);
-}
+    outline: none;
 
-th {
-    padding: 15px 17px;
-
-    background: #f8f8f7;
-
-    border-bottom: 1px solid var(--gris-borde);
-
-    color: #555555;
-
-    font-size: 10px;
-    font-weight: 800;
-
-    letter-spacing: 0.8px;
-    text-align: left;
-
-    text-transform: uppercase;
-}
-
-td {
-    padding: 16px 17px;
-
-    border-bottom: 1px solid #eeeeec;
-
-    color: var(--negro);
-
-    font-size: 13px;
-}
-
-tbody tr {
-    transition: background var(--transicion);
-}
-
-tbody tr:hover {
-    background: #fafafa;
-}
-
-tr:last-child td {
-    border-bottom: none;
+    transition:
+        border-color var(--transition),
+        box-shadow var(--transition);
 }
 
 
-/* =========================================================
-   ESTADOS
-========================================================= */
+input,
+select {
+    min-height: 44px;
+
+    padding:
+        0
+        13px;
+}
+
+
+textarea {
+    min-height: 110px;
+
+    padding:
+        12px
+        13px;
+
+    resize: vertical;
+}
+
+
+input::placeholder,
+textarea::placeholder {
+    color: #a4a4ab;
+}
+
+
+input:hover,
+textarea:hover,
+select:hover {
+    border-color: var(--border-medium);
+}
+
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--accent);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(121, 87, 213, 0.10);
+}
+
+
+/* ==========================================================================
+   ESTADOS DE PEDIDOS
+========================================================================== */
 
 .estado-pedido {
     display: inline-flex;
@@ -303,98 +356,200 @@ tr:last-child td {
     align-items: center;
     justify-content: center;
 
-    width: fit-content;
+    min-height: 27px;
 
-    padding: 6px 10px;
+    padding:
+        5px
+        10px;
 
-    border-radius: 999px;
+    border-radius: 100px;
 
-    font-size: 9px;
+    font-size: 0.61rem;
+
     font-weight: 800;
 
-    letter-spacing: 0.4px;
+    letter-spacing: 0.045em;
 
     text-transform: uppercase;
+
     white-space: nowrap;
 }
 
+
 .estado-pendiente {
-    background: var(--amarillo-suave);
-    color: var(--amarillo);
+    background: var(--warning-bg);
+
+    color: var(--warning);
 }
 
-.estado-aceptado {
-    background: var(--azul-suave);
-    color: var(--azul-oscuro);
-}
-
-.estado-en_preparacion {
-    background: var(--morado-suave);
-    color: var(--morado);
-}
 
 .estado-completado {
-    background: var(--verde-suave);
-    color: var(--verde);
+    background: var(--success-bg);
+
+    color: var(--success);
 }
+
 
 .estado-rechazado {
-    background: var(--rojo-suave);
-    color: var(--rojo);
+    background: var(--danger-bg);
+
+    color: var(--danger);
 }
 
 
-/* =========================================================
-   RESPONSIVE GLOBAL
-========================================================= */
+/* ==========================================================================
+   CARDS GENERALES
+========================================================================== */
+
+.card,
+.dashboard-card,
+.grafica-card,
+.pedido-admin,
+.dashboard-acceso {
+    border:
+        1px solid
+        var(--border-light);
+
+    border-radius: var(--radius-md);
+
+    background: var(--bg-card);
+
+    box-shadow: var(--shadow-sm);
+}
+
+
+/* ==========================================================================
+   SELECCIÓN DE TEXTO
+========================================================================== */
+
+::selection {
+    background: var(--accent);
+
+    color: #ffffff;
+}
+
+
+/* ==========================================================================
+   SCROLLBAR
+========================================================================== */
+
+::-webkit-scrollbar {
+    width: 8px;
+
+    height: 8px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: var(--bg-body);
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: #d1d1d6;
+
+    border-radius: 100px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: #b8b8c0;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE — TABLET
+========================================================================== */
 
 @media (max-width: 900px) {
 
     .contenedor {
-        width: min(100% - 40px, 700px);
-        padding-top: 48px;
-        padding-bottom: 70px;
+        padding:
+            46px
+            24px
+            65px;
+    }
+
+
+    .presentacion {
+        margin-bottom: 46px;
     }
 
 }
 
-@media (max-width: 600px) {
 
-    body {
-        font-size: 13px;
-    }
+/* ==========================================================================
+   RESPONSIVE — MÓVIL
+========================================================================== */
+
+@media (max-width: 700px) {
 
     .contenedor {
-        width: calc(100% - 32px);
-        padding-top: 38px;
-        padding-bottom: 55px;
+        padding:
+            38px
+            18px
+            55px;
     }
+
+
+    .presentacion {
+        margin-bottom: 38px;
+    }
+
+
+    .presentacion h1 {
+        font-size:
+            clamp(
+                2.2rem,
+                11vw,
+                3.2rem
+            );
+    }
+
+
+    .presentacion p {
+        font-size: 0.76rem;
+    }
+
+}
+
+
+/* ==========================================================================
+   MÓVIL PEQUEÑO
+========================================================================== */
+
+@media (max-width: 480px) {
+
+    .contenedor {
+        padding:
+            30px
+            14px
+            45px;
+    }
+
 
     .presentacion {
         margin-bottom: 32px;
     }
 
+
     .presentacion h1 {
-        font-size: 32px;
-        letter-spacing: -1.3px;
+        font-size: 2.35rem;
+
+        letter-spacing: -0.06em;
     }
 
-    .presentacion p:last-child {
-        font-size: 14px;
+
+    .presentacion p {
+        font-size: 0.73rem;
+
+        line-height: 1.7;
     }
 
-    table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
 
-}
-
-@media (max-width: 400px) {
-
-    .contenedor {
-        width: calc(100% - 24px);
+    .etiqueta {
+        font-size: 0.57rem;
     }
 
 }
+

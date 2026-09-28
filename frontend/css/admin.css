@@ -1,512 +1,790 @@
-/* =========================================================
-   CAFÉ NÉBULA
-   CARRITO Y CONFIRMACIÓN DE PEDIDO
-========================================================= */
+
+/* ==========================================================================
+   CAFÉ NÉBULA — PANEL ADMINISTRADOR
+   Estilo: Premium / SaaS / Minimal
+========================================================================== */
 
 
-/* =========================================================
-   CARRITO VACÍO
-========================================================= */
+/* ==========================================================================
+   VARIABLES
+========================================================================== */
 
-.carrito-vacio {
-    max-width: 760px;
+:root {
+    --admin-bg: #f7f7f8;
+    --admin-card: #ffffff;
+    --admin-card-soft: #fbfbfc;
 
-    margin: 20px auto 0;
-    padding: 80px 45px;
+    --admin-sidebar: #111114;
+    --admin-sidebar-hover: #1c1c21;
 
-    background: var(--blanco);
+    --admin-text: #17171a;
+    --admin-text-secondary: #6f7078;
+    --admin-text-light: #a0a1a8;
 
-    border: 1px solid var(--gris-borde);
-    border-radius: var(--radio);
+    --admin-border: #e8e8eb;
+    --admin-border-dark: #29292f;
 
-    text-align: center;
+    --admin-accent: #7957d5;
+    --admin-accent-hover: #6846c5;
+    --admin-accent-soft: #f0ebff;
 
-    box-shadow: var(--sombra-sutil);
-}
+    --admin-success: #26845f;
+    --admin-success-soft: #e8f7f0;
 
-.carrito-vacio h2 {
-    margin-bottom: 10px;
+    --admin-warning: #b7791f;
+    --admin-warning-soft: #fff5df;
 
-    color: var(--negro);
+    --admin-danger: #c14d58;
+    --admin-danger-soft: #fcecef;
 
-    font-size: 25px;
-    font-weight: 800;
+    --admin-info: #4773a8;
+    --admin-info-soft: #edf4fb;
 
-    letter-spacing: -0.8px;
-}
+    --admin-radius: 14px;
+    --admin-radius-small: 9px;
 
-.carrito-vacio p {
-    max-width: 470px;
-
-    margin: 0 auto 28px;
-
-    color: var(--gris-texto);
-
-    font-size: 14px;
-    line-height: 1.7;
-}
-
-.carrito-vacio .btn-agregar {
-    display: inline-block;
-
-    width: auto;
-    min-width: 190px;
-
-    text-decoration: none;
+    --admin-shadow:
+        0 1px 2px rgba(15, 15, 20, 0.03),
+        0 8px 30px rgba(15, 15, 20, 0.035);
 }
 
 
-/* =========================================================
-   LISTA DEL CARRITO
-========================================================= */
+/* ==========================================================================
+   BASE
+========================================================================== */
 
-.lista-carrito {
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+
+    background: var(--admin-bg);
+    color: var(--admin-text);
+
+    font-family:
+        "Manrope",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+
+/* ==========================================================================
+   HEADER
+========================================================================== */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    width: 100%;
+
+    background: rgba(17, 17, 20, 0.96);
+
+    border-bottom: 1px solid var(--admin-border-dark);
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+
+.header-contenido {
+    width: min(1440px, calc(100% - 4rem));
+
+    min-height: 72px;
+
+    margin: 0 auto;
+
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 
-    gap: 12px;
+    gap: 2rem;
 }
 
 
-/* =========================================================
-   ELEMENTO DEL CARRITO
-========================================================= */
+/* ==========================================================================
+   LOGO
+========================================================================== */
 
-.item-carrito {
-    display: grid;
-
-    grid-template-columns:
-        minmax(0, 2fr)
-        120px
-        140px
-        auto;
-
+.logo {
+    display: inline-flex;
     align-items: center;
 
-    gap: 28px;
+    color: #ffffff;
 
-    padding: 24px 26px;
+    text-decoration: none;
 
-    background: var(--blanco);
+    font-size: 1rem;
+    font-weight: 800;
 
-    border: 1px solid var(--gris-borde);
-    border-radius: var(--radio);
+    letter-spacing: -0.035em;
 
-    box-shadow: var(--sombra-sutil);
+    white-space: nowrap;
+}
+
+
+.logo::before {
+    content: "ADMIN";
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 24px;
+
+    margin-right: 10px;
+    padding: 0 8px;
+
+    border: 1px solid #36363d;
+    border-radius: 6px;
+
+    color: #a6a6ae;
+
+    font-size: 0.56rem;
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+}
+
+
+/* ==========================================================================
+   NAVEGACIÓN
+========================================================================== */
+
+.header nav {
+    display: flex;
+    align-items: center;
+
+    gap: 4px;
+}
+
+
+.header nav a {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 40px;
+
+    padding: 0 14px;
+
+    border-radius: 8px;
+
+    color: #96969f;
+
+    text-decoration: none;
+
+    font-size: 0.72rem;
+    font-weight: 600;
 
     transition:
-        border-color var(--transicion),
-        box-shadow var(--transicion);
-}
-
-.item-carrito:hover {
-    border-color: #d5d5d2;
-
-    box-shadow: var(--sombra);
+        color 0.2s ease,
+        background 0.2s ease;
 }
 
 
-/* =========================================================
-   INFORMACIÓN DEL PRODUCTO
-========================================================= */
+.header nav a:hover {
+    background: var(--admin-sidebar-hover);
+    color: #ffffff;
+}
 
-.item-carrito h2 {
-    margin-bottom: 6px;
 
-    color: var(--negro);
+.header nav a:active {
+    transform: translateY(1px);
+}
 
-    font-size: 17px;
+
+/* ==========================================================================
+   CONTENEDOR PRINCIPAL
+========================================================================== */
+
+.contenedor {
+    width: min(1440px, calc(100% - 4rem));
+
+    margin: 0 auto;
+
+    padding: 42px 0 80px;
+}
+
+
+/* ==========================================================================
+   PRESENTACIÓN
+========================================================================== */
+
+.presentacion {
+    max-width: none;
+
+    margin: 0 0 32px;
+
+    text-align: left;
+}
+
+
+.presentacion .etiqueta {
+    display: inline-flex;
+    align-items: center;
+
+    margin-bottom: 10px;
+
+    color: var(--admin-accent);
+
+    font-size: 0.64rem;
     font-weight: 800;
 
-    letter-spacing: -0.4px;
-}
-
-.item-carrito p {
-    color: var(--gris-texto);
-
-    font-size: 13px;
-    line-height: 1.5;
-}
-
-
-/* =========================================================
-   CANTIDAD
-========================================================= */
-
-.cantidad-carrito {
-    display: flex;
-    flex-direction: column;
-
-    gap: 6px;
-}
-
-.cantidad-carrito label {
-    color: var(--gris-texto);
-
-    font-size: 10px;
-    font-weight: 800;
-
-    letter-spacing: 0.5px;
+    letter-spacing: 0.14em;
 
     text-transform: uppercase;
 }
 
-.cantidad-carrito input {
-    width: 78px;
 
-    padding: 10px 11px;
+.presentacion h1 {
+    margin: 0 0 8px;
 
-    border: 1px solid var(--gris-borde);
-    border-radius: 7px;
+    color: var(--admin-text);
 
-    background: var(--blanco);
+    font-size: clamp(1.7rem, 2vw, 2.1rem);
 
-    font-size: 13px;
-    font-weight: 600;
-}
+    font-weight: 800;
 
-.cantidad-carrito input:focus {
-    border-color: var(--azul);
+    letter-spacing: -0.045em;
 
-    box-shadow:
-        0 0 0 3px rgba(49, 94, 251, 0.08);
+    line-height: 1.15;
 }
 
 
-/* =========================================================
-   BOTÓN ELIMINAR
-========================================================= */
+.presentacion p {
+    max-width: 680px;
 
-.btn-eliminar {
+    margin: 0;
+
+    color: var(--admin-text-secondary);
+
+    font-size: 0.82rem;
+
+    line-height: 1.7;
+}
+
+
+/* ==========================================================================
+   ESTADOS
+========================================================================== */
+
+.estado {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
     width: fit-content;
 
-    padding: 7px 0;
+    min-height: 28px;
 
-    border: none;
+    padding: 0 10px;
 
-    background: transparent;
+    border-radius: 999px;
 
-    color: #777777;
+    font-size: 0.64rem;
+    font-weight: 700;
+
+    letter-spacing: 0.01em;
+
+    white-space: nowrap;
+}
+
+
+.estado-pendiente {
+    background: var(--admin-warning-soft);
+    color: var(--admin-warning);
+}
+
+
+.estado-completado {
+    background: var(--admin-success-soft);
+    color: var(--admin-success);
+}
+
+
+.estado-cancelado {
+    background: var(--admin-danger-soft);
+    color: var(--admin-danger);
+}
+
+
+/* ==========================================================================
+   BOTONES
+========================================================================== */
+
+button {
+    border: 0;
+    font-family: inherit;
+}
+
+
+button:not(.btn-eliminar) {
+    cursor: pointer;
+}
+
+
+/* ==========================================================================
+   LOGIN
+========================================================================== */
+
+.login-admin {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 32px;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(121, 87, 213, 0.16),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(121, 87, 213, 0.09),
+            transparent 28%
+        ),
+        #111114;
+}
+
+
+.login-admin .login-contenedor {
+    position: relative;
+
+    width: min(430px, 100%);
+
+    padding: 42px;
+
+    background: rgba(255, 255, 255, 0.98);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.35),
+        0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+
+.login-admin .login-contenedor::before {
+    content: "CAFÉ NÉBULA";
+
+    display: block;
+
+    margin-bottom: 22px;
+
+    color: var(--admin-accent);
+
+    font-size: 0.62rem;
+    font-weight: 800;
+
+    letter-spacing: 0.16em;
+}
+
+
+.login-admin h1 {
+    margin: 0 0 8px;
+
+    color: var(--admin-text);
+
+    font-size: 1.65rem;
+
+    font-weight: 800;
+
+    letter-spacing: -0.04em;
+}
+
+
+.login-admin p {
+    margin: 0 0 28px;
+
+    color: var(--admin-text-secondary);
+
+    font-size: 0.78rem;
+
+    line-height: 1.7;
+}
+
+
+/* ==========================================================================
+   FORMULARIOS
+========================================================================== */
+
+.login-admin label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--admin-text);
+
+    font-size: 0.68rem;
+    font-weight: 700;
+}
+
+
+.login-admin input {
+    width: 100%;
+    height: 46px;
+
+    margin-bottom: 18px;
+    padding: 0 14px;
+
+    outline: none;
+
+    border: 1px solid var(--admin-border);
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: var(--admin-text);
+
+    font-size: 0.78rem;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.login-admin input::placeholder {
+    color: #b0b1b7;
+}
+
+
+.login-admin input:hover {
+    border-color: #d5d5da;
+}
+
+
+.login-admin input:focus {
+    border-color: var(--admin-accent);
+
+    box-shadow:
+        0 0 0 4px rgba(121, 87, 213, 0.10);
+}
+
+
+.login-admin button {
+    width: 100%;
+    height: 46px;
+
+    margin-top: 4px;
+
+    border-radius: 9px;
+
+    background: var(--admin-sidebar);
+
+    color: #ffffff;
+
+    font-size: 0.74rem;
+    font-weight: 700;
 
     cursor: pointer;
 
-    font-size: 11px;
-    font-weight: 700;
-
     transition:
-        color var(--transicion);
-}
-
-.btn-eliminar:hover {
-    color: var(--rojo);
-}
-
-
-/* =========================================================
-   RESUMEN DEL CARRITO
-========================================================= */
-
-.resumen-carrito {
-    width: min(410px, 100%);
-
-    margin-top: 22px;
-    margin-left: auto;
-
-    padding: 29px;
-
-    background: var(--blanco);
-
-    border: 1px solid var(--gris-borde);
-    border-radius: var(--radio);
-
-    box-shadow: var(--sombra);
-}
-
-.resumen-carrito p {
-    margin-bottom: 7px;
-
-    color: var(--gris-texto);
-
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.resumen-carrito h2 {
-    margin-bottom: 22px;
-
-    color: var(--negro);
-
-    font-size: 31px;
-    font-weight: 800;
-
-    line-height: 1;
-
-    letter-spacing: -1.2px;
-}
-
-.resumen-carrito .btn-agregar {
-    display: block;
-
-    width: 100%;
-
-    text-align: center;
-    text-decoration: none;
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 
-/* =========================================================
-   FORMULARIO DE PEDIDO
-========================================================= */
-
-.formulario-pedido {
-    margin-top: 24px;
-
-    padding: 34px;
-
-    background: var(--blanco);
-
-    border: 1px solid var(--gris-borde);
-    border-radius: var(--radio);
-
-    box-shadow: var(--sombra-sutil);
-}
-
-.formulario-pedido h2 {
-    margin-bottom: 7px;
-
-    color: var(--negro);
-
-    font-size: 21px;
-    font-weight: 800;
-
-    letter-spacing: -0.5px;
-}
-
-.formulario-pedido > p {
-    margin-bottom: 28px;
-
-    color: var(--gris-texto);
-
-    font-size: 13px;
-    line-height: 1.6;
-}
-
-#pedido-form {
-    width: min(100%, 560px);
-}
-
-
-/* =========================================================
-   CAMPOS
-========================================================= */
-
-.campo {
-    display: flex;
-    flex-direction: column;
-
-    margin-bottom: 19px;
-}
-
-.campo label {
-    margin-bottom: 7px;
-
-    color: var(--negro);
-
-    font-size: 11px;
-    font-weight: 800;
-
-    letter-spacing: 0.2px;
-}
-
-.campo input {
-    width: 100%;
-
-    padding: 13px 14px;
-
-    border: 1px solid var(--gris-borde);
-    border-radius: 8px;
-
-    background: var(--blanco);
-
-    color: var(--negro);
-
-    font-size: 13px;
-}
-
-.campo input::placeholder {
-    color: #a0a0a0;
-}
-
-.campo input:focus {
-    border-color: var(--azul);
+.login-admin button:hover {
+    background: var(--admin-accent);
 
     box-shadow:
-        0 0 0 3px rgba(49, 94, 251, 0.08);
+        0 8px 20px rgba(121, 87, 213, 0.22);
+
+    transform: translateY(-1px);
 }
 
 
-/* =========================================================
-   BOTÓN PRINCIPAL DEL FORMULARIO
-========================================================= */
-
-#pedido-form .btn-agregar {
-    margin-top: 4px;
+.login-admin button:active {
+    transform: translateY(0);
 }
 
 
-/* =========================================================
-   SEPARACIÓN VISUAL
-========================================================= */
+/* ==========================================================================
+   ELEMENTOS DE TARJETA
+   Estas reglas sirven como base para dashboard,
+   pedidos, inventario y ventas.
+========================================================================== */
 
-.lista-carrito + .resumen-carrito {
-    position: relative;
-}
+.card,
+.dashboard-card,
+.pedido-admin,
+.resumen-carrito {
+    background: var(--admin-card);
 
-.resumen-carrito::before {
-    content: "";
+    border: 1px solid var(--admin-border);
 
-    position: absolute;
+    border-radius: var(--admin-radius);
 
-    top: 0;
-    left: 24px;
-
-    width: 45px;
-    height: 3px;
-
-    background: var(--negro);
-
-    border-radius: 0 0 4px 4px;
+    box-shadow: var(--admin-shadow);
 }
 
 
-/* =========================================================
-   RESPONSIVE — 900 PX
-========================================================= */
+/* ==========================================================================
+   TABLAS
+========================================================================== */
 
-@media (max-width: 900px) {
+table {
+    width: 100%;
 
-    .item-carrito {
-        grid-template-columns:
-            minmax(0, 1fr)
-            100px
-            auto;
+    border-collapse: collapse;
 
-        gap: 20px;
+    background: var(--admin-card);
+}
+
+
+th {
+    padding: 14px 16px;
+
+    background: #fafafa;
+
+    border-bottom: 1px solid var(--admin-border);
+
+    color: var(--admin-text-secondary);
+
+    font-size: 0.63rem;
+    font-weight: 800;
+
+    letter-spacing: 0.06em;
+
+    text-align: left;
+
+    text-transform: uppercase;
+}
+
+
+td {
+    padding: 15px 16px;
+
+    border-bottom: 1px solid var(--admin-border);
+
+    color: var(--admin-text);
+
+    font-size: 0.74rem;
+}
+
+
+tr:last-child td {
+    border-bottom: 0;
+}
+
+
+tbody tr {
+    transition: background 0.15s ease;
+}
+
+
+tbody tr:hover {
+    background: #fafafd;
+}
+
+
+/* ==========================================================================
+   SCROLLBAR
+========================================================================== */
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #d5d5da transparent;
+}
+
+
+*::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+*::-webkit-scrollbar-thumb {
+    background: #d5d5da;
+
+    border-radius: 999px;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE — TABLET
+========================================================================== */
+
+@media (max-width: 1000px) {
+
+    .header-contenido {
+        width: calc(100% - 2.5rem);
+        gap: 1rem;
     }
 
-    .item-carrito .btn-eliminar {
-        grid-column: 3;
-        grid-row: 1;
+
+    .header nav {
+        overflow-x: auto;
+
+        max-width: 65vw;
+
+        scrollbar-width: none;
+    }
+
+
+    .header nav::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    .header nav a {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+
+    .contenedor {
+        width: calc(100% - 2.5rem);
+
+        padding-top: 34px;
     }
 
 }
 
 
-/* =========================================================
-   RESPONSIVE — 700 PX
-========================================================= */
+/* ==========================================================================
+   RESPONSIVE — MÓVIL
+========================================================================== */
 
-@media (max-width: 700px) {
+@media (max-width: 650px) {
 
-    .item-carrito {
-        grid-template-columns: 1fr 1fr;
-
-        gap: 18px;
-
-        padding: 22px;
+    .header {
+        position: relative;
     }
 
-    .item-carrito > :first-child {
-        grid-column: 1 / -1;
-    }
 
-    .item-carrito .btn-eliminar {
-        grid-column: auto;
-        grid-row: auto;
+    .header-contenido {
+        width: calc(100% - 1.5rem);
 
-        justify-self: end;
-        align-self: end;
-    }
+        min-height: auto;
 
-    .cantidad-carrito input {
-        width: 75px;
-    }
+        padding: 14px 0;
 
-    .resumen-carrito {
-        width: 100%;
-    }
-
-}
-
-
-/* =========================================================
-   RESPONSIVE — 600 PX
-========================================================= */
-
-@media (max-width: 600px) {
-
-    .carrito-vacio {
-        padding: 60px 25px;
-    }
-
-    .carrito-vacio h2 {
-        font-size: 22px;
-    }
-
-    .carrito-vacio p {
-        font-size: 13px;
-    }
-
-    .item-carrito {
-        display: flex;
         flex-direction: column;
 
         align-items: stretch;
 
-        gap: 14px;
-
-        padding: 20px;
+        gap: 12px;
     }
 
-    .item-carrito .btn-eliminar {
-        align-self: flex-start;
+
+    .logo {
+        justify-content: center;
     }
 
-    .cantidad-carrito input {
+
+    .header nav {
+        max-width: none;
+
         width: 100%;
+
+        justify-content: flex-start;
+
+        padding-bottom: 2px;
     }
 
-    .resumen-carrito {
-        padding: 24px;
+
+    .header nav a {
+        min-height: 36px;
+
+        padding: 0 11px;
+
+        font-size: 0.65rem;
     }
 
-    .resumen-carrito h2 {
-        font-size: 28px;
+
+    .contenedor {
+        width: calc(100% - 1.5rem);
+
+        padding: 28px 0 55px;
     }
 
-    .formulario-pedido {
-        padding: 24px 20px;
+
+    .presentacion {
+        margin-bottom: 24px;
+    }
+
+
+    .presentacion h1 {
+        font-size: 1.5rem;
+    }
+
+
+    .presentacion p {
+        font-size: 0.76rem;
+    }
+
+
+    .login-admin {
+        padding: 18px;
+    }
+
+
+    .login-admin .login-contenedor {
+        padding: 30px 24px;
+
+        border-radius: 15px;
     }
 
 }
 
 
-/* =========================================================
-   RESPONSIVE — 400 PX
-========================================================= */
+/* ==========================================================================
+   RESPONSIVE — MÓVIL PEQUEÑO
+========================================================================== */
 
 @media (max-width: 400px) {
 
-    .carrito-vacio {
-        padding: 50px 20px;
+    .login-admin .login-contenedor {
+        padding: 26px 20px;
     }
 
-    .resumen-carrito {
-        padding: 21px;
+
+    .logo {
+        font-size: 0.92rem;
     }
 
-    .formulario-pedido {
-        padding: 21px 17px;
+
+    .logo::before {
+        display: none;
     }
 
 }
+

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -32,62 +31,150 @@
 
 <body>
 
+    <!-- =====================================================
+         ENCABEZADO ADMINISTRATIVO
+    ====================================================== -->
+
     <header class="header">
 
-        <div class="logo">
-            Café Nébula
+        <div class="header-contenido">
+
+            <a href="dashboard.html" class="logo">
+                Café Nébula
+            </a>
+
+            <nav>
+
+                <a href="dashboard.html">
+                    Dashboard
+                </a>
+
+                <a href="pedidos.html">
+                    Pedidos
+                </a>
+
+                <a href="inventario.html" class="activo">
+                    Inventario
+                </a>
+
+                <a href="ventas.html">
+                    Ventas
+                </a>
+
+            </nav>
+
         </div>
-
-
-        <nav>
-             <a href="dashboard.html">
-            Dashboard
-             </a>
-
-            <a href="pedidos.html">
-                Pedidos
-            </a>
-
-            <a href="inventario.html">
-                Inventario
-            </a>
-
-            <a href="ventas.html">
-                Ventas
-            </a>
-
-        </nav>
 
     </header>
 
 
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+    ====================================================== -->
+
     <main class="contenedor">
+
+        <!-- Encabezado de página -->
 
         <section class="presentacion">
 
-            <p class="etiqueta">
-                PANEL DEL NEGOCIO
-            </p>
+            <div>
 
-            <h1>
-                Inventario
-            </h1>
+                <p class="etiqueta">
+                    CONTROL DEL NEGOCIO
+                </p>
 
-            <p>
-                Consulta el estado actual de los productos
-                disponibles en Café Nébula.
-            </p>
+                <h1>
+                    Inventario
+                </h1>
+
+                <p>
+                    Consulta y supervisa las existencias actuales
+                    de los productos de Café Nébula.
+                </p>
+
+            </div>
 
         </section>
 
 
-        <section>
+        <!-- =================================================
+             RESUMEN DEL INVENTARIO
+        ================================================== -->
 
-            <div id="inventario">
+        <section class="inventario-resumen">
+
+            <div class="inventario-info">
+
+                <span class="inventario-info-label">
+                    ESTADO DEL INVENTARIO
+                </span>
+
+                <strong>
+                    Existencias actuales
+                </strong>
 
                 <p>
-                    Cargando inventario...
+                    Revisa las cantidades disponibles
+                    antes de procesar nuevos pedidos.
                 </p>
+
+            </div>
+
+            <div class="inventario-indicador">
+
+                <span class="indicador-punto"></span>
+
+                <span>
+                    Inventario activo
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             TABLA / CONTENEDOR DE PRODUCTOS
+        ================================================== -->
+
+        <section class="inventario-panel">
+
+            <div class="inventario-panel-header">
+
+                <div>
+
+                    <span class="panel-etiqueta">
+                        PRODUCTOS
+                    </span>
+
+                    <h2>
+                        Existencias
+                    </h2>
+
+                </div>
+
+                <span class="panel-descripcion">
+                    Cantidad disponible por producto
+                </span>
+
+            </div>
+
+
+            <div
+                id="inventario"
+                class="inventario-contenido"
+            >
+
+                <div class="inventario-cargando">
+
+                    <span class="cargando-punto"></span>
+
+                    <p>
+                        Cargando inventario...
+                    </p>
+
+                </div>
 
             </div>
 
@@ -96,10 +183,14 @@
     </main>
 
 
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
     <script src="../js/inventario.js"></script>
+
     <script src="../js/admin-auth.js"></script>
 
 </body>
 
 </html>
-```

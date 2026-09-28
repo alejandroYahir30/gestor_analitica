@@ -1,257 +1,584 @@
-/* =========================================================
-   CAFÉ NÉBULA
-   INVENTARIO
-   ESTILO CORPORATIVO / OPERATIVO
-========================================================= */
+
+/* ==========================================================================
+   CAFÉ NÉBULA — INVENTARIO
+   Estilo Premium / SaaS
+========================================================================== */
 
 
-/* =========================================================
-   CONTENEDOR
-========================================================= */
+/* ==========================================================================
+   RESUMEN DE INVENTARIO
+========================================================================== */
 
-.inventario-tabla {
+.inventario-resumen {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 24px;
+
+    margin-bottom: 20px;
+
+    padding: 22px 24px;
+
+    background: #ffffff;
+
+    border: 1px solid #e7e7ea;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 1px 2px rgba(15, 15, 20, 0.025),
+        0 8px 25px rgba(15, 15, 20, 0.025);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.inventario-resumen:hover {
+    border-color: #ddd7ed;
+
+    box-shadow:
+        0 8px 28px rgba(15, 15, 20, 0.045);
+}
+
+
+/* ==========================================================================
+   INFORMACIÓN
+========================================================================== */
+
+.inventario-info {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.inventario-info-label {
+    color: #7957d5;
+
+    font-size: 0.61rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.07em;
+
+    text-transform: uppercase;
+}
+
+
+.inventario-info strong {
+    color: #17171a;
+
+    font-size: 1.15rem;
+
+    font-weight: 800;
+
+    letter-spacing: -0.025em;
+}
+
+
+.inventario-info p {
+    margin: 0;
+
+    color: #85858d;
+
+    font-size: 0.69rem;
+
+    font-weight: 500;
+
+    line-height: 1.5;
+}
+
+
+/* ==========================================================================
+   INDICADOR
+========================================================================== */
+
+.inventario-indicador {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    min-height: 32px;
+
+    padding:
+        6px
+        11px;
+
+    background: #eaf4ee;
+
+    border: 1px solid #d7e9de;
+
+    border-radius: 100px;
+
+    color: #3d8061;
+
+    font-size: 0.62rem;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+
+.indicador-punto {
+    width: 7px;
+    height: 7px;
+
+    flex: 0 0 7px;
+
+    background: #3d8061;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 3px rgba(61, 128, 97, 0.10);
+}
+
+
+/* ==========================================================================
+   PANEL DE INVENTARIO
+========================================================================== */
+
+.inventario-panel {
+    width: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #e7e7ea;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 1px 2px rgba(15, 15, 20, 0.025),
+        0 8px 25px rgba(15, 15, 20, 0.025);
+
+    overflow: hidden;
+}
+
+
+.inventario-panel-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 21px 24px;
+
+    border-bottom: 1px solid #e7e7ea;
+}
+
+
+.panel-etiqueta {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #7957d5;
+
+    font-size: 0.58rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.07em;
+
+    text-transform: uppercase;
+}
+
+
+.inventario-panel-header h2 {
+    margin: 0;
+
+    color: #1a1a1e;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 0.98rem;
+
+    font-weight: 800;
+
+    letter-spacing: -0.025em;
+}
+
+
+.panel-descripcion {
+    color: #9999a1;
+
+    font-size: 0.66rem;
+
+    font-weight: 500;
+}
+
+
+/* ==========================================================================
+   CONTENIDO
+========================================================================== */
+
+.inventario-contenido {
     width: 100%;
 }
 
 
-/* =========================================================
-   TABLA DE INVENTARIO
-========================================================= */
+/* ==========================================================================
+   TABLA
+========================================================================== */
+
+.inventario-tabla {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
 
 .inventario-tabla table {
-    min-width: 680px;
+    width: 100%;
+
+    border-collapse: collapse;
+
+    border-spacing: 0;
 }
 
 
-/* =========================================================
-   ENCABEZADOS
-========================================================= */
+.inventario-tabla thead {
+    background: #fafafb;
+}
+
 
 .inventario-tabla th {
-    height: 48px;
+    padding:
+        13px
+        24px;
 
-    padding: 14px 18px;
+    border-bottom: 1px solid #e7e7ea;
 
-    background: #f7f7f5;
+    color: #8a8a92;
 
-    color: #5d5d5d;
+    font-size: 0.59rem;
 
-    font-size: 10px;
     font-weight: 800;
 
-    letter-spacing: 0.8px;
+    letter-spacing: 0.055em;
+
+    text-align: left;
 
     text-transform: uppercase;
+
+    white-space: nowrap;
 }
 
 
-/* =========================================================
-   CELDAS
-========================================================= */
-
 .inventario-tabla td {
-    padding: 17px 18px;
+    padding:
+        16px
+        24px;
+
+    border-bottom: 1px solid #eeeeef;
+
+    color: #777780;
+
+    font-size: 0.69rem;
+
+    font-weight: 500;
 
     vertical-align: middle;
 
-    font-size: 13px;
+    white-space: nowrap;
 }
 
 
-/* =========================================================
+.inventario-tabla tbody tr {
+    transition:
+        background 0.18s ease;
+}
+
+
+.inventario-tabla tbody tr:hover {
+    background: #faf9fd;
+}
+
+
+.inventario-tabla tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* ==========================================================================
    PRODUCTO
-========================================================= */
+========================================================================== */
 
 .inventario-tabla td:first-child {
-    color: var(--negro);
+    color: #1a1a1e;
 
-    font-weight: 800;
+    font-weight: 750;
 }
 
 
-/* =========================================================
+/* ==========================================================================
    STOCK
-========================================================= */
+========================================================================== */
 
-.inventario-tabla td:nth-child(2) {
-    color: #555555;
-
-    font-weight: 700;
-}
-
-
-/* =========================================================
-   ESTADOS DE STOCK
-========================================================= */
-
-.stock-normal {
-    display: inline-flex;
-
-    align-items: center;
-
-    width: fit-content;
-
-    padding: 5px 9px;
-
-    background: var(--verde-suave);
-
-    border: 1px solid #d7ecdf;
-    border-radius: 999px;
-
-    color: var(--verde);
-
-    font-size: 9px;
-    font-weight: 800;
-
-    letter-spacing: 0.4px;
-
-    text-transform: uppercase;
-}
-
-.stock-bajo {
-    display: inline-flex;
-
-    align-items: center;
-
-    width: fit-content;
-
-    padding: 5px 9px;
-
-    background: var(--amarillo-suave);
-
-    border: 1px solid #f0e3bc;
-    border-radius: 999px;
-
-    color: var(--amarillo);
-
-    font-size: 9px;
-    font-weight: 800;
-
-    letter-spacing: 0.4px;
-
-    text-transform: uppercase;
-}
-
+.stock-normal,
+.stock-bajo,
 .stock-agotado {
     display: inline-flex;
 
     align-items: center;
+    justify-content: center;
 
-    width: fit-content;
+    min-height: 26px;
 
-    padding: 5px 9px;
+    padding:
+        5px
+        10px;
 
-    background: var(--rojo-suave);
+    border-radius: 100px;
 
-    border: 1px solid #efd4d4;
-    border-radius: 999px;
+    font-size: 0.59rem;
 
-    color: var(--rojo);
-
-    font-size: 9px;
     font-weight: 800;
 
-    letter-spacing: 0.4px;
-
-    text-transform: uppercase;
+    white-space: nowrap;
 }
 
 
-/* =========================================================
-   ACCIONES DE INVENTARIO
-========================================================= */
+.stock-normal {
+    background: #eaf4ee;
+
+    color: #3d8061;
+}
+
+
+.stock-bajo {
+    background: #f8f1e3;
+
+    color: #9a712d;
+}
+
+
+.stock-agotado {
+    background: #f8ebeb;
+
+    color: #a55454;
+}
+
+
+/* ==========================================================================
+   BOTONES
+========================================================================== */
 
 .inventario-tabla button {
-    padding: 8px 11px;
+    min-height: 31px;
 
-    border: 1px solid var(--gris-borde);
+    padding:
+        0
+        11px;
+
+    background: #ffffff;
+
+    border:
+        1px solid
+        #dedee3;
+
     border-radius: 7px;
 
-    background: var(--blanco);
-    color: var(--negro);
+    color: #64646c;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 0.59rem;
+
+    font-weight: 750;
 
     cursor: pointer;
 
-    font-size: 10px;
-    font-weight: 800;
-
     transition:
-        background var(--transicion),
-        border-color var(--transicion),
-        color var(--transicion),
-        transform var(--transicion);
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
+
 .inventario-tabla button:hover {
-    background: var(--negro);
+    background: #7957d5;
 
-    border-color: var(--negro);
+    border-color: #7957d5;
 
-    color: var(--blanco);
+    color: #ffffff;
+
+    box-shadow:
+        0 5px 14px rgba(121, 87, 213, 0.18);
 
     transform: translateY(-1px);
 }
 
 
-/* =========================================================
-   FILAS
-========================================================= */
-
-.inventario-tabla tbody tr {
-    transition:
-        background var(--transicion);
-}
-
-.inventario-tabla tbody tr:hover {
-    background: #fafafa;
+.inventario-tabla button:active {
+    transform: translateY(0);
 }
 
 
-/* =========================================================
-   SEPARACIÓN VISUAL DE STOCK
-========================================================= */
+/* ==========================================================================
+   CARGANDO
+========================================================================== */
 
-.inventario-tabla tbody tr td:nth-child(2) {
-    font-size: 14px;
+.inventario-cargando {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    min-height: 150px;
+
+    color: #85858d;
+
+    font-size: 0.7rem;
+
+    font-weight: 500;
 }
 
 
-/* =========================================================
-   CONTENEDOR RESPONSIVE
-========================================================= */
+.inventario-cargando p {
+    margin: 0;
+}
 
-@media (max-width: 800px) {
+
+.cargando-punto {
+    width: 6px;
+    height: 6px;
+
+    background: #7957d5;
+
+    border-radius: 50%;
+
+    animation:
+        inventario-pulso 1.2s ease-in-out infinite;
+}
+
+
+@keyframes inventario-pulso {
+
+    0%,
+    100% {
+        opacity: 0.35;
+
+        transform: scale(0.8);
+    }
+
+    50% {
+        opacity: 1;
+
+        transform: scale(1);
+    }
+
+}
+
+
+/* ==========================================================================
+   RESPONSIVE — TABLET
+========================================================================== */
+
+@media (max-width: 900px) {
+
+    .inventario-resumen {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .inventario-indicador {
+        align-self: flex-start;
+    }
+
+}
+
+
+/* ==========================================================================
+   RESPONSIVE — MÓVIL
+========================================================================== */
+
+@media (max-width: 700px) {
+
+    .inventario-resumen {
+        padding: 20px;
+    }
+
+
+    .inventario-panel-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 6px;
+
+        padding: 19px 20px;
+    }
+
+
+    .panel-descripcion {
+        font-size: 0.64rem;
+    }
+
 
     .inventario-tabla {
         overflow-x: auto;
 
-        border-radius: var(--radio);
+        -webkit-overflow-scrolling: touch;
     }
+
 
     .inventario-tabla table {
-        min-width: 650px;
+        min-width: 680px;
     }
 
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 600px) {
 
     .inventario-tabla th,
     .inventario-tabla td {
-        padding: 13px 14px;
-    }
-
-    .inventario-tabla th {
-        font-size: 9px;
-    }
-
-    .inventario-tabla td {
-        font-size: 12px;
+        padding:
+            13px
+            16px;
     }
 
 }
+
+
+/* ==========================================================================
+   MÓVIL PEQUEÑO
+========================================================================== */
+
+@media (max-width: 480px) {
+
+    .inventario-resumen {
+        gap: 14px;
+    }
+
+
+    .inventario-info strong {
+        font-size: 1.05rem;
+    }
+
+
+    .inventario-indicador {
+        font-size: 0.58rem;
+    }
+
+
+    .inventario-panel-header {
+        padding:
+            17px;
+    }
+
+}
+

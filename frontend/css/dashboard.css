@@ -1,567 +1,530 @@
-/* =========================================================
-   CAFÉ NÉBULA
-   DASHBOARD ADMINISTRATIVO
-   ANALÍTICA / MÉTRICAS / IA
-========================================================= */
+
+/* ==========================================================================
+   CAFÉ NÉBULA — DASHBOARD
+   Estilo Premium / SaaS / Analítica
+========================================================================== */
 
 
-/* =========================================================
-   RESUMEN PRINCIPAL
-========================================================= */
+/* ==========================================================================
+   RESUMEN
+========================================================================== */
 
 .dashboard-resumen {
     display: grid;
 
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 
     gap: 16px;
 
-    margin-bottom: 52px;
+    margin-bottom: 42px;
 }
 
-
-/* =========================================================
-   TARJETAS KPI
-========================================================= */
 
 .dashboard-card {
     position: relative;
 
-    min-height: 155px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    min-width: 0;
+    min-height: 145px;
 
     padding: 24px;
 
-    background: var(--blanco);
+    background: #ffffff;
 
-    border: 1px solid var(--gris-borde);
-    border-radius: var(--radio);
+    border: 1px solid #e7e7ea;
 
-    box-shadow: var(--sombra-sutil);
+    border-radius: 14px;
+
+    box-shadow:
+        0 1px 2px rgba(15, 15, 20, 0.02),
+        0 8px 25px rgba(15, 15, 20, 0.025);
 
     overflow: hidden;
 
     transition:
-        transform var(--transicion),
-        border-color var(--transicion),
-        box-shadow var(--transicion);
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
 }
 
-.dashboard-card::before {
+
+.dashboard-card:hover {
+    border-color: #dcd6ef;
+
+    box-shadow:
+        0 2px 4px rgba(15, 15, 20, 0.025),
+        0 14px 30px rgba(15, 15, 20, 0.05);
+
+    transform: translateY(-2px);
+}
+
+
+.dashboard-card::after {
     content: "";
 
     position: absolute;
 
-    top: 0;
-    left: 0;
+    right: -30px;
+    top: -30px;
 
-    width: 100%;
-    height: 3px;
+    width: 90px;
+    height: 90px;
 
-    background: var(--negro);
-}
+    border-radius: 50%;
 
-.dashboard-card:hover {
-    transform: translateY(-3px);
+    background: rgba(121, 87, 213, 0.055);
 
-    border-color: #d6d6d2;
-
-    box-shadow: var(--sombra);
+    pointer-events: none;
 }
 
 
-/* =========================================================
-   TEXTO KPI
-========================================================= */
+.dashboard-card p {
+    margin: 0;
 
-.dashboard-card span {
-    color: var(--gris-texto);
+    color: #85858d;
 
-    font-size: 10px;
+    font-size: 0.62rem;
     font-weight: 800;
 
-    letter-spacing: 0.8px;
+    letter-spacing: 0.06em;
 
     text-transform: uppercase;
 }
 
-.dashboard-card strong {
+
+.dashboard-card h2 {
+    position: relative;
+    z-index: 1;
+
+    margin: 16px 0 0;
+
+    color: #17171a;
+
+    font-family:
+        "Manrope",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    font-size: 2.25rem;
+
+    font-weight: 800;
+
+    letter-spacing: -0.055em;
+
+    line-height: 1;
+}
+
+
+.dashboard-card span {
     display: block;
 
-    color: var(--negro);
+    margin-top: 9px;
 
-    font-size: 29px;
-    font-weight: 800;
+    color: #a0a0a7;
 
-    line-height: 1.05;
+    font-size: 0.65rem;
+    font-weight: 550;
 
-    letter-spacing: -1.2px;
+    line-height: 1.5;
 }
 
 
-/* =========================================================
+/* ==========================================================================
    GRÁFICAS
-========================================================= */
+========================================================================== */
 
 .dashboard-graficas {
-    margin-top: 8px;
+    display: grid;
 
-    margin-bottom: 52px;
+    gap: 18px;
 }
 
-
-/* =========================================================
-   ENCABEZADO GRÁFICAS
-========================================================= */
-
-.dashboard-graficas-header {
-    margin-bottom: 21px;
-}
-
-.dashboard-graficas-header h2 {
-    margin-bottom: 6px;
-
-    color: var(--negro);
-
-    font-size: 24px;
-    font-weight: 800;
-
-    letter-spacing: -0.8px;
-}
-
-.dashboard-graficas-header > p:last-child {
-    color: var(--gris-texto);
-
-    font-size: 13px;
-    line-height: 1.6;
-}
-
-
-/* =========================================================
-   GRID GRÁFICAS
-========================================================= */
 
 .graficas-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 
-    gap: 16px;
+    gap: 18px;
 }
 
-
-/* =========================================================
-   TARJETA GRÁFICA
-========================================================= */
 
 .grafica-card {
     min-width: 0;
 
-    padding: 25px;
+    padding: 24px;
 
-    background: var(--blanco);
+    background: #ffffff;
 
-    border: 1px solid var(--gris-borde);
-    border-radius: var(--radio);
+    border: 1px solid #e7e7ea;
 
-    box-shadow: var(--sombra-sutil);
+    border-radius: 14px;
+
+    box-shadow:
+        0 1px 2px rgba(15, 15, 20, 0.02),
+        0 8px 25px rgba(15, 15, 20, 0.025);
 }
+
 
 .grafica-card-completa {
     grid-column: 1 / -1;
 }
 
 
-/* =========================================================
-   ENCABEZADO DE GRÁFICA
-========================================================= */
+.grafica-card h2 {
+    margin: 0 0 5px;
 
-.grafica-card-header {
-    margin-bottom: 20px;
-}
+    color: #1a1a1e;
 
-.grafica-card-header h3 {
-    margin-bottom: 5px;
+    font-family:
+        "Manrope",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
 
-    color: var(--negro);
+    font-size: 1rem;
 
-    font-size: 16px;
     font-weight: 800;
 
-    letter-spacing: -0.35px;
-}
-
-.grafica-card-header p {
-    color: var(--gris-texto);
-
-    font-size: 11px;
-    line-height: 1.5;
+    letter-spacing: -0.025em;
 }
 
 
-/* =========================================================
-   CONTENEDOR CHART.JS
-========================================================= */
+.grafica-card p {
+    margin: 0;
+
+    color: #85858d;
+
+    font-size: 0.68rem;
+
+    font-weight: 500;
+
+    line-height: 1.6;
+}
+
 
 .grafica-contenedor {
     position: relative;
 
     width: 100%;
     height: 300px;
+
+    margin-top: 24px;
 }
+
 
 .grafica-hora {
-    height: 330px;
+    height: 320px;
 }
 
 
-/* =========================================================
+/* ==========================================================================
    ANÁLISIS INTELIGENTE
-========================================================= */
-
-.analisis-inteligente {
-    margin-bottom: 52px;
-}
+========================================================================== */
 
 .analisis-inteligente-contenido {
     position: relative;
 
-    padding: 32px;
+    margin-top: 18px;
 
-    background: var(--negro);
-
-    border: 1px solid var(--negro-3);
-    border-radius: var(--radio);
-
-    box-shadow: var(--sombra-grande);
-
-    overflow: hidden;
-}
-
-
-/* =========================================================
-   DETALLE VISUAL
-========================================================= */
-
-.analisis-inteligente-contenido::before {
-    content: "";
-
-    position: absolute;
-
-    width: 260px;
-    height: 260px;
-
-    top: -150px;
-    right: -80px;
-
-    border-radius: 50%;
+    padding: 30px;
 
     background:
-        rgba(49, 94, 251, 0.13);
+        radial-gradient(
+            circle at 88% 15%,
+            rgba(121, 87, 213, 0.18),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #17171b 0%,
+            #202027 100%
+        );
 
-    pointer-events: none;
+    border: 1px solid #2d2d35;
+
+    border-radius: 15px;
+
+    color: #ffffff;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 15px 40px rgba(15, 15, 20, 0.10);
 }
 
+
 .analisis-inteligente-contenido::after {
-    content: "";
+    content: "AI";
 
     position: absolute;
 
-    width: 100px;
-    height: 100px;
+    right: 28px;
+    top: 22px;
 
-    bottom: -55px;
-    left: 18%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    border-radius: 50%;
+    width: 38px;
+    height: 38px;
 
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.13);
 
-    pointer-events: none;
+    border-radius: 10px;
+
+    color: #b49bea;
+
+    font-size: 0.62rem;
+    font-weight: 800;
+
+    letter-spacing: 0.04em;
 }
 
 
-/* =========================================================
+.analisis-inteligente-contenido h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-family:
+        "Manrope",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    font-size: 1.4rem;
+
+    font-weight: 800;
+
+    letter-spacing: -0.035em;
+}
+
+
+.analisis-inteligente-contenido p {
+    max-width: 690px;
+
+    margin: 9px 0 0;
+
+    color: #a7a7af;
+
+    font-size: 0.72rem;
+
+    font-weight: 500;
+
+    line-height: 1.75;
+}
+
+
+/* ==========================================================================
    BOTÓN ANALIZAR
-========================================================= */
+========================================================================== */
 
 #btn-analizar {
-    position: relative;
-    z-index: 1;
+    min-height: 42px;
 
-    padding: 12px 20px;
+    margin-top: 22px;
 
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 0 17px;
+
+    border: 1px solid #3a3a43;
+
     border-radius: 8px;
 
-    background: var(--blanco);
-    color: var(--negro);
+    background: #ffffff;
+
+    color: #18181c;
+
+    font-size: 0.67rem;
+    font-weight: 750;
 
     cursor: pointer;
 
-    font-size: 12px;
-    font-weight: 800;
-
     transition:
-        background var(--transicion),
-        transform var(--transicion),
-        box-shadow var(--transicion);
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
+
 
 #btn-analizar:hover {
-    background: #eeeeec;
+    background: #7957d5;
 
-    transform: translateY(-1px);
+    border-color: #7957d5;
+
+    color: #ffffff;
 
     box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.18);
+        0 8px 20px rgba(121, 87, 213, 0.25);
+
+    transform: translateY(-1px);
 }
+
 
 #btn-analizar:active {
     transform: translateY(0);
 }
 
-#btn-analizar:disabled {
-    opacity: 0.55;
 
-    cursor: wait;
-
-    transform: none;
-
-    box-shadow: none;
-}
-
-
-/* =========================================================
-   RESULTADO DE IA
-========================================================= */
+/* ==========================================================================
+   RESULTADO DEL ANÁLISIS
+========================================================================== */
 
 #resultado-analisis {
-    position: relative;
-    z-index: 1;
+    margin-top: 18px;
 
-    margin-top: 26px;
-    padding-top: 25px;
+    padding: 18px 20px;
 
-    border-top:
-        1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.055);
 
-    color: var(--blanco);
-}
+    border: 1px solid rgba(255, 255, 255, 0.10);
 
-#resultado-analisis h3 {
-    margin-bottom: 12px;
+    border-radius: 10px;
 
-    color: var(--blanco);
+    color: #d8d8dd;
 
-    font-size: 17px;
-    font-weight: 800;
+    font-size: 0.73rem;
 
-    letter-spacing: -0.3px;
-}
+    font-weight: 500;
 
-#resultado-analisis p {
-    margin-bottom: 14px;
-
-    color: #bfc4cc;
-
-    font-size: 13px;
-
-    line-height: 1.75;
-}
-
-#resultado-analisis ul {
-    margin-bottom: 22px;
-
-    padding-left: 20px;
-}
-
-#resultado-analisis li {
-    margin-bottom: 7px;
-
-    color: #bfc4cc;
-
-    font-size: 13px;
-
-    line-height: 1.7;
-}
-
-#resultado-analisis strong {
-    color: var(--blanco);
+    line-height: 1.8;
 }
 
 
-/* =========================================================
+/* ==========================================================================
    ACCESOS RÁPIDOS
-========================================================= */
+========================================================================== */
 
 .dashboard-accesos {
-    margin-top: 8px;
+    margin-top: 46px;
 }
 
-.dashboard-accesos h2 {
-    margin-bottom: 18px;
-
-    color: var(--negro);
-
-    font-size: 21px;
-    font-weight: 800;
-
-    letter-spacing: -0.6px;
-}
 
 .dashboard-accesos-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 
     gap: 16px;
+
+    margin-top: 18px;
 }
 
-
-/* =========================================================
-   TARJETAS DE ACCESO
-========================================================= */
 
 .dashboard-acceso {
     position: relative;
 
-    min-height: 145px;
+    min-height: 150px;
 
-    display: block;
+    padding: 24px;
 
-    padding: 25px;
+    background: #ffffff;
 
-    background: var(--blanco);
+    border: 1px solid #e7e7ea;
 
-    border: 1px solid var(--gris-borde);
-    border-radius: var(--radio);
+    border-radius: 14px;
 
-    color: var(--negro);
+    box-shadow:
+        0 1px 2px rgba(15, 15, 20, 0.02);
 
     text-decoration: none;
 
-    overflow: hidden;
-
     transition:
-        transform var(--transicion),
-        border-color var(--transicion),
-        box-shadow var(--transicion);
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
 }
 
-.dashboard-acceso::before {
-    content: "";
 
-    position: absolute;
+.dashboard-acceso:hover {
+    border-color: #d6ccef;
 
-    top: 0;
-    left: 0;
+    box-shadow:
+        0 12px 30px rgba(15, 15, 20, 0.055);
 
-    width: 0;
-    height: 3px;
-
-    background: var(--azul);
-
-    transition: width 0.3s ease;
+    transform: translateY(-3px);
 }
+
 
 .dashboard-acceso::after {
     content: "→";
 
     position: absolute;
 
-    top: 21px;
-    right: 23px;
+    top: 22px;
+    right: 22px;
 
-    color: #aaaaaa;
+    color: #a4a4ab;
 
-    font-size: 18px;
+    font-size: 1rem;
 
     transition:
-        color var(--transicion),
-        transform var(--transicion);
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
-.dashboard-acceso:hover {
-    transform: translateY(-4px);
-
-    border-color: #d2d2ce;
-
-    box-shadow: var(--sombra);
-}
-
-.dashboard-acceso:hover::before {
-    width: 100%;
-}
 
 .dashboard-acceso:hover::after {
-    color: var(--azul);
+    color: #7957d5;
 
-    transform: translateX(4px);
+    transform: translateX(3px);
 }
 
 
-/* =========================================================
-   TEXTO DE ACCESOS
-========================================================= */
+.dashboard-acceso h3 {
+    margin: 0 0 8px;
 
-.dashboard-acceso span {
-    display: block;
+    color: #1a1a1e;
 
-    margin-bottom: 9px;
+    font-family:
+        "Manrope",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
 
-    color: var(--negro);
+    font-size: 0.95rem;
 
-    font-size: 16px;
     font-weight: 800;
 
-    letter-spacing: -0.3px;
+    letter-spacing: -0.025em;
 }
+
 
 .dashboard-acceso p {
-    max-width: 300px;
+    max-width: 270px;
 
-    color: var(--gris-texto);
+    margin: 0;
 
-    font-size: 12px;
+    color: #85858d;
 
-    line-height: 1.65;
+    font-size: 0.68rem;
+
+    font-weight: 500;
+
+    line-height: 1.7;
 }
 
 
-/* =========================================================
-   RESPONSIVE — 1100 PX
-========================================================= */
+/* ==========================================================================
+   RESPONSIVE — TABLET
+========================================================================== */
 
-@media (max-width: 1100px) {
+@media (max-width: 1000px) {
 
     .dashboard-resumen {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-}
-
-
-/* =========================================================
-   RESPONSIVE — 900 PX
-========================================================= */
-
-@media (max-width: 900px) {
-
-    .graficas-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .grafica-card-completa {
-        grid-column: auto;
-    }
 
     .dashboard-accesos-grid {
         grid-template-columns: 1fr;
@@ -570,88 +533,131 @@
 }
 
 
-/* =========================================================
-   RESPONSIVE — 600 PX
-========================================================= */
+/* ==========================================================================
+   RESPONSIVE — MÓVIL
+========================================================================== */
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
+
+    .graficas-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .grafica-card-completa {
+        grid-column: auto;
+    }
+
 
     .dashboard-resumen {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
 
         gap: 12px;
-
-        margin-bottom: 40px;
     }
+
 
     .dashboard-card {
-        min-height: 130px;
+        min-height: 125px;
 
-        padding: 22px;
+        padding: 19px;
     }
 
-    .dashboard-card strong {
-        font-size: 27px;
+
+    .dashboard-card h2 {
+        font-size: 1.85rem;
     }
 
-    .dashboard-graficas,
-    .analisis-inteligente {
-        margin-bottom: 40px;
-    }
-
-    .dashboard-graficas-header h2 {
-        font-size: 22px;
-    }
 
     .grafica-card {
         padding: 20px;
     }
 
+
     .grafica-contenedor {
-        height: 270px;
+        height: 260px;
+
+        margin-top: 20px;
     }
+
 
     .grafica-hora {
-        height: 285px;
+        height: 280px;
     }
 
+
     .analisis-inteligente-contenido {
-        padding: 23px;
+        padding: 24px;
     }
+
+
+    .analisis-inteligente-contenido::after {
+        display: none;
+    }
+
 
     .dashboard-acceso {
         min-height: 130px;
 
-        padding: 22px;
+        padding: 20px;
     }
 
 }
 
 
-/* =========================================================
-   RESPONSIVE — 400 PX
-========================================================= */
+/* ==========================================================================
+   MÓVIL PEQUEÑO
+========================================================================== */
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
+
+    .dashboard-resumen {
+        grid-template-columns: 1fr;
+    }
+
 
     .dashboard-card {
-        padding: 20px;
+        min-height: 120px;
     }
+
+
+    .dashboard-card h2 {
+        font-size: 1.9rem;
+    }
+
 
     .grafica-card {
-        padding: 18px;
+        padding: 17px;
     }
 
+
+    .grafica-card h2 {
+        font-size: 0.92rem;
+    }
+
+
     .grafica-contenedor {
+        height: 230px;
+    }
+
+
+    .grafica-hora {
         height: 250px;
     }
 
-    .grafica-hora {
-        height: 265px;
-    }
 
     .analisis-inteligente-contenido {
         padding: 20px;
     }
 
+
+    .analisis-inteligente-contenido h2 {
+        font-size: 1.2rem;
+    }
+
+
+    #btn-analizar {
+        width: 100%;
+    }
+
 }
+

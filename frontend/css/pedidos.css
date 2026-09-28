@@ -1,83 +1,60 @@
-/* =========================================================
-   CAFÉ NÉBULA
-   ADMINISTRACIÓN DE PEDIDOS
-   ESTILO OPERATIVO / CORPORATIVO
-========================================================= */
+
+/* ==========================================================================
+   CAFÉ NÉBULA — PEDIDOS
+   Estilo Premium / SaaS
+========================================================================== */
 
 
-/* =========================================================
+/* ==========================================================================
    CONTENEDOR DE PEDIDOS
-========================================================= */
+========================================================================== */
 
 #pedidos {
     display: grid;
 
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
     gap: 16px;
-
-    align-items: start;
 }
 
 
-/* =========================================================
-   TARJETA DE PEDIDO
-========================================================= */
+/* ==========================================================================
+   PEDIDO
+========================================================================== */
 
 .pedido-admin {
     position: relative;
 
-    min-width: 0;
+    padding: 24px;
 
-    padding: 20px;
+    background: #ffffff;
 
-    background: var(--blanco);
+    border: 1px solid #e7e7ea;
 
-    border: 1px solid var(--gris-borde);
-    border-radius: var(--radio-mediano);
+    border-radius: 14px;
 
-    box-shadow: var(--sombra-sutil);
-
-    overflow: hidden;
+    box-shadow:
+        0 1px 2px rgba(15, 15, 20, 0.025),
+        0 8px 25px rgba(15, 15, 20, 0.025);
 
     transition:
-        transform var(--transicion),
-        border-color var(--transicion),
-        box-shadow var(--transicion);
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
 }
+
 
 .pedido-admin:hover {
+    border-color: #d9d2eb;
+
+    box-shadow:
+        0 12px 30px rgba(15, 15, 20, 0.05);
+
     transform: translateY(-2px);
-
-    border-color: #d3d3cf;
-
-    box-shadow: var(--sombra);
 }
 
 
-/* =========================================================
-   INDICADOR SUPERIOR
-========================================================= */
-
-.pedido-admin::before {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 3px;
-
-    background: #d9d9d6;
-}
-
-
-/* =========================================================
-   ENCABEZADO DEL PEDIDO
-========================================================= */
+/* ==========================================================================
+   CABECERA
+========================================================================== */
 
 .pedido-admin-header {
     display: flex;
@@ -85,400 +62,421 @@
     align-items: flex-start;
     justify-content: space-between;
 
-    gap: 14px;
+    gap: 24px;
 
-    padding-bottom: 15px;
+    padding-bottom: 18px;
 
-    border-bottom: 1px solid #eeeeec;
+    border-bottom: 1px solid #e9e9ec;
 }
+
 
 .pedido-admin-header h2 {
     margin: 0;
 
-    color: var(--negro);
+    color: #18181c;
 
-    font-size: 16px;
+    font-family: "Manrope", sans-serif;
+
+    font-size: 1rem;
+
     font-weight: 800;
 
-    line-height: 1.25;
-
-    letter-spacing: -0.4px;
+    letter-spacing: -0.025em;
 }
 
 
-/* =========================================================
-   ETIQUETA DEL PEDIDO
-========================================================= */
+.pedido-admin-header p {
+    margin: 5px 0 0;
 
-.pedido-admin-header .producto-categoria {
-    margin-bottom: 7px;
+    color: #9999a1;
 
-    padding: 5px 8px;
+    font-size: 0.65rem;
 
-    background: #f5f5f3;
-
-    border: 1px solid #e6e6e3;
-
-    border-radius: 5px;
-
-    color: #707070;
-
-    font-size: 8px;
-    font-weight: 800;
-
-    letter-spacing: 0.8px;
+    font-weight: 500;
 }
 
 
-/* =========================================================
-   INFORMACIÓN DEL CLIENTE
-========================================================= */
+/* ==========================================================================
+   INFORMACIÓN DEL PEDIDO
+========================================================================== */
 
 .pedido-admin-info {
     display: grid;
 
-    grid-template-columns: 1fr;
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(0, 1fr)
+        );
 
-    gap: 8px;
+    gap: 20px;
 
-    padding: 15px 0;
-
-    border-bottom: 1px solid #eeeeec;
+    padding: 20px 0;
 }
+
 
 .pedido-admin-info p {
     margin: 0;
 
-    color: var(--gris-texto);
+    color: #92929a;
 
-    font-size: 11px;
+    font-size: 0.59rem;
 
-    line-height: 1.45;
-}
-
-.pedido-admin-info strong {
-    color: var(--negro);
-
-    font-size: 11px;
-    font-weight: 800;
-}
-
-
-/* =========================================================
-   PRODUCTOS DEL PEDIDO
-========================================================= */
-
-.pedido-productos {
-    padding: 15px 0;
-}
-
-.pedido-productos h3 {
-    margin-bottom: 8px;
-
-    color: var(--negro);
-
-    font-size: 11px;
     font-weight: 800;
 
-    letter-spacing: 0.2px;
+    letter-spacing: 0.055em;
 
     text-transform: uppercase;
 }
 
+
+.pedido-admin-info strong {
+    display: block;
+
+    margin-top: 6px;
+
+    color: #26262b;
+
+    font-size: 0.72rem;
+
+    font-weight: 650;
+
+    line-height: 1.5;
+
+    text-transform: none;
+}
+
+
+/* ==========================================================================
+   PRODUCTOS DEL PEDIDO
+========================================================================== */
+
+.pedido-productos {
+    padding:
+        8px
+        16px;
+
+    background: #fafafb;
+
+    border:
+        1px solid
+        #eeeeef;
+
+    border-radius: 10px;
+}
+
+
 .producto-pedido {
-    display: grid;
-
-    grid-template-columns:
-        minmax(0, 1fr)
-        auto
-        auto;
-
-    align-items: center;
-
-    gap: 10px;
-
-    padding: 8px 0;
-
-    border-bottom: 1px solid #f0f0ee;
-
-    font-size: 11px;
-}
-
-.producto-pedido:last-child {
-    border-bottom: none;
-}
-
-.producto-pedido strong {
-    min-width: 0;
-
-    color: var(--negro);
-
-    font-weight: 700;
-
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.producto-pedido span {
-    color: var(--gris-texto);
-
-    white-space: nowrap;
-}
-
-
-/* =========================================================
-   TOTAL
-========================================================= */
-
-.pedido-admin-total {
     display: flex;
 
     align-items: center;
     justify-content: space-between;
 
-    gap: 15px;
+    gap: 20px;
 
-    padding: 14px 0;
-
-    border-top: 1px solid #eeeeec;
+    padding: 11px 0;
 }
 
-.pedido-admin-total span {
-    color: var(--gris-texto);
 
-    font-size: 10px;
-    font-weight: 700;
-
-    letter-spacing: 0.3px;
-
-    text-transform: uppercase;
+.producto-pedido:not(:last-child) {
+    border-bottom: 1px solid #e8e8eb;
 }
 
-.pedido-admin-total strong {
-    color: var(--negro);
 
-    font-size: 20px;
+.producto-pedido p {
+    margin: 0;
+
+    color: #72727a;
+
+    font-size: 0.68rem;
+
+    font-weight: 550;
+
+    line-height: 1.5;
+}
+
+
+.producto-pedido strong {
+    color: #242429;
+
+    font-size: 0.68rem;
+
     font-weight: 800;
 
-    letter-spacing: -0.6px;
+    white-space: nowrap;
 }
 
 
-/* =========================================================
+/* ==========================================================================
+   TOTAL
+========================================================================== */
+
+.pedido-admin-total {
+    display: flex;
+
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 18px;
+
+    color: #85858d;
+
+    font-size: 0.62rem;
+
+    font-weight: 650;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.04em;
+}
+
+
+.pedido-admin-total strong {
+    color: #17171a;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 1.4rem;
+
+    font-weight: 800;
+
+    letter-spacing: -0.04em;
+}
+
+
+/* ==========================================================================
    ACCIONES
-========================================================= */
+========================================================================== */
 
 .pedido-acciones {
     display: flex;
 
-    gap: 7px;
+    align-items: center;
+    justify-content: flex-end;
 
-    padding-top: 3px;
+    gap: 8px;
+
+    margin-top: 18px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #eeeeef;
 }
 
-.btn-estado {
-    flex: 1;
 
-    min-width: 0;
+.btn-estado,
+.btn-rechazar {
+    min-height: 37px;
 
-    padding: 10px 9px;
+    padding:
+        0
+        14px;
 
-    border: 1px solid var(--negro);
-    border-radius: 7px;
+    border-radius: 8px;
 
-    background: var(--negro);
-    color: var(--blanco);
+    font-family: "Manrope", sans-serif;
+
+    font-size: 0.6rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.035em;
+
+    text-transform: uppercase;
 
     cursor: pointer;
 
-    font-size: 10px;
-    font-weight: 800;
-
     transition:
-        background var(--transicion),
-        border-color var(--transicion),
-        transform var(--transicion),
-        box-shadow var(--transicion);
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
 }
 
-.btn-estado:hover {
-    background: var(--azul);
-    border-color: var(--azul);
 
-    transform: translateY(-1px);
+/* ==========================================================================
+   COMPLETAR
+========================================================================== */
+
+.btn-estado {
+    background: #7957d5;
+
+    border: 1px solid #7957d5;
+
+    color: #ffffff;
 
     box-shadow:
-        0 7px 16px rgba(49, 94, 251, 0.16);
+        0 4px 12px rgba(121, 87, 213, 0.14);
 }
 
 
-/* =========================================================
-   BOTÓN RECHAZAR
-========================================================= */
+.btn-estado:hover {
+    background: #6846c5;
+
+    border-color: #6846c5;
+
+    box-shadow:
+        0 7px 18px rgba(121, 87, 213, 0.22);
+
+    transform: translateY(-1px);
+}
+
+
+.btn-estado:active {
+    transform: translateY(0);
+}
+
+
+/* ==========================================================================
+   RECHAZAR
+========================================================================== */
 
 .btn-rechazar {
-    background: var(--blanco);
+    background: #ffffff;
 
-    border-color: #dededb;
+    border: 1px solid #e0e0e4;
 
-    color: var(--rojo);
+    color: #777780;
 }
 
+
 .btn-rechazar:hover {
-    background: var(--rojo-suave);
+    background: #f8ebeb;
 
-    border-color: #efcccc;
+    border-color: #eccdcd;
 
-    color: var(--rojo);
+    color: #a55454;
+}
+
+
+/* ==========================================================================
+   PEDIDO FINALIZADO
+========================================================================== */
+
+.pedido-finalizado {
+    opacity: 0.62;
 
     box-shadow: none;
 }
 
 
-/* =========================================================
-   PEDIDO FINALIZADO
-========================================================= */
+.pedido-finalizado:hover {
+    transform: none;
 
-.pedido-finalizado {
-    margin: 0;
+    border-color: #e7e7ea;
 
-    padding: 10px 0 2px;
-
-    color: var(--gris-texto-2);
-
-    font-size: 10px;
-    font-weight: 600;
-
-    line-height: 1.5;
-
-    text-align: center;
+    box-shadow: none;
 }
 
 
-/* =========================================================
-   ESTADOS VISUALES
-========================================================= */
+/* ==========================================================================
+   RESPONSIVE — TABLET
+========================================================================== */
 
-.pedido-admin:has(.estado-pendiente)::before {
-    background: #c99a27;
-}
+@media (max-width: 900px) {
 
-.pedido-admin:has(.estado-aceptado)::before {
-    background: var(--azul);
-}
-
-.pedido-admin:has(.estado-en_preparacion)::before {
-    background: var(--morado);
-}
-
-.pedido-admin:has(.estado-completado)::before {
-    background: var(--verde);
-}
-
-.pedido-admin:has(.estado-rechazado)::before {
-    background: var(--rojo);
-}
-
-
-/* =========================================================
-   PEDIDOS COMPLETADOS
-========================================================= */
-
-.pedido-admin:has(.estado-completado) {
-    background: #fcfdfc;
-}
-
-
-/* =========================================================
-   RESPONSIVE — 1100 PX
-========================================================= */
-
-@media (max-width: 1100px) {
-
-    #pedidos {
+    .pedido-admin-info {
         grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+            repeat(
+                3,
+                minmax(0, 1fr)
+            );
+
+        gap: 14px;
     }
 
 }
 
 
-/* =========================================================
-   RESPONSIVE — 800 PX
-========================================================= */
+/* ==========================================================================
+   RESPONSIVE — MÓVIL
+========================================================================== */
 
-@media (max-width: 800px) {
-
-    #pedidos {
-        grid-template-columns: 1fr;
-    }
-
-    .pedido-admin {
-        padding: 19px;
-    }
-
-}
-
-
-/* =========================================================
-   RESPONSIVE — 600 PX
-========================================================= */
-
-@media (max-width: 600px) {
+@media (max-width: 700px) {
 
     .pedido-admin {
         padding: 18px;
     }
 
+
     .pedido-admin-header {
         flex-direction: column;
 
-        align-items: flex-start;
-
-        gap: 10px;
+        gap: 12px;
     }
+
 
     .pedido-admin-info {
-        gap: 9px;
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+
+        padding: 18px 0;
     }
+
+
+    .pedido-productos {
+        padding:
+            7px
+            13px;
+    }
+
 
     .producto-pedido {
-        grid-template-columns:
-            minmax(0, 1fr)
-            auto;
+        gap: 12px;
+
+        padding: 10px 0;
     }
 
-    .producto-pedido span:last-child {
-        grid-column: 2;
+
+    .pedido-admin-total {
+        justify-content: space-between;
     }
+
 
     .pedido-acciones {
         flex-direction: column;
+
+        align-items: stretch;
     }
 
-    .btn-estado {
+
+    .btn-estado,
+    .btn-rechazar {
         width: 100%;
     }
 
 }
 
 
-/* =========================================================
-   RESPONSIVE — 400 PX
-========================================================= */
+/* ==========================================================================
+   MÓVIL PEQUEÑO
+========================================================================== */
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
 
     .pedido-admin {
         padding: 16px;
     }
 
+
     .pedido-admin-header h2 {
-        font-size: 15px;
+        font-size: 0.94rem;
     }
 
+
     .pedido-admin-total strong {
-        font-size: 18px;
+        font-size: 1.3rem;
+    }
+
+
+    .producto-pedido p,
+    .producto-pedido strong {
+        font-size: 0.64rem;
     }
 
 }
+

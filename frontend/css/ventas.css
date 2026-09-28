@@ -1,220 +1,237 @@
-/* =========================================================
-   CAFÉ NÉBULA
-   VENTAS
-   ESTILO CORPORATIVO / FINANCIERO
-========================================================= */
+
+/* ==========================================================================
+   CAFÉ NÉBULA — VENTAS
+   Estilo Premium / SaaS
+========================================================================== */
 
 
-/* =========================================================
-   CONTENEDOR PRINCIPAL
-========================================================= */
-
-.ventas-tabla {
-    width: 100%;
-
-    margin-top: 10px;
-}
-
-
-/* =========================================================
-   TABLA DE VENTAS
-========================================================= */
-
-.ventas-tabla table {
-    min-width: 720px;
-}
-
-
-/* =========================================================
-   ENCABEZADOS
-========================================================= */
-
-.ventas-tabla th {
-    padding: 14px 18px;
-
-    background: #f7f7f5;
-
-    border-bottom: 1px solid var(--gris-borde);
-
-    color: #5c5c5c;
-
-    font-size: 10px;
-    font-weight: 800;
-
-    letter-spacing: 0.8px;
-
-    text-align: left;
-
-    text-transform: uppercase;
-}
-
-
-/* =========================================================
-   CELDAS
-========================================================= */
-
-.ventas-tabla td {
-    padding: 17px 18px;
-
-    color: var(--negro);
-
-    font-size: 13px;
-
-    vertical-align: middle;
-}
-
-
-/* =========================================================
-   IDENTIFICADOR DE VENTA
-========================================================= */
-
-.ventas-tabla td:first-child {
-    color: var(--negro);
-
-    font-weight: 800;
-}
-
-
-/* =========================================================
-   MONTO DE VENTA
-========================================================= */
-
-.ventas-tabla td:last-child {
-    color: var(--negro);
-
-    font-size: 14px;
-    font-weight: 800;
-}
-
-
-/* =========================================================
-   FILAS
-========================================================= */
-
-.ventas-tabla tbody tr {
-    transition:
-        background var(--transicion);
-}
-
-.ventas-tabla tbody tr:hover {
-    background: #fafafa;
-}
-
-
-/* =========================================================
-   RESUMEN DE VENTAS
-========================================================= */
+/* ==========================================================================
+   RESUMEN
+========================================================================== */
 
 .ventas-resumen {
     display: grid;
 
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 
     gap: 16px;
 
-    margin-bottom: 28px;
+    margin-bottom: 24px;
 }
 
-
-/* =========================================================
-   TARJETA DE MÉTRICA
-========================================================= */
 
 .venta-card {
     position: relative;
 
-    min-height: 135px;
+    min-width: 0;
+    min-height: 145px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    padding: 24px;
 
-    padding: 23px;
+    background: #ffffff;
 
-    background: var(--blanco);
+    border: 1px solid #e7e7ea;
 
-    border: 1px solid var(--gris-borde);
-    border-radius: var(--radio);
+    border-radius: 14px;
 
-    box-shadow: var(--sombra-sutil);
+    box-shadow:
+        0 1px 2px rgba(15, 15, 20, 0.025),
+        0 8px 25px rgba(15, 15, 20, 0.025);
 
     overflow: hidden;
 
     transition:
-        transform var(--transicion),
-        box-shadow var(--transicion);
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
 }
 
-.venta-card::before {
+
+.venta-card:hover {
+    border-color: #dcd6ef;
+
+    box-shadow:
+        0 12px 30px rgba(15, 15, 20, 0.05);
+
+    transform: translateY(-2px);
+}
+
+
+.venta-card::after {
     content: "";
 
     position: absolute;
 
-    top: 0;
-    left: 0;
+    right: -32px;
+    top: -32px;
 
-    width: 100%;
-    height: 3px;
+    width: 95px;
+    height: 95px;
 
-    background: var(--negro);
+    border-radius: 50%;
+
+    background: rgba(121, 87, 213, 0.055);
+
+    pointer-events: none;
 }
 
-.venta-card:hover {
-    transform: translateY(-3px);
 
-    box-shadow: var(--sombra);
-}
+.venta-card p {
+    position: relative;
+    z-index: 1;
 
+    margin: 0;
 
-/* =========================================================
-   TEXTO DE MÉTRICAS
-========================================================= */
+    color: #85858d;
 
-.venta-card span {
-    color: var(--gris-texto);
+    font-size: 0.61rem;
 
-    font-size: 10px;
     font-weight: 800;
 
-    letter-spacing: 0.7px;
+    letter-spacing: 0.06em;
 
     text-transform: uppercase;
 }
 
-.venta-card strong {
-    color: var(--negro);
-
-    font-size: 27px;
-    font-weight: 800;
-
-    line-height: 1;
-
-    letter-spacing: -1px;
-}
-
-
-/* =========================================================
-   INFORMACIÓN FINANCIERA
-========================================================= */
 
 .venta-total {
-    color: var(--negro);
+    position: relative;
+    z-index: 1;
 
-    font-size: 16px;
+    margin-top: 15px;
+
+    color: #17171a;
+
+    font-family:
+        "Manrope",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    font-size: 2.2rem;
+
     font-weight: 800;
+
+    letter-spacing: -0.055em;
+
+    line-height: 1;
 }
+
 
 .venta-secundaria {
-    color: var(--gris-texto);
+    position: relative;
+    z-index: 1;
 
-    font-size: 12px;
+    margin-top: 9px;
+
+    color: #9b9ba3;
+
+    font-size: 0.65rem;
+
+    font-weight: 500;
+
+    line-height: 1.5;
 }
 
 
-/* =========================================================
+/* ==========================================================================
+   TABLA DE VENTAS
+========================================================================== */
+
+.ventas-tabla {
+    width: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #e7e7ea;
+
+    border-radius: 14px;
+
+    overflow-x: auto;
+
+    box-shadow:
+        0 1px 2px rgba(15, 15, 20, 0.025),
+        0 8px 25px rgba(15, 15, 20, 0.025);
+}
+
+
+.ventas-tabla table {
+    width: 100%;
+
+    min-width: 700px;
+
+    border-collapse: collapse;
+}
+
+
+.ventas-tabla thead {
+    background: #fafafb;
+}
+
+
+.ventas-tabla th {
+    padding:
+        13px
+        20px;
+
+    border-bottom: 1px solid #e7e7ea;
+
+    color: #898991;
+
+    font-size: 0.59rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.055em;
+
+    text-align: left;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+}
+
+
+.ventas-tabla td {
+    padding:
+        16px
+        20px;
+
+    border-bottom: 1px solid #eeeeef;
+
+    color: #777780;
+
+    font-size: 0.69rem;
+
+    font-weight: 500;
+
+    vertical-align: middle;
+
+    white-space: nowrap;
+}
+
+
+.ventas-tabla tbody tr {
+    transition:
+        background 0.18s ease;
+}
+
+
+.ventas-tabla tbody tr:hover {
+    background: #faf9fd;
+}
+
+
+.ventas-tabla tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* ==========================================================================
    ESTADO DE VENTA
-========================================================= */
+========================================================================== */
 
 .estado-venta {
     display: inline-flex;
@@ -222,150 +239,202 @@
     align-items: center;
     justify-content: center;
 
-    width: fit-content;
+    min-height: 26px;
 
-    padding: 5px 9px;
+    padding:
+        5px
+        10px;
 
-    border-radius: 999px;
+    border-radius: 100px;
 
-    font-size: 9px;
+    font-size: 0.59rem;
+
     font-weight: 800;
 
-    letter-spacing: 0.4px;
+    letter-spacing: 0.035em;
 
     text-transform: uppercase;
-}
 
-.estado-venta-completada {
-    background: var(--verde-suave);
-
-    border: 1px solid #d7ecdf;
-
-    color: var(--verde);
-}
-
-.estado-venta-pendiente {
-    background: var(--amarillo-suave);
-
-    border: 1px solid #f0e3bc;
-
-    color: var(--amarillo);
-}
-
-.estado-venta-cancelada {
-    background: var(--rojo-suave);
-
-    border: 1px solid #efd4d4;
-
-    color: var(--rojo);
+    white-space: nowrap;
 }
 
 
-/* =========================================================
-   SECCIÓN DE INFORMACIÓN
-========================================================= */
+.estado-venta.completada {
+    background: #eaf4ee;
+
+    color: #3d8061;
+}
+
+
+.estado-venta.pendiente {
+    background: #f8f1e3;
+
+    color: #9a712d;
+}
+
+
+.estado-venta.cancelada {
+    background: #f8ebeb;
+
+    color: #a55454;
+}
+
+
+/* ==========================================================================
+   INFORMACIÓN
+========================================================================== */
 
 .ventas-info {
-    margin-bottom: 25px;
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    margin-top: 18px;
+
+    padding:
+        20px
+        22px;
+
+    background: #f5f2ff;
+
+    border:
+        1px solid
+        #e2d9f7;
+
+    border-left:
+        3px solid
+        #7957d5;
+
+    border-radius: 10px;
 }
+
 
 .ventas-info h2 {
-    margin-bottom: 6px;
+    margin: 0;
 
-    color: var(--negro);
+    color: #29232f;
 
-    font-size: 23px;
+    font-family:
+        "Manrope",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    font-size: 0.9rem;
+
     font-weight: 800;
 
-    letter-spacing: -0.7px;
+    letter-spacing: -0.02em;
 }
+
 
 .ventas-info p {
-    max-width: 650px;
+    max-width: 800px;
 
-    color: var(--gris-texto);
+    margin: 0;
 
-    font-size: 13px;
+    color: #716b7b;
 
-    line-height: 1.65;
+    font-size: 0.68rem;
+
+    font-weight: 500;
+
+    line-height: 1.75;
 }
 
 
-/* =========================================================
-   RESPONSIVE — 1000 PX
-========================================================= */
-
-@media (max-width: 1000px) {
-
-    .ventas-resumen {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
-
-}
-
-
-/* =========================================================
-   RESPONSIVE — 800 PX
-========================================================= */
+/* ==========================================================================
+   RESPONSIVE — TABLET
+========================================================================== */
 
 @media (max-width: 800px) {
 
-    .ventas-tabla {
-        overflow-x: auto;
-
-        border-radius: var(--radio);
+    .ventas-resumen {
+        grid-template-columns: 1fr;
     }
 
-    .ventas-tabla table {
-        min-width: 680px;
+
+    .venta-card {
+        min-height: 130px;
     }
 
 }
 
 
-/* =========================================================
-   RESPONSIVE — 600 PX
-========================================================= */
+/* ==========================================================================
+   RESPONSIVE — MÓVIL
+========================================================================== */
 
-@media (max-width: 600px) {
-
-    .ventas-resumen {
-        grid-template-columns: 1fr;
-
-        gap: 12px;
-    }
+@media (max-width: 700px) {
 
     .venta-card {
-        min-height: 120px;
-
-        padding: 21px;
+        padding: 20px;
     }
 
-    .venta-card strong {
-        font-size: 25px;
+
+    .venta-total {
+        font-size: 2rem;
     }
 
-    .ventas-info h2 {
-        font-size: 21px;
+
+    .ventas-tabla {
+        border-radius: 12px;
+
+        -webkit-overflow-scrolling: touch;
     }
+
+
+    .ventas-tabla table {
+        min-width: 700px;
+    }
+
 
     .ventas-tabla th,
     .ventas-tabla td {
-        padding: 13px 14px;
+        padding:
+            13px
+            15px;
     }
 
-}
+
+    .ventas-info {
+        padding:
+            18px;
+            20px;
+    }
+
+ }
 
 
-/* =========================================================
-   RESPONSIVE — 400 PX
-========================================================= */
+/* ==========================================================================
+   MÓVIL PEQUEÑO
+========================================================================== */
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
 
     .venta-card {
-        padding: 19px;
+        min-height: 125px;
+
+        padding: 18px;
+    }
+
+
+    .venta-total {
+        font-size: 1.85rem;
+    }
+
+
+    .ventas-info h2 {
+        font-size: 0.84rem;
+    }
+
+
+    .ventas-info p {
+        font-size: 0.64rem;
     }
 
 }
