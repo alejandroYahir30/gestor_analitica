@@ -1,5 +1,6 @@
-<!DOCTYPE html> <html lang="es"> 
-    
+<!DOCTYPE html>
+<html lang="es">
+
 <head>
 
     <meta charset="UTF-8">
@@ -10,6 +11,7 @@
     >
 
     <title>Café Nébula | Dashboard</title>
+
 
     <link
         rel="stylesheet"
@@ -28,7 +30,10 @@
 
 </head>
 
+
 <body>
+
+
 <!-- =================================================
      NAVBAR
      ================================================= -->
@@ -38,6 +43,7 @@
     <div class="logo">
         Café Nébula
     </div>
+
 
     <nav>
 
@@ -69,7 +75,9 @@
 <main class="contenedor">
 
 
-    <!-- PRESENTACIÓN -->
+    <!-- =================================================
+         PRESENTACIÓN
+         ================================================= -->
 
     <section class="presentacion">
 
@@ -77,9 +85,11 @@
             PANEL DEL NEGOCIO
         </p>
 
+
         <h1>
             Dashboard
         </h1>
+
 
         <p>
             Consulta un resumen general de la actividad
@@ -102,6 +112,7 @@
                 Ventas totales
             </span>
 
+
             <strong id="ventas-totales">
                 $0.00
             </strong>
@@ -114,6 +125,7 @@
             <span>
                 Pedidos completados
             </span>
+
 
             <strong id="cantidad-pedidos">
                 0
@@ -128,6 +140,7 @@
                 Producto más vendido
             </span>
 
+
             <strong id="producto-mas-vendido">
                 Sin datos
             </strong>
@@ -141,12 +154,60 @@
                 Día con más ventas
             </span>
 
+
             <strong id="dia-mas-ventas">
                 Sin datos
             </strong>
 
         </article>
 
+
+    </section>
+
+
+    <!-- =================================================
+         OFERTA ACTIVA
+         ================================================= -->
+
+    <section
+        class="dashboard-oferta"
+        id="dashboard-oferta"
+    >
+
+        <div class="dashboard-graficas-header">
+
+            <p class="etiqueta">
+                PROMOCIÓN ACTIVA
+            </p>
+
+
+            <h2>
+                Oferta actual
+            </h2>
+
+
+            <p>
+                Consulta el estado de la oferta publicada
+                y administra su vigencia.
+            </p>
+
+        </div>
+
+
+        <div
+            id="oferta-admin-contenido"
+            class="oferta-admin-contenido"
+        >
+
+            <div class="oferta-admin-vacia">
+
+                <p>
+                    No hay una oferta activa actualmente.
+                </p>
+
+            </div>
+
+        </div>
 
     </section>
 
@@ -163,9 +224,11 @@
                 ANÁLISIS VISUAL
             </p>
 
+
             <h2>
                 Estadísticas de ventas
             </h2>
+
 
             <p>
                 Visualización de los datos registrados
@@ -187,6 +250,7 @@
                     <h3>
                         Ventas por día
                     </h3>
+
 
                     <p>
                         Total vendido por fecha.
@@ -216,6 +280,7 @@
                         Productos más vendidos
                     </h3>
 
+
                     <p>
                         Cantidad de unidades vendidas
                         por producto.
@@ -244,6 +309,7 @@
                     <h3>
                         Demanda por hora
                     </h3>
+
 
                     <p>
                         Cantidad de ventas realizadas
@@ -281,9 +347,11 @@
                 INTELIGENCIA DE NEGOCIO
             </p>
 
+
             <h2>
                 Análisis inteligente
             </h2>
+
 
             <p>
                 Analiza las ventas y el comportamiento
@@ -340,6 +408,7 @@
                     Pedidos
                 </span>
 
+
                 <p>
                     Consulta y administra los pedidos
                     de los clientes.
@@ -357,6 +426,7 @@
                     Inventario
                 </span>
 
+
                 <p>
                     Consulta el stock actual
                     de los productos.
@@ -373,6 +443,7 @@
                 <span>
                     Ventas
                 </span>
+
 
                 <p>
                     Consulta las ventas generadas
@@ -407,14 +478,19 @@
 
 
 <!-- =================================================
+     NOTIFICACIONES
+     ================================================= -->
+
+<script src="../js/notificaciones.js"></script>
+
+
+<!-- =================================================
      JAVASCRIPT DEL DASHBOARD
      ================================================= -->
 
 <script src="../js/dashboard.js"></script>
 
 
-<!-- =================================================
-     NOTIFICACIONES
-     ================================================= -->
-     <script src="../js/notificaciones.js"></script>
-     </body> </html>
+</body>
+
+</html>

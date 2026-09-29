@@ -1,4 +1,3 @@
-
 /* ==========================================================================
    CAFÉ NÉBULA — DASHBOARD
    Estilo Premium / SaaS / Analítica
@@ -10,9 +9,11 @@
 ========================================================================== */
 
 .dashboard-resumen {
+
     display: grid;
 
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
 
     gap: 16px;
 
@@ -21,6 +22,7 @@
 
 
 .dashboard-card {
+
     position: relative;
 
     min-width: 0;
@@ -48,6 +50,7 @@
 
 
 .dashboard-card:hover {
+
     border-color: #dcd6ef;
 
     box-shadow:
@@ -59,6 +62,7 @@
 
 
 .dashboard-card::after {
+
     content: "";
 
     position: absolute;
@@ -71,18 +75,21 @@
 
     border-radius: 50%;
 
-    background: rgba(121, 87, 213, 0.055);
+    background:
+        rgba(121, 87, 213, 0.055);
 
     pointer-events: none;
 }
 
 
 .dashboard-card p {
+
     margin: 0;
 
     color: #85858d;
 
     font-size: 0.62rem;
+
     font-weight: 800;
 
     letter-spacing: 0.06em;
@@ -92,7 +99,9 @@
 
 
 .dashboard-card h2 {
+
     position: relative;
+
     z-index: 1;
 
     margin: 16px 0 0;
@@ -118,6 +127,7 @@
 
 
 .dashboard-card span {
+
     display: block;
 
     margin-top: 9px;
@@ -125,6 +135,7 @@
     color: #a0a0a7;
 
     font-size: 0.65rem;
+
     font-weight: 550;
 
     line-height: 1.5;
@@ -136,6 +147,7 @@
 ========================================================================== */
 
 .dashboard-graficas {
+
     display: grid;
 
     gap: 18px;
@@ -143,15 +155,18 @@
 
 
 .graficas-grid {
+
     display: grid;
 
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
     gap: 18px;
 }
 
 
 .grafica-card {
+
     min-width: 0;
 
     padding: 24px;
@@ -169,11 +184,13 @@
 
 
 .grafica-card-completa {
+
     grid-column: 1 / -1;
 }
 
 
 .grafica-card h2 {
+
     margin: 0 0 5px;
 
     color: #1a1a1e;
@@ -195,6 +212,7 @@
 
 
 .grafica-card p {
+
     margin: 0;
 
     color: #85858d;
@@ -208,9 +226,11 @@
 
 
 .grafica-contenedor {
+
     position: relative;
 
     width: 100%;
+
     height: 300px;
 
     margin-top: 24px;
@@ -218,9 +238,9 @@
 
 
 .grafica-hora {
+
     height: 320px;
 }
-
 
 
 /* ==========================================================================
@@ -228,15 +248,19 @@
 ========================================================================== */
 
 .analisis-inteligente {
+
     margin-bottom: 36px;
 }
 
+
 .analisis-inteligente-contenido {
+
     padding: 26px;
 
     background: #ffffff;
 
     border: 1px solid #e7e7ea;
+
     border-radius: 16px;
 
     box-shadow:
@@ -246,506 +270,11 @@
 
 
 /* ==========================================================================
-   BOTÓN
-========================================================================== */
-
-#btn-analizar {
-    min-height: 44px;
-
-    padding: 0 22px;
-
-    background: #7957d5;
-
-    border: none;
-    border-radius: 8px;
-
-    color: #ffffff;
-
-    font-family: "Manrope", sans-serif;
-    font-size: 0.68rem;
-    font-weight: 800;
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
-}
-
-#btn-analizar:hover {
-    background: #6846c5;
-    transform: translateY(-1px);
-}
-
-#btn-analizar:disabled {
-    opacity: 0.6;
-    cursor: wait;
-}
-
-
-/* ==========================================================================
-   DASHBOARD GENERADO
-========================================================================== */
-
-#resultado-analisis {
-    margin-top: 24px;
-}
-
-.analisis-dashboard {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-
-/* ==========================================================================
-   MÉTRICAS
-========================================================================== */
-
-.analisis-metricas {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px;
-}
-
-.analisis-metrica {
-    padding: 19px 20px;
-
-    background: #f8f8fa;
-
-    border: 1px solid #e8e8ec;
-    border-radius: 12px;
-}
-
-.analisis-metrica span {
-    display: block;
-
-    margin-bottom: 8px;
-
-    color: #85858d;
-
-    font-size: 0.56rem;
-    font-weight: 800;
-    letter-spacing: 0.07em;
-
-    text-transform: uppercase;
-}
-
-.analisis-metrica strong {
-    display: block;
-
-    margin-bottom: 5px;
-
-    color: #17171a;
-
-    font-size: 1.15rem;
-    font-weight: 800;
-
-    line-height: 1.2;
-
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.analisis-metrica p {
-    margin: 0;
-
-    color: #9999a1;
-
-    font-size: 0.64rem;
-}
-
-
-/* ==========================================================================
-   GRÁFICA + DEMANDA
-========================================================================== */
-
-.analisis-principal {
-    display: grid;
-    grid-template-columns: minmax(0, 1.5fr) minmax(250px, 0.7fr);
-    gap: 18px;
-}
-
-.analisis-grafica-card,
-.analisis-insight-card {
-    min-width: 0;
-
-    padding: 22px;
-
-    background: #ffffff;
-
-    border: 1px solid #e7e7ea;
-    border-radius: 14px;
-}
-
-.analisis-card-header {
-    margin-bottom: 4px;
-}
-
-.analisis-etiqueta {
-    display: block;
-
-    margin-bottom: 6px;
-
-    color: #7957d5;
-
-    font-size: 0.56rem;
-    font-weight: 800;
-    letter-spacing: 0.07em;
-
-    text-transform: uppercase;
-}
-
-.analisis-card-header h3,
-.analisis-insight-card h3,
-.analisis-recomendacion h3,
-.analisis-promocion h3 {
-    margin: 0 0 6px;
-
-    color: #17171a;
-
-    font-family: "Manrope", sans-serif;
-    font-size: 0.95rem;
-    font-weight: 800;
-}
-
-.analisis-card-header p {
-    margin: 0;
-
-    color: #85858d;
-
-    font-size: 0.66rem;
-    line-height: 1.5;
-}
-
-.analisis-pastel {
-    position: relative;
-
-    width: 100%;
-    height: 265px;
-}
-
-
-/* ==========================================================================
-   HORARIO DE MAYOR DEMANDA
-========================================================================== */
-
-.analisis-insight-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    background: #f8f8fa;
-}
-
-.analisis-insight-card h3 {
-    margin-top: 10px;
-
-    color: #17171a;
-
-    font-size: 2.15rem;
-    font-weight: 800;
-
-    letter-spacing: -0.05em;
-}
-
-.analisis-insight-numero {
-    margin: 0 0 16px;
-
-    color: #7957d5;
-
-    font-size: 0.76rem;
-    font-weight: 800;
-}
-
-.analisis-insight-card > p:last-child {
-    max-width: 300px;
-
-    margin: 0;
-
-    color: #777780;
-
-    font-size: 0.68rem;
-    line-height: 1.7;
-}
-
-
-/* ==========================================================================
-   RECOMENDACIÓN
-========================================================================== */
-
-.analisis-recomendacion {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-
-    padding: 21px;
-
-    background: #f5f1ff;
-
-    border: 1px solid #e1d8f7;
-    border-radius: 14px;
-}
-
-.recomendacion-icono {
-    width: 42px;
-    height: 42px;
-
-    flex: 0 0 42px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: #7957d5;
-
-    border-radius: 10px;
-
-    color: #ffffff;
-
-    font-size: 0.62rem;
-    font-weight: 800;
-}
-
-.recomendacion-contenido {
-    min-width: 0;
-}
-
-.recomendacion-contenido h3 {
-    margin-bottom: 7px;
-
-    color: #29252f;
-}
-
-.recomendacion-contenido p {
-    max-width: 850px;
-
-    margin: 0;
-
-    color: #686273;
-
-    font-size: 0.69rem;
-    line-height: 1.7;
-}
-
-
-/* ==========================================================================
-   PROMOCIÓN — TARJETA OSCURA
-========================================================================== */
-
-.analisis-promocion {
-    position: relative;
-
-    padding: 25px 27px;
-
-    background: #202126;
-
-    border: 1px solid #2d2e34;
-    border-radius: 15px;
-
-    overflow: hidden;
-}
-
-
-/* pequeño detalle visual */
-
-.analisis-promocion::after {
-    content: "";
-
-    position: absolute;
-
-    width: 180px;
-    height: 180px;
-
-    right: -70px;
-    top: -80px;
-
-    background: rgba(121, 87, 213, 0.13);
-
-    border-radius: 50%;
-}
-
-
-/* encabezado */
-
-.promocion-header {
-    position: relative;
-    z-index: 1;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 15px;
-
-    margin-bottom: 14px;
-}
-
-.analisis-promocion .analisis-etiqueta {
-    margin: 0;
-
-    color: #b9a8e9;
-}
-
-.promocion-badge {
-    padding: 5px 10px;
-
-    background: rgba(255, 255, 255, 0.08);
-
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 100px;
-
-    color: #ffffff;
-
-    font-size: 0.52rem;
-    font-weight: 800;
-    letter-spacing: 0.05em;
-
-    white-space: nowrap;
-}
-
-
-/* título */
-
-.analisis-promocion h3 {
-    position: relative;
-    z-index: 1;
-
-    margin: 0 0 9px;
-
-    color: #ffffff;
-
-    font-size: 1.2rem;
-    font-weight: 800;
-
-    line-height: 1.25;
-}
-
-
-/* explicación */
-
-.analisis-promocion > p {
-    position: relative;
-    z-index: 1;
-
-    max-width: 760px;
-
-    margin: 0;
-
-    color: #d0d0d5;
-
-    font-size: 0.7rem;
-    line-height: 1.75;
-}
-
-
-/* horario */
-
-.promocion-footer {
-    position: relative;
-    z-index: 1;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    margin-top: 21px;
-    padding-top: 15px;
-
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.promocion-footer span {
-    color: #a5a5ad;
-
-    font-size: 0.61rem;
-}
-
-.promocion-footer strong {
-    color: #ffffff;
-
-    font-size: 0.8rem;
-    font-weight: 800;
-}
-
-
-/* ==========================================================================
-   RESPONSIVE
-========================================================================== */
-
-@media (max-width: 1000px) {
-
-    .analisis-metricas {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .analisis-principal {
-        grid-template-columns: 1fr;
-    }
-
-}
-
-
-@media (max-width: 700px) {
-
-    .analisis-inteligente-contenido {
-        padding: 18px;
-    }
-
-    .analisis-metricas {
-        grid-template-columns: 1fr;
-    }
-
-    .analisis-grafica-card,
-    .analisis-insight-card {
-        padding: 19px;
-    }
-
-    .analisis-pastel {
-        height: 245px;
-    }
-
-    .analisis-recomendacion {
-        padding: 18px;
-    }
-
-    .analisis-promocion {
-        padding: 21px;
-    }
-
-    .promocion-header {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-}
-
-
-@media (max-width: 380px) {
-
-    .analisis-inteligente-contenido {
-        padding: 15px;
-    }
-
-    .analisis-promocion {
-        padding: 18px;
-    }
-
-    .analisis-promocion h3 {
-        font-size: 1.05rem;
-    }
-
-}
-
-
-
-
-/* ==========================================================================
    BOTÓN ANALIZAR
 ========================================================================== */
 
 #btn-analizar {
+
     min-height: 42px;
 
     margin-top: 22px;
@@ -760,7 +289,16 @@
 
     color: #18181c;
 
+    font-family:
+        "Manrope",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
     font-size: 0.67rem;
+
     font-weight: 750;
 
     cursor: pointer;
@@ -775,6 +313,7 @@
 
 
 #btn-analizar:hover {
+
     background: #7957d5;
 
     border-color: #7957d5;
@@ -782,14 +321,24 @@
     color: #ffffff;
 
     box-shadow:
-        0 8px 20px rgba(121, 87, 213, 0.25);
+        0 8px 20px
+        rgba(121, 87, 213, 0.25);
 
     transform: translateY(-1px);
 }
 
 
 #btn-analizar:active {
+
     transform: translateY(0);
+}
+
+
+#btn-analizar:disabled {
+
+    opacity: 0.6;
+
+    cursor: wait;
 }
 
 
@@ -798,17 +347,18 @@
 ========================================================================== */
 
 #resultado-analisis {
+
     margin-top: 18px;
 
     padding: 18px 20px;
 
-    background: rgba(255, 255, 255, 0.055);
+    background: #ffffff;
 
-    border: 1px solid rgba(255, 255, 255, 0.10);
+    border: 1px solid #e7e7ea;
 
-    border-radius: 10px;
+    border-radius: 12px;
 
-    color: #d8d8dd;
+    color: #55555d;
 
     font-size: 0.73rem;
 
@@ -818,19 +368,895 @@
 }
 
 
+.analisis-dashboard {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+/* ==========================================================================
+   MÉTRICAS
+========================================================================== */
+
+.analisis-metricas {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+
+.analisis-metrica {
+
+    padding: 19px 20px;
+
+    background: #f8f8fa;
+
+    border: 1px solid #e8e8ec;
+
+    border-radius: 12px;
+}
+
+
+.analisis-metrica span {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #85858d;
+
+    font-size: 0.56rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.07em;
+
+    text-transform: uppercase;
+}
+
+
+.analisis-metrica strong {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #17171a;
+
+    font-size: 1.15rem;
+
+    font-weight: 800;
+
+    line-height: 1.2;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+
+.analisis-metrica p {
+
+    margin: 0;
+
+    color: #9999a1;
+
+    font-size: 0.64rem;
+}
+
+
+/* ==========================================================================
+   GRÁFICA + DEMANDA
+========================================================================== */
+
+.analisis-principal {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.5fr)
+        minmax(250px, 0.7fr);
+
+    gap: 18px;
+}
+
+
+.analisis-grafica-card,
+.analisis-insight-card {
+
+    min-width: 0;
+
+    padding: 22px;
+
+    background: #ffffff;
+
+    border: 1px solid #e7e7ea;
+
+    border-radius: 14px;
+}
+
+
+.analisis-card-header {
+
+    margin-bottom: 4px;
+}
+
+
+.analisis-etiqueta {
+
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #7957d5;
+
+    font-size: 0.56rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.07em;
+
+    text-transform: uppercase;
+}
+
+
+.analisis-card-header h3,
+.analisis-insight-card h3,
+.analisis-recomendacion h3,
+.analisis-promocion h3 {
+
+    margin: 0 0 6px;
+
+    color: #17171a;
+
+    font-family:
+        "Manrope",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    font-size: 0.95rem;
+
+    font-weight: 800;
+}
+
+
+.analisis-card-header p {
+
+    margin: 0;
+
+    color: #85858d;
+
+    font-size: 0.66rem;
+
+    line-height: 1.5;
+}
+
+
+.analisis-pastel {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 265px;
+}
+
+
+/* ==========================================================================
+   HORARIO DE MAYOR DEMANDA
+========================================================================== */
+
+.analisis-insight-card {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    background: #f8f8fa;
+}
+
+
+.analisis-insight-card h3 {
+
+    margin-top: 10px;
+
+    color: #17171a;
+
+    font-size: 2.15rem;
+
+    font-weight: 800;
+
+    letter-spacing: -0.05em;
+}
+
+
+.analisis-insight-numero {
+
+    margin: 0 0 16px;
+
+    color: #7957d5;
+
+    font-size: 0.76rem;
+
+    font-weight: 800;
+}
+
+
+.analisis-insight-card > p:last-child {
+
+    max-width: 300px;
+
+    margin: 0;
+
+    color: #777780;
+
+    font-size: 0.68rem;
+
+    line-height: 1.7;
+}
+
+
+/* ==========================================================================
+   RECOMENDACIÓN
+========================================================================== */
+
+.analisis-recomendacion {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 16px;
+
+    padding: 21px;
+
+    background: #f5f1ff;
+
+    border: 1px solid #e1d8f7;
+
+    border-radius: 14px;
+}
+
+
+.recomendacion-icono {
+
+    width: 42px;
+    height: 42px;
+
+    flex: 0 0 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #7957d5;
+
+    border-radius: 10px;
+
+    color: #ffffff;
+
+    font-size: 0.62rem;
+
+    font-weight: 800;
+}
+
+
+.recomendacion-contenido {
+
+    min-width: 0;
+}
+
+
+.recomendacion-contenido h3 {
+
+    margin-bottom: 7px;
+
+    color: #29252f;
+}
+
+
+.recomendacion-contenido p {
+
+    max-width: 850px;
+
+    margin: 0;
+
+    color: #686273;
+
+    font-size: 0.69rem;
+
+    line-height: 1.7;
+}
+
+
+/* ==========================================================================
+   PROMOCIÓN SUGERIDA
+========================================================================== */
+
+.analisis-promocion {
+
+    position: relative;
+
+    padding: 25px 27px;
+
+    background: #202126;
+
+    border: 1px solid #2d2e34;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+}
+
+
+.analisis-promocion::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    right: -70px;
+    top: -80px;
+
+    background:
+        rgba(121, 87, 213, 0.13);
+
+    border-radius: 50%;
+}
+
+
+.promocion-header {
+
+    position: relative;
+
+    z-index: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 14px;
+}
+
+
+.analisis-promocion .analisis-etiqueta {
+
+    margin: 0;
+
+    color: #b9a8e9;
+}
+
+
+.promocion-badge {
+
+    padding: 5px 10px;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+    border-radius: 100px;
+
+    color: #ffffff;
+
+    font-size: 0.52rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.05em;
+
+    white-space: nowrap;
+}
+
+
+.analisis-promocion h3 {
+
+    position: relative;
+
+    z-index: 1;
+
+    margin: 0 0 9px;
+
+    color: #ffffff;
+
+    font-size: 1.2rem;
+
+    font-weight: 800;
+
+    line-height: 1.25;
+}
+
+
+.analisis-promocion > p {
+
+    position: relative;
+
+    z-index: 1;
+
+    max-width: 760px;
+
+    margin: 0;
+
+    color: #d0d0d5;
+
+    font-size: 0.7rem;
+
+    line-height: 1.75;
+}
+
+
+.promocion-footer {
+
+    position: relative;
+
+    z-index: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 21px;
+
+    padding-top: 15px;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.1);
+}
+
+
+.promocion-footer span {
+
+    color: #a5a5ad;
+
+    font-size: 0.61rem;
+}
+
+
+.promocion-footer strong {
+
+    color: #ffffff;
+
+    font-size: 0.8rem;
+
+    font-weight: 800;
+}
+
+
+/* ==========================================================================
+   OFERTA ACTIVA
+========================================================================== */
+
+.oferta-activa-dashboard {
+
+    margin-top: 42px;
+
+    margin-bottom: 42px;
+}
+
+
+.oferta-activa-contenido {
+
+    margin-top: 18px;
+}
+
+
+.oferta-admin-card {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        260px;
+
+    gap: 24px;
+
+    padding: 26px;
+
+    background: #ffffff;
+
+    border: 1px solid #e7e7ea;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 2px 5px rgba(15, 15, 20, 0.025),
+        0 10px 30px rgba(15, 15, 20, 0.025);
+}
+
+
+.oferta-admin-info {
+
+    min-width: 0;
+}
+
+
+.oferta-admin-cabecera {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+
+.oferta-admin-etiqueta {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #7957d5;
+
+    font-size: 0.56rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.07em;
+
+    text-transform: uppercase;
+}
+
+
+.oferta-admin-cabecera h3 {
+
+    margin: 0;
+
+    color: #17171a;
+
+    font-family:
+        "Manrope",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    font-size: 1.25rem;
+
+    font-weight: 800;
+
+    line-height: 1.3;
+}
+
+
+.oferta-admin-estado {
+
+    flex-shrink: 0;
+
+    padding: 6px 10px;
+
+    background: #f1ecff;
+
+    border: 1px solid #ded4f7;
+
+    border-radius: 100px;
+
+    color: #7957d5;
+
+    font-size: 0.53rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.06em;
+}
+
+
+.oferta-admin-descripcion {
+
+    max-width: 800px;
+
+    margin: 14px 0 0;
+
+    color: #6f6f78;
+
+    font-size: 0.72rem;
+
+    line-height: 1.7;
+}
+
+
+.oferta-admin-productos {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 18px;
+}
+
+
+.oferta-admin-productos span {
+
+    padding: 7px 11px;
+
+    background: #f7f7f9;
+
+    border: 1px solid #e7e7ea;
+
+    border-radius: 7px;
+
+    color: #4c4c54;
+
+    font-size: 0.62rem;
+
+    font-weight: 700;
+}
+
+
+.oferta-admin-precios {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 30px;
+
+    margin-top: 22px;
+}
+
+
+.oferta-admin-precios div {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.oferta-admin-precios span {
+
+    color: #9999a1;
+
+    font-size: 0.59rem;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.04em;
+}
+
+
+.oferta-admin-precios strong {
+
+    color: #7957d5;
+
+    font-size: 1.05rem;
+
+    font-weight: 800;
+}
+
+
+.oferta-admin-precios .precio-original {
+
+    color: #9999a1;
+
+    text-decoration: line-through;
+}
+
+
+.oferta-admin-control {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    gap: 22px;
+
+    padding-left: 24px;
+
+    border-left: 1px solid #e8e8ec;
+}
+
+
+.oferta-admin-contador {
+
+    padding: 18px;
+
+    background: #f8f8fa;
+
+    border: 1px solid #e7e7ea;
+
+    border-radius: 12px;
+}
+
+
+.oferta-admin-contador span {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #85858d;
+
+    font-size: 0.55rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.07em;
+}
+
+
+.oferta-admin-contador strong {
+
+    display: block;
+
+    color: #17171a;
+
+    font-size: 1rem;
+
+    font-weight: 800;
+
+    line-height: 1.4;
+}
+
+
+.btn-eliminar-oferta {
+
+    width: 100%;
+
+    min-height: 42px;
+
+    padding: 0 16px;
+
+    background: #ffffff;
+
+    border: 1px solid #d9d9df;
+
+    border-radius: 8px;
+
+    color: #55555d;
+
+    font-family:
+        "Manrope",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    font-size: 0.65rem;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.btn-eliminar-oferta:hover {
+
+    background: #fff5f5;
+
+    border-color: #e1bcbc;
+
+    color: #b14c4c;
+
+    transform: translateY(-1px);
+}
+
+
+.btn-eliminar-oferta:disabled {
+
+    opacity: 0.6;
+
+    cursor: wait;
+
+    transform: none;
+}
+
+
+/* ==========================================================================
+   OFERTA VACÍA / ERROR
+========================================================================== */
+
+.oferta-admin-vacia,
+.oferta-admin-error {
+
+    padding: 24px;
+
+    background: #ffffff;
+
+    border: 1px solid #e7e7ea;
+
+    border-radius: 14px;
+
+    color: #85858d;
+
+    font-size: 0.7rem;
+
+    line-height: 1.6;
+}
+
+
+.oferta-admin-vacia p,
+.oferta-admin-error p {
+
+    margin: 0;
+}
+
+
+.oferta-admin-error {
+
+    border-color: #ead3d3;
+
+    background: #fff9f9;
+
+    color: #a05b5b;
+}
+
+
+.oferta-admin-error strong {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #8f4545;
+
+    font-weight: 800;
+}
+
+
 /* ==========================================================================
    ACCESOS RÁPIDOS
 ========================================================================== */
 
 .dashboard-accesos {
+
     margin-top: 46px;
 }
 
 
 .dashboard-accesos-grid {
+
     display: grid;
 
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
 
     gap: 16px;
 
@@ -839,6 +1265,7 @@
 
 
 .dashboard-acceso {
+
     position: relative;
 
     min-height: 150px;
@@ -864,16 +1291,19 @@
 
 
 .dashboard-acceso:hover {
+
     border-color: #d6ccef;
 
     box-shadow:
-        0 12px 30px rgba(15, 15, 20, 0.055);
+        0 12px 30px
+        rgba(15, 15, 20, 0.055);
 
     transform: translateY(-3px);
 }
 
 
 .dashboard-acceso::after {
+
     content: "→";
 
     position: absolute;
@@ -892,6 +1322,7 @@
 
 
 .dashboard-acceso:hover::after {
+
     color: #7957d5;
 
     transform: translateX(3px);
@@ -899,6 +1330,7 @@
 
 
 .dashboard-acceso h3 {
+
     margin: 0 0 8px;
 
     color: #1a1a1e;
@@ -920,6 +1352,7 @@
 
 
 .dashboard-acceso p {
+
     max-width: 270px;
 
     margin: 0;
@@ -941,12 +1374,46 @@
 @media (max-width: 1000px) {
 
     .dashboard-resumen {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+
+    .analisis-metricas {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+
+    .analisis-principal {
+
+        grid-template-columns: 1fr;
     }
 
 
     .dashboard-accesos-grid {
+
         grid-template-columns: 1fr;
+    }
+
+
+    .oferta-admin-card {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .oferta-admin-control {
+
+        padding-left: 0;
+
+        padding-top: 22px;
+
+        border-left: none;
+
+        border-top: 1px solid #e8e8ec;
     }
 
 }
@@ -959,23 +1426,28 @@
 @media (max-width: 700px) {
 
     .graficas-grid {
+
         grid-template-columns: 1fr;
     }
 
 
     .grafica-card-completa {
+
         grid-column: auto;
     }
 
 
     .dashboard-resumen {
-        grid-template-columns: 1fr 1fr;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
 
         gap: 12px;
     }
 
 
     .dashboard-card {
+
         min-height: 125px;
 
         padding: 19px;
@@ -983,16 +1455,19 @@
 
 
     .dashboard-card h2 {
+
         font-size: 1.85rem;
     }
 
 
     .grafica-card {
+
         padding: 20px;
     }
 
 
     .grafica-contenedor {
+
         height: 260px;
 
         margin-top: 20px;
@@ -1000,21 +1475,92 @@
 
 
     .grafica-hora {
+
         height: 280px;
     }
 
 
     .analisis-inteligente-contenido {
-        padding: 24px;
+
+        padding: 20px;
     }
 
 
-    .analisis-inteligente-contenido::after {
-        display: none;
+    .analisis-metricas {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .analisis-grafica-card,
+    .analisis-insight-card {
+
+        padding: 19px;
+    }
+
+
+    .analisis-pastel {
+
+        height: 245px;
+    }
+
+
+    .analisis-recomendacion {
+
+        padding: 18px;
+    }
+
+
+    .analisis-promocion {
+
+        padding: 21px;
+    }
+
+
+    .promocion-header {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .oferta-activa-dashboard {
+
+        margin-top: 32px;
+
+        margin-bottom: 32px;
+    }
+
+
+    .oferta-admin-card {
+
+        padding: 20px;
+    }
+
+
+    .oferta-admin-cabecera {
+
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+
+    .oferta-admin-estado {
+
+        align-self: flex-start;
+    }
+
+
+    .oferta-admin-precios {
+
+        gap: 20px;
     }
 
 
     .dashboard-acceso {
+
         min-height: 130px;
 
         padding: 20px;
@@ -1030,53 +1576,94 @@
 @media (max-width: 480px) {
 
     .dashboard-resumen {
+
         grid-template-columns: 1fr;
     }
 
 
     .dashboard-card {
+
         min-height: 120px;
     }
 
 
     .dashboard-card h2 {
+
         font-size: 1.9rem;
     }
 
 
     .grafica-card {
+
         padding: 17px;
     }
 
 
     .grafica-card h2 {
+
         font-size: 0.92rem;
     }
 
 
     .grafica-contenedor {
+
         height: 230px;
     }
 
 
     .grafica-hora {
+
         height: 250px;
     }
 
 
     .analisis-inteligente-contenido {
-        padding: 20px;
+
+        padding: 18px;
     }
 
 
     .analisis-inteligente-contenido h2 {
+
         font-size: 1.2rem;
     }
 
 
     #btn-analizar {
+
         width: 100%;
     }
 
-}
 
+    .oferta-admin-card {
+
+        padding: 17px;
+    }
+
+
+    .oferta-admin-cabecera h3 {
+
+        font-size: 1.05rem;
+    }
+
+
+    .oferta-admin-precios {
+
+        flex-direction: column;
+
+        gap: 14px;
+    }
+
+
+    .oferta-admin-contador {
+
+        padding: 15px;
+    }
+
+
+    .oferta-admin-contador strong {
+
+        font-size: 0.9rem;
+    }
+
+}

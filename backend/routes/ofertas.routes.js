@@ -24,6 +24,7 @@ router.get("/activa", async (req, res) => {
                 o.activa,
                 o.fecha_inicio,
                 o.fecha_fin,
+                o.fecha_creacion,
 
                 p.nombre AS producto_nombre,
 
@@ -58,7 +59,9 @@ router.get("/activa", async (req, res) => {
         }
 
 
-        res.json(ofertas[0]);
+        res.json(
+            ofertas[0]
+        );
 
 
     } catch (error) {
@@ -208,75 +211,88 @@ router.post("/", async (req, res) => {
            CREAR NUEVA OFERTA
         ============================================================== */
 
-        const [resultado] = await pool.query(
+        const [resultado] =
+            await pool.query(
 
-            `
-            INSERT INTO ofertas (
-                titulo,
-                descripcion,
-                id_producto,
-                id_producto_acompanamiento,
-                imagen,
-                precio_original,
-                precio_oferta,
-                activa,
-                fecha_inicio,
-                fecha_fin
-            )
+                `
+                INSERT INTO ofertas (
+                    titulo,
+                    descripcion,
+                    id_producto,
+                    id_producto_acompanamiento,
+                    imagen,
+                    precio_original,
+                    precio_oferta,
+                    activa,
+                    fecha_inicio,
+                    fecha_fin
+                )
 
-            VALUES (?, ?, ?, ?, ?, ?, ?, TRUE, NOW(), ?)
-            `,
+                VALUES (
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    TRUE,
+                    NOW(),
+                    ?
+                )
+                `,
 
-            [
+                [
 
-                titulo.trim(),
+                    titulo.trim(),
 
-                descripcion.trim(),
+                    descripcion.trim(),
 
-                id_producto || null,
+                    id_producto || null,
 
-                id_producto_acompanamiento || null,
+                    id_producto_acompanamiento || null,
 
-                imagen || null,
+                    imagen || null,
 
-                precioOriginal,
+                    precioOriginal,
 
-                precioOferta,
+                    precioOferta,
 
-                fecha_fin || null
+                    fecha_fin || null
 
-            ]
+                ]
 
-        );
+            );
 
 
         /* ==============================================================
            OBTENER OFERTA CREADA
         ============================================================== */
 
-        const [oferta] = await pool.query(
+        const [oferta] =
+            await pool.query(
 
-            `
-            SELECT
-                id_oferta,
-                titulo,
-                descripcion,
-                id_producto,
-                id_producto_acompanamiento,
-                imagen,
-                precio_original,
-                precio_oferta,
-                activa,
-                fecha_inicio,
-                fecha_fin,
-                fecha_creacion
-            FROM ofertas
-            WHERE id_oferta = ?
-            `,
+                `
+                SELECT
+                    id_oferta,
+                    titulo,
+                    descripcion,
+                    id_producto,
+                    id_producto_acompanamiento,
+                    imagen,
+                    precio_original,
+                    precio_oferta,
+                    activa,
+                    fecha_inicio,
+                    fecha_fin,
+                    fecha_creacion
+                FROM ofertas
+                WHERE id_oferta = ?
+                `,
 
-            [resultado.insertId]
+                [resultado.insertId]
 
-        );
+            );
 
 
         res.status(201).json({
@@ -322,10 +338,16 @@ router.delete("/:id", async (req, res) => {
     try {
 
         const idOferta =
-            Number(req.params.id);
+            Number(
+                req.params.id
+            );
 
 
-        if (Number.isNaN(idOferta)) {
+        if (
+            Number.isNaN(
+                idOferta
+            )
+        ) {
 
             return res.status(400).json({
 
@@ -355,7 +377,9 @@ router.delete("/:id", async (req, res) => {
             );
 
 
-        if (resultado.affectedRows === 0) {
+        if (
+            resultado.affectedRows === 0
+        ) {
 
             return res.status(404).json({
 
@@ -370,7 +394,7 @@ router.delete("/:id", async (req, res) => {
         res.json({
 
             mensaje:
-                "Oferta desactivada correctamente."
+                "Oferta eliminada correctamente."
 
         });
 
@@ -378,7 +402,7 @@ router.delete("/:id", async (req, res) => {
     } catch (error) {
 
         console.error(
-            "Error al desactivar oferta:",
+            "Error al eliminar oferta:",
             error
         );
 
@@ -386,7 +410,7 @@ router.delete("/:id", async (req, res) => {
         res.status(500).json({
 
             mensaje:
-                "Error al desactivar la oferta.",
+                "Error al eliminar la oferta.",
 
             error:
                 error.message

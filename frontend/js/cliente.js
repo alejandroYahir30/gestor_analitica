@@ -10,14 +10,12 @@ async function cargarProductos() {
     const contenedor =
         document.getElementById("productos");
 
-
     try {
 
         const respuesta =
             await fetch(
                 `${API_URL}/productos`
             );
-
 
         if (!respuesta.ok) {
 
@@ -27,13 +25,10 @@ async function cargarProductos() {
 
         }
 
-
         const productos =
             await respuesta.json();
 
-
         contenedor.innerHTML = "";
-
 
         productos.forEach(
             producto => {
@@ -41,20 +36,16 @@ async function cargarProductos() {
                 const tarjeta =
                     document.createElement("article");
 
-
                 tarjeta.classList.add(
                     "producto"
                 );
 
-
                 const agotado =
                     producto.stock <= 0;
-
 
                 const imagen =
                     producto.imagen ||
                     "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=85";
-
 
                 tarjeta.innerHTML = `
 
@@ -68,18 +59,15 @@ async function cargarProductos() {
 
                     </div>
 
-
                     <div class="producto-contenido">
 
                         <p class="producto-categoria">
                             ${producto.categoria}
                         </p>
 
-
                         <h2>
                             ${producto.nombre}
                         </h2>
-
 
                         <p class="producto-descripcion">
                             ${
@@ -90,7 +78,6 @@ async function cargarProductos() {
 
                     </div>
 
-
                     <div class="producto-info">
 
                         <div>
@@ -100,7 +87,6 @@ async function cargarProductos() {
                                     producto.precio
                                 ).toFixed(2)}
                             </p>
-
 
                             <p class="producto-stock">
 
@@ -115,7 +101,6 @@ async function cargarProductos() {
                         </div>
 
                     </div>
-
 
                     ${
                         agotado
@@ -145,7 +130,6 @@ async function cargarProductos() {
 
                 `;
 
-
                 contenedor.appendChild(
                     tarjeta
                 );
@@ -153,9 +137,7 @@ async function cargarProductos() {
             }
         );
 
-
         actualizarContadorCarrito();
-
 
     } catch (error) {
 
@@ -163,7 +145,6 @@ async function cargarProductos() {
             "Error al cargar productos:",
             error
         );
-
 
         contenedor.innerHTML = `
 
@@ -175,6 +156,43 @@ async function cargarProductos() {
         `;
 
     }
+
+}
+
+
+/* ==========================================================================
+   FORMATEAR FECHA DE OFERTA
+========================================================================== */
+
+function formatearFechaOferta(fecha) {
+
+    if (!fecha) {
+        return "";
+    }
+
+    const fechaNormalizada =
+        String(fecha).replace(
+            " ",
+            "T"
+        );
+
+    const fechaObjeto =
+        new Date(
+            fechaNormalizada
+        );
+
+    if (Number.isNaN(fechaObjeto.getTime())) {
+        return "";
+    }
+
+    return fechaObjeto.toLocaleDateString(
+        "es-MX",
+        {
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        }
+    );
 
 }
 
@@ -192,7 +210,6 @@ async function cargarOfertaActiva() {
                 `${API_URL}/ofertas/activa`
             );
 
-
         if (!respuesta.ok) {
 
             throw new Error(
@@ -201,38 +218,36 @@ async function cargarOfertaActiva() {
 
         }
 
-
         const oferta =
             await respuesta.json();
-
 
         if (!oferta) {
             return;
         }
-
 
         const presentacion =
             document.querySelector(
                 ".presentacion"
             );
 
-
         if (!presentacion) {
             return;
         }
-
 
         const precioOriginal =
             Number(
                 oferta.precio_original || 0
             );
 
-
         const precioOferta =
             Number(
                 oferta.precio_oferta || 0
             );
 
+        const fechaFin =
+            formatearFechaOferta(
+                oferta.fecha_fin
+            );
 
         const ofertaHTML = `
 
@@ -244,16 +259,13 @@ async function cargarOfertaActiva() {
                         ESPECIAL DE LA SEMANA
                     </span>
 
-
                     <h2>
                         ${oferta.titulo}
                     </h2>
 
-
                     <p>
                         ${oferta.descripcion}
                     </p>
-
 
                     ${
                         oferta.producto_nombre
@@ -265,7 +277,6 @@ async function cargarOfertaActiva() {
                                         ${oferta.producto_nombre}
                                     </span>
 
-
                                     ${
                                         oferta.producto_acompanamiento_nombre
                                             ? `
@@ -273,7 +284,6 @@ async function cargarOfertaActiva() {
                                                 <span>
                                                     +
                                                 </span>
-
 
                                                 <span>
                                                     ${oferta.producto_acompanamiento_nombre}
@@ -289,7 +299,6 @@ async function cargarOfertaActiva() {
                             : ""
                     }
 
-
                     ${
                         precioOferta > 0
                             ? `
@@ -302,20 +311,17 @@ async function cargarOfertaActiva() {
                                             Precio normal
                                         </span>
 
-
                                         <strong>
                                             $${precioOriginal.toFixed(2)}
                                         </strong>
 
                                     </div>
 
-
                                     <div class="oferta-precio-final">
 
                                         <span>
                                             Precio especial
                                         </span>
-
 
                                         <strong>
                                             $${precioOferta.toFixed(2)}
@@ -329,6 +335,17 @@ async function cargarOfertaActiva() {
                             : ""
                     }
 
+                    ${
+                        fechaFin
+                            ? `
+
+                                <p class="oferta-vigencia">
+                                    Válida hasta el ${fechaFin}.
+                                </p>
+
+                            `
+                            : ""
+                    }
 
                     <button
                         type="button"
@@ -339,7 +356,6 @@ async function cargarOfertaActiva() {
                     </button>
 
                 </div>
-
 
                 ${
                     oferta.imagen
@@ -362,12 +378,10 @@ async function cargarOfertaActiva() {
 
         `;
 
-
         presentacion.insertAdjacentHTML(
             "afterend",
             ofertaHTML
         );
-
 
     } catch (error) {
 
@@ -394,7 +408,6 @@ async function agregarOfertaAlCarrito() {
                 `${API_URL}/ofertas/activa`
             );
 
-
         if (!respuesta.ok) {
 
             throw new Error(
@@ -403,10 +416,8 @@ async function agregarOfertaAlCarrito() {
 
         }
 
-
         const oferta =
             await respuesta.json();
-
 
         if (!oferta) {
 
@@ -418,7 +429,6 @@ async function agregarOfertaAlCarrito() {
 
         }
 
-
         if (!oferta.id_producto) {
 
             notificacionError(
@@ -429,12 +439,10 @@ async function agregarOfertaAlCarrito() {
 
         }
 
-
         const respuestaProductos =
             await fetch(
                 `${API_URL}/productos`
             );
-
 
         if (!respuestaProductos.ok) {
 
@@ -444,10 +452,8 @@ async function agregarOfertaAlCarrito() {
 
         }
 
-
         const productos =
             await respuestaProductos.json();
-
 
         const productoPrincipal =
             productos.find(
@@ -460,7 +466,6 @@ async function agregarOfertaAlCarrito() {
                     )
             );
 
-
         if (!productoPrincipal) {
 
             notificacionError(
@@ -470,7 +475,6 @@ async function agregarOfertaAlCarrito() {
             return;
 
         }
-
 
         let carrito =
             JSON.parse(
@@ -506,7 +510,6 @@ async function agregarOfertaAlCarrito() {
         let productoAcompanamiento =
             null;
 
-
         if (
             oferta.id_producto_acompanamiento
         ) {
@@ -522,7 +525,6 @@ async function agregarOfertaAlCarrito() {
                         )
                 );
 
-
             if (!productoAcompanamiento) {
 
                 notificacionError(
@@ -532,7 +534,6 @@ async function agregarOfertaAlCarrito() {
                 return;
 
             }
-
 
             if (
                 Number(
@@ -560,18 +561,15 @@ async function agregarOfertaAlCarrito() {
                 oferta.precio_original || 0
             );
 
-
         const precioOferta =
             Number(
                 oferta.precio_oferta || 0
             );
 
-
         let precioOfertaPrincipal =
             Number(
                 productoPrincipal.precio
             );
-
 
         let precioOfertaAcompanamiento =
             productoAcompanamiento
@@ -579,7 +577,6 @@ async function agregarOfertaAlCarrito() {
                     productoAcompanamiento.precio
                 )
                 : null;
-
 
         if (
             productoAcompanamiento &&
@@ -592,17 +589,14 @@ async function agregarOfertaAlCarrito() {
                     productoPrincipal.precio
                 );
 
-
             const precioAcompanamientoNormal =
                 Number(
                     productoAcompanamiento.precio
                 );
 
-
             const totalNormal =
                 precioPrincipalNormal +
                 precioAcompanamientoNormal;
-
 
             if (totalNormal > 0) {
 
@@ -612,7 +606,6 @@ async function agregarOfertaAlCarrito() {
                         totalNormal
                     ) *
                     precioOferta;
-
 
                 precioOfertaAcompanamiento =
                     precioOferta -
@@ -646,7 +639,6 @@ async function agregarOfertaAlCarrito() {
                     )
             );
 
-
         if (productoExistente) {
 
             if (
@@ -656,20 +648,16 @@ async function agregarOfertaAlCarrito() {
 
                 productoExistente.cantidad++;
 
-
                 productoExistente.es_oferta =
                     true;
 
-
                 productoExistente.id_oferta =
                     oferta.id_oferta;
-
 
                 productoExistente.precio_oferta =
                     Number(
                         precioOfertaPrincipal
                     );
-
 
             } else {
 
@@ -740,7 +728,6 @@ async function agregarOfertaAlCarrito() {
                         )
                 );
 
-
             if (acompanamientoExistente) {
 
                 if (
@@ -750,14 +737,11 @@ async function agregarOfertaAlCarrito() {
 
                     acompanamientoExistente.cantidad++;
 
-
                     acompanamientoExistente.es_oferta =
                         true;
 
-
                     acompanamientoExistente.id_oferta =
                         oferta.id_oferta;
-
 
                     acompanamientoExistente.precio_oferta =
                         Number(
@@ -827,14 +811,11 @@ async function agregarOfertaAlCarrito() {
             )
         );
 
-
         actualizarContadorCarrito();
-
 
         notificacionExito(
             "Oferta agregada al carrito."
         );
-
 
     } catch (error) {
 
@@ -842,7 +823,6 @@ async function agregarOfertaAlCarrito() {
             "Error al agregar oferta:",
             error
         );
-
 
         notificacionError(
             "No fue posible agregar la oferta al carrito."
@@ -864,11 +844,9 @@ function irAProductos() {
             "productos"
         );
 
-
     if (!productos) {
         return;
     }
-
 
     productos.scrollIntoView({
 
@@ -896,7 +874,6 @@ async function agregarAlCarrito(
                 `${API_URL}/productos`
             );
 
-
         if (!respuesta.ok) {
 
             throw new Error(
@@ -905,10 +882,8 @@ async function agregarAlCarrito(
 
         }
 
-
         const productos =
             await respuesta.json();
-
 
         const producto =
             productos.find(
@@ -921,7 +896,6 @@ async function agregarAlCarrito(
                     )
             );
 
-
         if (!producto) {
 
             notificacionError(
@@ -932,14 +906,12 @@ async function agregarAlCarrito(
 
         }
 
-
         let carrito =
             JSON.parse(
                 localStorage.getItem(
                     "carrito"
                 )
             ) || [];
-
 
         const productoExistente =
             carrito.find(
@@ -952,7 +924,6 @@ async function agregarAlCarrito(
                     )
             );
 
-
         if (productoExistente) {
 
             if (
@@ -961,7 +932,6 @@ async function agregarAlCarrito(
             ) {
 
                 productoExistente.cantidad++;
-
 
             } else {
 
@@ -1001,7 +971,6 @@ async function agregarAlCarrito(
 
         }
 
-
         localStorage.setItem(
             "carrito",
             JSON.stringify(
@@ -1009,14 +978,11 @@ async function agregarAlCarrito(
             )
         );
 
-
         actualizarContadorCarrito();
-
 
         notificacionExito(
             `${producto.nombre} agregado al carrito.`
         );
-
 
     } catch (error) {
 
@@ -1024,7 +990,6 @@ async function agregarAlCarrito(
             "Error al agregar producto:",
             error
         );
-
 
         notificacionError(
             "No fue posible agregar el producto."
@@ -1046,11 +1011,9 @@ function actualizarContadorCarrito() {
             "contador-carrito"
         );
 
-
     if (!contador) {
         return;
     }
-
 
     const carrito =
         JSON.parse(
@@ -1058,7 +1021,6 @@ function actualizarContadorCarrito() {
                 "carrito"
             )
         ) || [];
-
 
     const cantidad =
         carrito.reduce(
@@ -1079,10 +1041,8 @@ function actualizarContadorCarrito() {
             0
         );
 
-
     contador.textContent =
         cantidad;
-
 
     if (cantidad > 0) {
 

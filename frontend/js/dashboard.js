@@ -5,6 +5,8 @@ let graficaProductos = null;
 let graficaHora = null;
 let graficaAnalisisProductos = null;
 
+let temporizadorOferta = null;
+
 
 /* ==========================================================================
    CARGAR DASHBOARD
@@ -14,11 +16,9 @@ async function cargarDashboard() {
 
     try {
 
-        const respuesta =
-            await fetch(
-                `${API_URL}/estadisticas/resumen`
-            );
-
+        const respuesta = await fetch(
+            `${API_URL}/estadisticas/resumen`
+        );
 
         if (!respuesta.ok) {
 
@@ -28,9 +28,7 @@ async function cargarDashboard() {
 
         }
 
-
-        const estadisticas =
-            await respuesta.json();
+        const estadisticas = await respuesta.json();
 
 
         /* ==============================================================
@@ -70,23 +68,20 @@ async function cargarDashboard() {
 
 
         /* ==============================================================
-           GRÁFICAS PRINCIPALES
+           GRAFICAS
         ============================================================== */
 
         crearGraficaVentasPorDia(
             estadisticas.ventas_por_dia
         );
 
-
         crearGraficaProductos(
             estadisticas.productos_mas_vendidos
         );
 
-
         crearGraficaHora(
             estadisticas.hora_mayor_demanda
         );
-
 
     } catch (error) {
 
@@ -101,10 +96,587 @@ async function cargarDashboard() {
 
 
 /* ==========================================================================
-   GRÁFICA — VENTAS POR DÍA
+   CARGAR OFERTA ACTIVA
 ========================================================================== */
 
-function crearGraficaVentasPorDia(datos) {
+async function cargarOfertaActiva() {
+
+    const contenedor =
+        document.getElementById(
+            "oferta-admin-contenido"
+        );
+
+
+    if (!contenedor) {
+        return;
+    }
+
+
+    if (temporizadorOferta) {
+
+        clearInterval(
+            temporizadorOferta
+        );
+
+        temporizadorOferta = null;
+
+    }
+
+
+    try {
+
+        const respuesta =
+            await fetch(
+                `${API_URL}/ofertas/activa`
+            );
+
+
+        if (!respuesta.ok) {
+
+            throw new Error(
+                "No se pudo obtener la oferta activa."
+            );
+
+        }
+
+
+        const oferta =
+            await respuesta.json();
+
+
+        if (!oferta) {
+
+            mostrarOfertaVacia();
+
+            return;
+
+        }
+
+
+        mostrarOfertaActiva(
+            oferta
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Error al cargar oferta activa:",
+            error
+        );
+
+
+        contenedor.innerHTML = `
+
+            <div class="oferta-admin-error">
+
+                <strong>
+                    No se pudo cargar la oferta
+                </strong>
+
+                <p>
+                    Verifica que el servidor
+                    esté funcionando correctamente.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* ==========================================================================
+   MOSTRAR OFERTA VACIA
+========================================================================== */
+
+function mostrarOfertaVacia() {
+
+    const contenedor =
+        document.getElementById(
+            "oferta-admin-contenido"
+        );
+
+
+    if (!contenedor) {
+        return;
+    }
+
+
+    contenedor.innerHTML = `
+
+        <div class="oferta-admin-vacia">
+
+            <p>
+                No hay una oferta activa actualmente.
+            </p>
+
+        </div>
+
+    `;
+
+}
+
+
+/* ==========================================================================
+   MOSTRAR OFERTA ACTIVA
+========================================================================== */
+
+function mostrarOfertaActiva(
+    oferta
+) {
+
+    const contenedor =
+        document.getElementById(
+            "oferta-admin-contenido"
+        );
+
+
+    if (!contenedor) {
+        return;
+    }
+
+
+    const precioOriginal =
+        Number(
+            oferta.precio_original || 0
+        );
+
+
+    const precioOferta =
+        Number(
+            oferta.precio_oferta || 0
+        );
+
+
+    const productoPrincipal =
+        oferta.producto_nombre ||
+        "Producto principal";
+
+
+    const productoAcompanamiento =
+        oferta.producto_acompanamiento_nombre;
+
+
+    contenedor.innerHTML = `
+
+        <article class="oferta-admin-card">
+
+            <div class="oferta-admin-info">
+
+                <div class="oferta-admin-cabecera">
+
+                    <div>
+
+                        <span class="oferta-admin-etiqueta">
+                            OFERTA ACTIVA
+                        </span>
+
+                        <h3>
+                            ${oferta.titulo}
+                        </h3>
+
+                    </div>
+
+                    <span class="oferta-admin-estado">
+                        ACTIVA
+                    </span>
+
+                </div>
+
+
+                <p class="oferta-admin-descripcion">
+                    ${oferta.descripcion}
+                </p>
+
+
+                <div class="oferta-admin-productos">
+
+                    <span>
+                        ${productoPrincipal}
+                    </span>
+
+                    ${
+                        productoAcompanamiento
+                            ? `
+                                <span>
+                                    ${productoAcompanamiento}
+                                </span>
+                            `
+                            : ""
+                    }
+
+                </div>
+
+
+                <div class="oferta-admin-precios">
+
+                    <div>
+
+                        <span>
+                            Precio normal
+                        </span>
+
+                        <strong class="precio-original">
+                            $${precioOriginal.toFixed(2)}
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Precio de oferta
+                        </span>
+
+                        <strong>
+                            $${precioOferta.toFixed(2)}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="oferta-admin-control">
+
+                <div class="oferta-admin-contador">
+
+                    <span>
+                        TERMINA EN
+                    </span>
+
+                    <strong id="contador-oferta">
+                        Calculando...
+                    </strong>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="btn-eliminar-oferta"
+                    class="btn-eliminar-oferta"
+                >
+                    Eliminar oferta
+                </button>
+
+            </div>
+
+        </article>
+
+    `;
+
+
+    iniciarContadorOferta(
+        oferta.fecha_fin
+    );
+
+
+    const botonEliminar =
+        document.getElementById(
+            "btn-eliminar-oferta"
+        );
+
+
+    if (botonEliminar) {
+
+        botonEliminar.addEventListener(
+            "click",
+            () => {
+
+                eliminarOferta(
+                    oferta.id_oferta
+                );
+
+            }
+        );
+
+    }
+
+}
+
+
+/* ==========================================================================
+   CONTADOR DE OFERTA
+========================================================================== */
+
+function iniciarContadorOferta(
+    fechaFin
+) {
+
+    const contador =
+        document.getElementById(
+            "contador-oferta"
+        );
+
+
+    if (!contador) {
+        return;
+    }
+
+
+    if (!fechaFin) {
+
+        contador.textContent =
+            "Sin fecha de finalización";
+
+        return;
+
+    }
+
+
+    function actualizarContador() {
+
+        const ahora =
+            new Date();
+
+
+        const final =
+            convertirFechaServidor(
+                fechaFin
+            );
+
+
+        const diferencia =
+            final.getTime() -
+            ahora.getTime();
+
+
+        if (diferencia <= 0) {
+
+            if (temporizadorOferta) {
+
+                clearInterval(
+                    temporizadorOferta
+                );
+
+                temporizadorOferta = null;
+
+            }
+
+
+            contador.textContent =
+                "Oferta finalizada";
+
+
+            setTimeout(
+                () => {
+
+                    cargarOfertaActiva();
+
+                },
+                1000
+            );
+
+            return;
+
+        }
+
+
+        const segundosTotales =
+            Math.floor(
+                diferencia / 1000
+            );
+
+
+        const dias =
+            Math.floor(
+                segundosTotales / 86400
+            );
+
+
+        const horas =
+            Math.floor(
+                (segundosTotales % 86400) / 3600
+            );
+
+
+        const minutos =
+            Math.floor(
+                (segundosTotales % 3600) / 60
+            );
+
+
+        const segundos =
+            segundosTotales % 60;
+
+
+        contador.textContent =
+            `${dias} días ${horas} h ${minutos} min ${segundos} s`;
+
+    }
+
+
+    actualizarContador();
+
+
+    temporizadorOferta =
+        setInterval(
+            actualizarContador,
+            1000
+        );
+
+}
+
+
+/* ==========================================================================
+   CONVERTIR FECHA DEL SERVIDOR
+========================================================================== */
+
+function convertirFechaServidor(
+    fecha
+) {
+
+    if (
+        typeof fecha !== "string"
+    ) {
+
+        return new Date(fecha);
+
+    }
+
+
+    const fechaNormalizada =
+        fecha.includes("T")
+            ? fecha
+            : fecha.replace(
+                " ",
+                "T"
+            );
+
+
+    return new Date(
+        fechaNormalizada
+    );
+
+}
+
+
+/* ==========================================================================
+   ELIMINAR OFERTA
+========================================================================== */
+
+async function eliminarOferta(
+    idOferta
+) {
+
+    const confirmar =
+        await confirmarAccion(
+            "La oferta dejara de estar activa y ya no aparecera para los clientes."
+        );
+
+
+    if (!confirmar) {
+        return;
+    }
+
+
+    const boton =
+        document.getElementById(
+            "btn-eliminar-oferta"
+        );
+
+
+    if (boton) {
+
+        boton.disabled = true;
+
+        boton.textContent =
+            "Eliminando...";
+
+    }
+
+
+    try {
+
+        const respuesta =
+            await fetch(
+                `${API_URL}/ofertas/${idOferta}`,
+                {
+                    method: "DELETE"
+                }
+            );
+
+
+        const datos =
+            await respuesta.json();
+
+
+        if (!respuesta.ok) {
+
+            throw new Error(
+                datos.mensaje ||
+                "No se pudo eliminar la oferta."
+            );
+
+        }
+
+
+        notificacionExito(
+            "La oferta fue eliminada correctamente."
+        );
+
+
+        await cargarOfertaActiva();
+
+
+        const botonPublicar =
+            document.getElementById(
+                "btn-publicar-oferta"
+            );
+
+
+        if (botonPublicar) {
+
+            botonPublicar.disabled =
+                false;
+
+            botonPublicar.textContent =
+                "Publicar oferta";
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Error al eliminar oferta:",
+            error
+        );
+
+
+        notificacionError(
+            error.message ||
+            "No se pudo eliminar la oferta."
+        );
+
+
+        if (boton) {
+
+            boton.disabled =
+                false;
+
+            boton.textContent =
+                "Eliminar oferta";
+
+        }
+
+    }
+
+}
+
+
+/* ==========================================================================
+   GRAFICA — VENTAS POR DIA
+========================================================================== */
+
+function crearGraficaVentasPorDia(
+    datos
+) {
 
     const canvas =
         document.getElementById(
@@ -147,7 +719,8 @@ function crearGraficaVentasPorDia(datos) {
                     datasets: [
 
                         {
-                            label: "Ventas",
+                            label:
+                                "Ventas",
 
                             data:
                                 datos.map(
@@ -157,25 +730,31 @@ function crearGraficaVentasPorDia(datos) {
                                         )
                                 ),
 
-                            tension: 0.3,
+                            tension:
+                                0.3,
 
-                            fill: false
+                            fill:
+                                false
                         }
 
                     ]
+
                 },
 
                 options: {
 
-                    responsive: true,
+                    responsive:
+                        true,
 
-                    maintainAspectRatio: false,
+                    maintainAspectRatio:
+                        false,
 
                     plugins: {
 
                         legend: {
 
-                            display: true
+                            display:
+                                true
 
                         }
 
@@ -190,10 +769,12 @@ function crearGraficaVentasPorDia(datos) {
 
 
 /* ==========================================================================
-   GRÁFICA — PRODUCTOS MÁS VENDIDOS
+   GRAFICA — PRODUCTOS MAS VENDIDOS
 ========================================================================== */
 
-function crearGraficaProductos(datos) {
+function crearGraficaProductos(
+    datos
+) {
 
     const canvas =
         document.getElementById(
@@ -253,17 +834,21 @@ function crearGraficaProductos(datos) {
 
                 options: {
 
-                    indexAxis: "y",
+                    indexAxis:
+                        "y",
 
-                    responsive: true,
+                    responsive:
+                        true,
 
-                    maintainAspectRatio: false,
+                    maintainAspectRatio:
+                        false,
 
                     plugins: {
 
                         legend: {
 
-                            display: true
+                            display:
+                                true
 
                         }
 
@@ -278,7 +863,7 @@ function crearGraficaProductos(datos) {
 
 
 /* ==========================================================================
-   GRÁFICA — DEMANDA POR HORA
+   GRAFICA — DEMANDA POR HORA
 ========================================================================== */
 
 function crearGraficaHora(
@@ -360,15 +945,18 @@ function crearGraficaHora(
 
                 options: {
 
-                    responsive: true,
+                    responsive:
+                        true,
 
-                    maintainAspectRatio: false,
+                    maintainAspectRatio:
+                        false,
 
                     plugins: {
 
                         legend: {
 
-                            display: true
+                            display:
+                                true
 
                         }
 
@@ -378,11 +966,13 @@ function crearGraficaHora(
 
                         y: {
 
-                            beginAtZero: true,
+                            beginAtZero:
+                                true,
 
                             ticks: {
 
-                                precision: 0
+                                precision:
+                                    0
 
                             }
 
@@ -426,7 +1016,8 @@ async function publicarOferta(
 
     if (boton) {
 
-        boton.disabled = true;
+        boton.disabled =
+            true;
 
         boton.textContent =
             "Publicando...";
@@ -435,10 +1026,6 @@ async function publicarOferta(
 
 
     try {
-
-        /* ==============================================================
-           OBTENER PRODUCTOS REALES
-        ============================================================== */
 
         const respuestaProductos =
             await fetch(
@@ -459,10 +1046,6 @@ async function publicarOferta(
             await respuestaProductos.json();
 
 
-        /* ==============================================================
-           BUSCAR PRODUCTO PRINCIPAL
-        ============================================================== */
-
         const productoReal =
             productos.find(
                 item =>
@@ -479,10 +1062,6 @@ async function publicarOferta(
 
         }
 
-
-        /* ==============================================================
-           BUSCAR PRODUCTO DE ACOMPAÑAMIENTO
-        ============================================================== */
 
         let productoAcompanamientoReal =
             null;
@@ -509,10 +1088,6 @@ async function publicarOferta(
         }
 
 
-        /* ==============================================================
-           CREAR DATOS DE LA OFERTA
-        ============================================================== */
-
         const titulo =
             productoAcompanamientoReal
                 ? `Combo ${productoReal.nombre} + ${productoAcompanamientoReal.nombre}`
@@ -525,44 +1100,44 @@ async function publicarOferta(
                 : `Promoción especial con ${productoReal.nombre} como producto principal.`;
 
 
-        /* ==============================================================
-           PUBLICAR OFERTA
-        ============================================================== */
-
         const respuesta =
             await fetch(
                 `${API_URL}/ofertas`,
                 {
 
-                    method: "POST",
+                    method:
+                        "POST",
 
                     headers: {
+
                         "Content-Type":
                             "application/json"
+
                     },
 
-                    body: JSON.stringify({
+                    body:
+                        JSON.stringify({
 
-                        titulo,
+                            titulo,
 
-                        descripcion,
+                            descripcion,
 
-                        id_producto:
-                            productoReal.id_producto,
+                            id_producto:
+                                productoReal.id_producto,
 
-                        id_producto_acompanamiento:
-                            productoAcompanamientoReal
-                                ? productoAcompanamientoReal.id_producto
-                                : null,
+                            id_producto_acompanamiento:
+                                productoAcompanamientoReal
+                                    ? productoAcompanamientoReal.id_producto
+                                    : null,
 
-                        imagen:
-                            productoReal.imagen ||
-                            null,
+                            imagen:
+                                productoReal.imagen ||
+                                null,
 
-                        fecha_fin:
-                            obtenerFinDeSemana()
+                            fecha_fin:
+                                obtenerFinDeSemana()
 
-                    })
+                        })
 
                 }
             );
@@ -582,20 +1157,29 @@ async function publicarOferta(
         }
 
 
-        if (boton) {
-
-            boton.textContent =
-                "Oferta publicada";
-
-            boton.disabled = true;
-
-        }
-
-
         notificacionExito(
             "La oferta fue publicada correctamente."
         );
 
+
+        await cargarOfertaActiva();
+
+
+        const botonActualizado =
+            document.getElementById(
+                "btn-publicar-oferta"
+            );
+
+
+        if (botonActualizado) {
+
+            botonActualizado.textContent =
+                "Oferta publicada";
+
+            botonActualizado.disabled =
+                true;
+
+        }
 
     } catch (error) {
 
@@ -613,7 +1197,8 @@ async function publicarOferta(
 
         if (boton) {
 
-            boton.disabled = false;
+            boton.disabled =
+                false;
 
             boton.textContent =
                 "Publicar oferta";
@@ -626,7 +1211,7 @@ async function publicarOferta(
 
 
 /* ==========================================================================
-   FECHA DE FINALIZACIÓN DE LA OFERTA
+   FECHA DE FINALIZACION DE LA OFERTA
 ========================================================================== */
 
 function obtenerFinDeSemana() {
@@ -645,7 +1230,8 @@ function obtenerFinDeSemana() {
 
     if (diasHastaDomingo === 7) {
 
-        diasHastaDomingo = 0;
+        diasHastaDomingo =
+            0;
 
     }
 
@@ -671,31 +1257,46 @@ function obtenerFinDeSemana() {
     const mes =
         String(
             fecha.getMonth() + 1
-        ).padStart(2, "0");
+        ).padStart(
+            2,
+            "0"
+        );
 
 
     const diaMes =
         String(
             fecha.getDate()
-        ).padStart(2, "0");
+        ).padStart(
+            2,
+            "0"
+        );
 
 
     const horas =
         String(
             fecha.getHours()
-        ).padStart(2, "0");
+        ).padStart(
+            2,
+            "0"
+        );
 
 
     const minutos =
         String(
             fecha.getMinutes()
-        ).padStart(2, "0");
+        ).padStart(
+            2,
+            "0"
+        );
 
 
     const segundos =
         String(
             fecha.getSeconds()
-        ).padStart(2, "0");
+        ).padStart(
+            2,
+            "0"
+        );
 
 
     return `${año}-${mes}-${diaMes} ${horas}:${minutos}:${segundos}`;
@@ -704,7 +1305,7 @@ function obtenerFinDeSemana() {
 
 
 /* ==========================================================================
-   ANÁLISIS INTELIGENTE
+   ANALISIS INTELIGENTE
 ========================================================================== */
 
 function generarAnalisisLocal(
@@ -750,10 +1351,6 @@ function generarAnalisisLocal(
             : [];
 
 
-    /* ==============================================================
-       PRODUCTO DE APOYO PARA LA PROMOCIÓN
-    ============================================================== */
-
     let productoAcompanamiento =
         null;
 
@@ -770,10 +1367,6 @@ function generarAnalisisLocal(
 
     }
 
-
-    /* ==============================================================
-       HTML DEL DASHBOARD
-    ============================================================== */
 
     let html = "";
 
@@ -844,258 +1437,212 @@ function generarAnalisisLocal(
 
             </div>
 
-    `;
 
-
-    /* ==============================================================
-       ANÁLISIS PRINCIPAL
-    ============================================================== */
-
-    html += `
-
-        <div class="analisis-principal">
+            <div class="analisis-principal">
 
     `;
 
-
-    /* ==============================================================
-       GRÁFICA DE DISTRIBUCIÓN
-    ============================================================== */
 
     if (productos.length > 0) {
 
         html += `
 
-            <div class="analisis-grafica-card">
+                <div class="analisis-grafica-card">
 
-                <div class="analisis-card-header">
+                    <div class="analisis-card-header">
 
-                    <div>
+                        <div>
 
-                        <span class="analisis-etiqueta">
-                            COMPORTAMIENTO
-                        </span>
+                            <span class="analisis-etiqueta">
+                                COMPORTAMIENTO
+                            </span>
 
-                        <h3>
-                            Distribución de productos
-                        </h3>
+                            <h3>
+                                Distribución de productos
+                            </h3>
 
-                        <p>
-                            Participación de cada producto
-                            dentro de las unidades vendidas.
-                        </p>
+                            <p>
+                                Participación de cada producto
+                                dentro de las unidades vendidas.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="analisis-pastel">
+
+                        <canvas
+                            id="grafica-analisis-productos"
+                        ></canvas>
 
                     </div>
 
                 </div>
-
-
-                <div class="analisis-pastel">
-
-                    <canvas
-                        id="grafica-analisis-productos"
-                    ></canvas>
-
-                </div>
-
-            </div>
 
         `;
 
     }
 
 
-    /* ==============================================================
-       DEMANDA
-    ============================================================== */
-
     html += `
 
-        <div class="analisis-insight-card">
+                <div class="analisis-insight-card">
 
-            <span class="analisis-etiqueta">
-                PUNTO DE MAYOR ACTIVIDAD
-            </span>
+                    <span class="analisis-etiqueta">
+                        PUNTO DE MAYOR ACTIVIDAD
+                    </span>
 
-            <h3>
-                ${
-                    hora
-                        ? `${hora.hora}:00`
-                        : "Sin datos"
-                }
-            </h3>
+                    <h3>
+                        ${
+                            hora
+                                ? `${hora.hora}:00`
+                                : "Sin datos"
+                        }
+                    </h3>
 
-            <p class="analisis-insight-numero">
+                    <p class="analisis-insight-numero">
 
-                ${
-                    hora
-                        ? `${hora.cantidad} ventas`
-                        : "No hay suficientes datos"
-                }
+                        ${
+                            hora
+                                ? `${hora.cantidad} ventas`
+                                : "No hay suficientes datos"
+                        }
 
-            </p>
+                    </p>
 
-            <p>
+                    <p>
 
-                ${
-                    hora
-                        ? "Este es el horario con mayor demanda registrada. Conviene revisar el inventario antes de este periodo."
-                        : "Registra más ventas para identificar un horario de mayor demanda."
-                }
+                        ${
+                            hora
+                                ? "Este es el horario con mayor demanda registrada. Conviene revisar el inventario antes de este periodo."
+                                : "Registra más ventas para identificar un horario de mayor demanda."
+                        }
 
-            </p>
+                    </p>
 
-        </div>
+                </div>
 
-    `;
-
-
-    html += `
-
-        </div>
-
-    `;
-
-
-    /* ==============================================================
-       RECOMENDACIÓN
-    ============================================================== */
-
-    html += `
-
-        <div class="analisis-recomendacion">
-
-            <div class="recomendacion-icono">
-                IA
             </div>
 
-            <div class="recomendacion-contenido">
 
-                <span class="analisis-etiqueta">
-                    RECOMENDACIÓN
-                </span>
+            <div class="analisis-recomendacion">
+
+                <div class="recomendacion-icono">
+                    IA
+                </div>
+
+                <div class="recomendacion-contenido">
+
+                    <span class="analisis-etiqueta">
+                        RECOMENDACIÓN
+                    </span>
+
+                    <h3>
+                        ${
+                            producto
+                                ? `Impulsar ${producto.nombre}`
+                                : "Generar más datos"
+                        }
+                    </h3>
+
+                    <p>
+                        ${
+                            producto
+                                ? `El producto con mayor movimiento es ${producto.nombre}, con ${producto.cantidad} unidades vendidas. Se recomienda mantener suficiente inventario y utilizarlo como producto principal en una promoción.`
+                                : "Todavía no existen suficientes datos para identificar un producto principal."
+                        }
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="analisis-promocion">
+
+                <div class="promocion-header">
+
+                    <span class="analisis-etiqueta">
+                        OFERTA SUGERIDA
+                    </span>
+
+                    <span class="promocion-badge">
+                        RECOMENDADA
+                    </span>
+
+                </div>
+
 
                 <h3>
 
                     ${
                         producto
-                            ? `Impulsar ${producto.nombre}`
-                            : "Generar más datos"
+                            ? productoAcompanamiento
+                                ? `Combo ${producto.nombre} + ${productoAcompanamiento.nombre}`
+                                : `Combo ${producto.nombre}`
+                            : "Promoción pendiente"
                     }
 
                 </h3>
+
 
                 <p>
 
                     ${
                         producto
-                            ? `El producto con mayor movimiento es ${producto.nombre}, con ${producto.cantidad} unidades vendidas. Se recomienda mantener suficiente inventario y utilizarlo como producto principal en una promoción.`
-                            : "Todavía no existen suficientes datos para identificar un producto principal."
+                            ? productoAcompanamiento
+                                ? `Combinar ${producto.nombre} con ${productoAcompanamiento.nombre} para crear un combo de consumo rápido.`
+                                : `Combinar ${producto.nombre} con un producto de acompañamiento, como un producto de panadería.`
+                            : "Registra más ventas para generar una promoción específica."
                     }
 
                 </p>
 
-            </div>
 
-        </div>
+                ${
+                    hora
+                        ? `
 
-    `;
+                            <div class="promocion-footer">
 
+                                <span>
+                                    Horario sugerido
+                                </span>
 
-    /* ==============================================================
-       PROMOCIÓN
-    ============================================================== */
+                                <strong>
+                                    ${hora.hora}:00
+                                </strong>
 
-    html += `
+                            </div>
 
-        <div class="analisis-promocion">
+                        `
+                        : ""
+                }
 
-            <div class="promocion-header">
-
-                <span class="analisis-etiqueta">
-                    OFERTA SUGERIDA
-                </span>
-
-                <span class="promocion-badge">
-                    RECOMENDADA
-                </span>
-
-            </div>
-
-
-            <h3>
 
                 ${
                     producto
-                        ? productoAcompanamiento
-                            ? `Combo ${producto.nombre} + ${productoAcompanamiento.nombre}`
-                            : `Combo ${producto.nombre}`
-                        : "Promoción pendiente"
+                        ? `
+
+                            <div class="promocion-acciones">
+
+                                <button
+                                    type="button"
+                                    id="btn-publicar-oferta"
+                                    class="btn-publicar-oferta"
+                                >
+                                    Publicar oferta
+                                </button>
+
+                            </div>
+
+                        `
+                        : ""
                 }
 
-            </h3>
-
-
-            <p>
-
-                ${
-                    producto
-                        ? productoAcompanamiento
-                            ? `Combinar ${producto.nombre} con ${productoAcompanamiento.nombre} para crear un combo de consumo rápido.`
-                            : `Combinar ${producto.nombre} con un producto de acompañamiento, como un producto de panadería.`
-                        : "Registra más ventas para generar una promoción específica."
-                }
-
-            </p>
-
-
-            ${
-                hora
-                    ? `
-
-                        <div class="promocion-footer">
-
-                            <span>
-                                Horario sugerido
-                            </span>
-
-                            <strong>
-                                ${hora.hora}:00
-                            </strong>
-
-                        </div>
-
-                    `
-                    : ""
-            }
-
-
-            ${
-                producto
-                    ? `
-
-                        <div class="promocion-acciones">
-
-                            <button
-                                type="button"
-                                id="btn-publicar-oferta"
-                                class="btn-publicar-oferta"
-                            >
-                                Publicar oferta
-                            </button>
-
-                        </div>
-
-                    `
-                    : ""
-            }
-
-        </div>
-
-    `;
-
-
-    html += `
+            </div>
 
         </div>
 
@@ -1106,10 +1653,6 @@ function generarAnalisisLocal(
         html;
 
 
-    /* ==============================================================
-       CREAR GRÁFICA DE PASTEL
-    ============================================================== */
-
     if (productos.length > 0) {
 
         crearGraficaAnalisisProductos(
@@ -1118,10 +1661,6 @@ function generarAnalisisLocal(
 
     }
 
-
-    /* ==============================================================
-       BOTÓN PUBLICAR OFERTA
-    ============================================================== */
 
     const botonPublicar =
         document.getElementById(
@@ -1149,7 +1688,7 @@ function generarAnalisisLocal(
 
 
 /* ==========================================================================
-   GRÁFICA DE PASTEL DEL ANÁLISIS
+   GRAFICA DE PASTEL DEL ANALISIS
 ========================================================================== */
 
 function crearGraficaAnalisisProductos(
@@ -1182,7 +1721,8 @@ function crearGraficaAnalisisProductos(
         new Chart(
             contexto,
             {
-                type: "doughnut",
+                type:
+                    "doughnut",
 
                 data: {
 
@@ -1195,6 +1735,7 @@ function crearGraficaAnalisisProductos(
                     datasets: [
 
                         {
+
                             data:
                                 datos.map(
                                     producto =>
@@ -1211,21 +1752,26 @@ function crearGraficaAnalisisProductos(
 
                 options: {
 
-                    responsive: true,
+                    responsive:
+                        true,
 
-                    maintainAspectRatio: false,
+                    maintainAspectRatio:
+                        false,
 
-                    cutout: "62%",
+                    cutout:
+                        "62%",
 
                     plugins: {
 
                         legend: {
 
-                            position: "bottom",
+                            position:
+                                "bottom",
 
                             labels: {
 
-                                padding: 18
+                                padding:
+                                    18
 
                             }
 
@@ -1242,7 +1788,7 @@ function crearGraficaAnalisisProductos(
 
 
 /* ==========================================================================
-   FECHA
+   FORMATEAR FECHA
 ========================================================================== */
 
 function formatearFecha(
@@ -1256,9 +1802,14 @@ function formatearFecha(
     return fechaLocal.toLocaleDateString(
         "es-MX",
         {
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric"
+            day:
+                "2-digit",
+
+            month:
+                "2-digit",
+
+            year:
+                "numeric"
         }
     );
 
@@ -1275,6 +1826,8 @@ document.addEventListener(
 
         cargarDashboard();
 
+        cargarOfertaActiva();
+
 
         const boton =
             document.getElementById(
@@ -1288,7 +1841,8 @@ document.addEventListener(
                 "click",
                 async () => {
 
-                    boton.disabled = true;
+                    boton.disabled =
+                        true;
 
                     boton.textContent =
                         "Analizando...";
@@ -1357,7 +1911,8 @@ document.addEventListener(
 
                     } finally {
 
-                        boton.disabled = false;
+                        boton.disabled =
+                            false;
 
                         boton.textContent =
                             "Generar análisis";
