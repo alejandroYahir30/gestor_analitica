@@ -1,5 +1,7 @@
+
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 require("dotenv").config();
 
 const pool = require("./config/database");
@@ -13,12 +15,24 @@ const estadisticasRoutes = require("./routes/estadisticas.routes");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+
 // =====================================================
 // MIDDLEWARES
 // =====================================================
 
 app.use(cors());
 app.use(express.json());
+
+
+// =====================================================
+// SERVIR FRONTEND
+// =====================================================
+
+app.use(
+    express.static(
+        path.join(__dirname, "..", "frontend")
+    )
+);
 
 
 // =====================================================
@@ -37,6 +51,7 @@ app.use(
     "/api/estadisticas",
     estadisticasRoutes
 );
+
 
 // =====================================================
 // RUTA PRINCIPAL
@@ -104,7 +119,7 @@ app.get("/api/prueba-db", async (req, res) => {
 // INICIAR SERVIDOR
 // =====================================================
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
 
     console.log(
         `Servidor ejecutándose en http://localhost:${PORT}`

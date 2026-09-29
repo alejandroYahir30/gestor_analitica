@@ -1,4 +1,3 @@
-
 /* ==========================================================================
    CAFÉ NÉBULA — PANEL ADMINISTRADOR
    Estilo: Premium / SaaS / Minimal
@@ -10,6 +9,7 @@
 ========================================================================== */
 
 :root {
+
     --admin-bg: #f7f7f8;
     --admin-card: #ffffff;
     --admin-card-soft: #fbfbfc;
@@ -46,6 +46,7 @@
     --admin-shadow:
         0 1px 2px rgba(15, 15, 20, 0.03),
         0 8px 30px rgba(15, 15, 20, 0.035);
+
 }
 
 
@@ -62,9 +63,11 @@ html {
 }
 
 body {
+
     margin: 0;
 
     background: var(--admin-bg);
+
     color: var(--admin-text);
 
     font-family:
@@ -76,7 +79,9 @@ body {
         sans-serif;
 
     -webkit-font-smoothing: antialiased;
+
     text-rendering: optimizeLegibility;
+
 }
 
 button,
@@ -92,8 +97,11 @@ textarea {
 ========================================================================== */
 
 .header {
+
     position: sticky;
+
     top: 0;
+
     z-index: 100;
 
     width: 100%;
@@ -103,19 +111,25 @@ textarea {
     border-bottom: 1px solid var(--admin-border-dark);
 
     backdrop-filter: blur(16px);
+
     -webkit-backdrop-filter: blur(16px);
+
 }
 
 .header-contenido {
+
     width: min(1440px, calc(100% - 4rem));
+
     min-height: 72px;
 
     margin: 0 auto;
 
     display: flex;
+
     align-items: center;
 
     gap: 2rem;
+
 }
 
 
@@ -124,7 +138,9 @@ textarea {
 ========================================================================== */
 
 .logo {
+
     display: inline-flex;
+
     align-items: center;
 
     flex-shrink: 0;
@@ -134,59 +150,74 @@ textarea {
     text-decoration: none;
 
     font-size: 1rem;
+
     font-weight: 800;
 
     letter-spacing: -0.035em;
 
     white-space: nowrap;
+
 }
 
 .logo::before {
+
     content: "ADMIN";
 
     display: inline-flex;
+
     align-items: center;
+
     justify-content: center;
 
     height: 24px;
 
     margin-right: 10px;
+
     padding: 0 8px;
 
     border: 1px solid #36363d;
+
     border-radius: 6px;
 
     color: #a6a6ae;
 
     font-size: 0.56rem;
+
     font-weight: 700;
 
     letter-spacing: 0.12em;
+
 }
 
 
 /* ==========================================================================
    NAVEGACIÓN
-   Logo a la izquierda / menú siempre a la derecha
 ========================================================================== */
 
 .header nav {
+
     margin-left: auto;
 
     display: flex;
+
     align-items: center;
+
     justify-content: flex-end;
 
     gap: 4px;
 
     min-width: 0;
+
 }
 
 .header nav a {
+
     position: relative;
 
     display: inline-flex;
+
     align-items: center;
+
     justify-content: center;
 
     min-height: 40px;
@@ -200,6 +231,7 @@ textarea {
     text-decoration: none;
 
     font-size: 0.72rem;
+
     font-weight: 600;
 
     white-space: nowrap;
@@ -208,15 +240,21 @@ textarea {
         color 0.2s ease,
         background 0.2s ease,
         transform 0.2s ease;
+
 }
 
 .header nav a:hover {
+
     background: var(--admin-sidebar-hover);
+
     color: #ffffff;
+
 }
 
 .header nav a:active {
+
     transform: translateY(1px);
+
 }
 
 
@@ -225,11 +263,13 @@ textarea {
 ========================================================================== */
 
 .contenedor {
+
     width: min(1440px, calc(100% - 4rem));
 
     margin: 0 auto;
 
     padding: 42px 0 80px;
+
 }
 
 
@@ -238,15 +278,19 @@ textarea {
 ========================================================================== */
 
 .presentacion {
+
     max-width: none;
 
     margin: 0 0 32px;
 
     text-align: left;
+
 }
 
 .presentacion .etiqueta {
+
     display: inline-flex;
+
     align-items: center;
 
     margin-bottom: 10px;
@@ -254,26 +298,33 @@ textarea {
     color: var(--admin-accent);
 
     font-size: 0.64rem;
+
     font-weight: 800;
 
     letter-spacing: 0.14em;
 
     text-transform: uppercase;
+
 }
 
 .presentacion h1 {
+
     margin: 0 0 8px;
 
     color: var(--admin-text);
 
     font-size: clamp(1.7rem, 2vw, 2.1rem);
+
     font-weight: 800;
 
     letter-spacing: -0.045em;
+
     line-height: 1.15;
+
 }
 
 .presentacion p {
+
     max-width: 680px;
 
     margin: 0;
@@ -281,7 +332,9 @@ textarea {
     color: var(--admin-text-secondary);
 
     font-size: 0.82rem;
+
     line-height: 1.7;
+
 }
 
 
@@ -290,11 +343,15 @@ textarea {
 ========================================================================== */
 
 .estado {
+
     display: inline-flex;
+
     align-items: center;
+
     justify-content: center;
 
     width: fit-content;
+
     min-height: 28px;
 
     padding: 0 10px;
@@ -302,26 +359,37 @@ textarea {
     border-radius: 999px;
 
     font-size: 0.64rem;
+
     font-weight: 700;
 
     letter-spacing: 0.01em;
 
     white-space: nowrap;
+
 }
 
 .estado-pendiente {
+
     background: var(--admin-warning-soft);
+
     color: var(--admin-warning);
+
 }
 
 .estado-completado {
+
     background: var(--admin-success-soft);
+
     color: var(--admin-success);
+
 }
 
 .estado-cancelado {
+
     background: var(--admin-danger-soft);
+
     color: var(--admin-danger);
+
 }
 
 
@@ -330,13 +398,17 @@ textarea {
 ========================================================================== */
 
 button {
+
     border: 0;
 
     font-family: inherit;
+
 }
 
 button:not(.btn-eliminar) {
+
     cursor: pointer;
+
 }
 
 
@@ -345,10 +417,13 @@ button:not(.btn-eliminar) {
 ========================================================================== */
 
 .login-admin {
+
     min-height: 100vh;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     padding: 32px;
@@ -365,9 +440,11 @@ button:not(.btn-eliminar) {
             transparent 28%
         ),
         #111114;
+
 }
 
 .login-admin .login-contenedor {
+
     position: relative;
 
     width: min(430px, 100%);
@@ -383,9 +460,11 @@ button:not(.btn-eliminar) {
     box-shadow:
         0 30px 80px rgba(0, 0, 0, 0.35),
         0 8px 25px rgba(0, 0, 0, 0.15);
+
 }
 
 .login-admin .login-contenedor::before {
+
     content: "CAFÉ NÉBULA";
 
     display: block;
@@ -395,29 +474,37 @@ button:not(.btn-eliminar) {
     color: var(--admin-accent);
 
     font-size: 0.62rem;
+
     font-weight: 800;
 
     letter-spacing: 0.16em;
+
 }
 
 .login-admin h1 {
+
     margin: 0 0 8px;
 
     color: var(--admin-text);
 
     font-size: 1.65rem;
+
     font-weight: 800;
 
     letter-spacing: -0.04em;
+
 }
 
 .login-admin p {
+
     margin: 0 0 28px;
 
     color: var(--admin-text-secondary);
 
     font-size: 0.78rem;
+
     line-height: 1.7;
+
 }
 
 
@@ -426,6 +513,7 @@ button:not(.btn-eliminar) {
 ========================================================================== */
 
 .login-admin label {
+
     display: block;
 
     margin-bottom: 7px;
@@ -433,22 +521,29 @@ button:not(.btn-eliminar) {
     color: var(--admin-text);
 
     font-size: 0.68rem;
+
     font-weight: 700;
+
 }
 
 .login-admin input {
+
     width: 100%;
+
     height: 46px;
 
     margin-bottom: 18px;
+
     padding: 0 14px;
 
     outline: none;
 
     border: 1px solid var(--admin-border);
+
     border-radius: 9px;
 
     background: #ffffff;
+
     color: var(--admin-text);
 
     font-size: 0.78rem;
@@ -457,25 +552,34 @@ button:not(.btn-eliminar) {
         border-color 0.2s ease,
         box-shadow 0.2s ease,
         background 0.2s ease;
+
 }
 
 .login-admin input::placeholder {
+
     color: #b0b1b7;
+
 }
 
 .login-admin input:hover {
+
     border-color: #d5d5da;
+
 }
 
 .login-admin input:focus {
+
     border-color: var(--admin-accent);
 
     box-shadow:
         0 0 0 4px rgba(121, 87, 213, 0.10);
+
 }
 
 .login-admin button {
+
     width: 100%;
+
     height: 46px;
 
     margin-top: 4px;
@@ -483,9 +587,11 @@ button:not(.btn-eliminar) {
     border-radius: 9px;
 
     background: var(--admin-sidebar);
+
     color: #ffffff;
 
     font-size: 0.74rem;
+
     font-weight: 700;
 
     cursor: pointer;
@@ -494,19 +600,24 @@ button:not(.btn-eliminar) {
         background 0.2s ease,
         transform 0.2s ease,
         box-shadow 0.2s ease;
+
 }
 
 .login-admin button:hover {
+
     background: var(--admin-accent);
 
     box-shadow:
         0 8px 20px rgba(121, 87, 213, 0.22);
 
     transform: translateY(-1px);
+
 }
 
 .login-admin button:active {
+
     transform: translateY(0);
+
 }
 
 
@@ -518,6 +629,7 @@ button:not(.btn-eliminar) {
 .dashboard-card,
 .pedido-admin,
 .resumen-carrito {
+
     background: var(--admin-card);
 
     border: 1px solid var(--admin-border);
@@ -525,6 +637,7 @@ button:not(.btn-eliminar) {
     border-radius: var(--admin-radius);
 
     box-shadow: var(--admin-shadow);
+
 }
 
 
@@ -533,14 +646,17 @@ button:not(.btn-eliminar) {
 ========================================================================== */
 
 table {
+
     width: 100%;
 
     border-collapse: collapse;
 
     background: var(--admin-card);
+
 }
 
 th {
+
     padding: 14px 16px;
 
     background: #fafafa;
@@ -550,6 +666,7 @@ th {
     color: var(--admin-text-secondary);
 
     font-size: 0.63rem;
+
     font-weight: 800;
 
     letter-spacing: 0.06em;
@@ -557,9 +674,11 @@ th {
     text-align: left;
 
     text-transform: uppercase;
+
 }
 
 td {
+
     padding: 15px 16px;
 
     border-bottom: 1px solid var(--admin-border);
@@ -567,18 +686,25 @@ td {
     color: var(--admin-text);
 
     font-size: 0.74rem;
+
 }
 
 tr:last-child td {
+
     border-bottom: 0;
+
 }
 
 tbody tr {
+
     transition: background 0.15s ease;
+
 }
 
 tbody tr:hover {
+
     background: #fafafd;
+
 }
 
 
@@ -587,186 +713,299 @@ tbody tr:hover {
 ========================================================================== */
 
 * {
+
     scrollbar-width: thin;
 
     scrollbar-color:
         #d5d5da
         transparent;
+
 }
 
 *::-webkit-scrollbar {
+
     width: 7px;
+
     height: 7px;
+
 }
 
 *::-webkit-scrollbar-track {
+
     background: transparent;
+
 }
 
 *::-webkit-scrollbar-thumb {
+
     background: #d5d5da;
 
     border-radius: 999px;
+
 }
 
 
 /* ==========================================================================
-   RESPONSIVE — TABLET
+   TABLET
 ========================================================================== */
 
 @media (max-width: 1000px) {
 
     .header-contenido {
+
         width: calc(100% - 2.5rem);
 
         gap: 1rem;
+
     }
 
     .header nav {
-        max-width: 65vw;
+
+        max-width: 70vw;
 
         overflow-x: auto;
 
         scrollbar-width: none;
+
     }
 
     .header nav::-webkit-scrollbar {
+
         display: none;
+
     }
 
     .header nav a {
+
         flex-shrink: 0;
 
         white-space: nowrap;
+
     }
 
     .contenedor {
+
         width: calc(100% - 2.5rem);
 
         padding-top: 34px;
+
     }
+
 }
 
 
 /* ==========================================================================
-   RESPONSIVE — MÓVIL
+   MÓVIL
 ========================================================================== */
 
 @media (max-width: 650px) {
 
     .header {
-        position: relative;
+
+        position: sticky;
+
+        top: 0;
+
     }
 
     .header-contenido {
-        width: calc(100% - 1.5rem);
 
-        min-height: auto;
+        width: calc(100% - 24px);
 
-        padding: 14px 0;
+        min-height: 64px;
+
+        padding: 10px 0;
 
         display: flex;
-        flex-direction: row;
 
-        align-items: center;
+        flex-direction: column;
 
-        gap: 12px;
+        align-items: stretch;
+
+        gap: 8px;
+
     }
 
     .logo {
-        flex-shrink: 0;
+
+        justify-content: flex-start;
+
+        min-height: 30px;
+
+        font-size: 0.92rem;
+
+    }
+
+    .logo::before {
+
+        height: 22px;
+
+        margin-right: 8px;
+
+        padding: 0 7px;
+
+        font-size: 0.52rem;
+
     }
 
     .header nav {
-        width: auto;
 
-        max-width: calc(100vw - 145px);
+        width: 100%;
 
-        margin-left: auto;
+        max-width: none;
+
+        margin-left: 0;
 
         display: flex;
 
-        justify-content: flex-end;
+        justify-content: flex-start;
+
+        gap: 3px;
 
         overflow-x: auto;
 
         padding-bottom: 2px;
 
         scrollbar-width: none;
+
     }
 
     .header nav::-webkit-scrollbar {
+
         display: none;
+
     }
 
     .header nav a {
-        min-height: 36px;
 
-        padding: 0 10px;
+        min-height: 34px;
+
+        padding: 0 11px;
 
         flex-shrink: 0;
 
-        font-size: 0.65rem;
+        font-size: 0.64rem;
+
     }
 
     .contenedor {
-        width: calc(100% - 1.5rem);
 
-        padding: 28px 0 55px;
+        width: calc(100% - 24px);
+
+        padding: 26px 0 50px;
+
     }
 
     .presentacion {
-        margin-bottom: 24px;
+
+        margin-bottom: 22px;
+
+    }
+
+    .presentacion .etiqueta {
+
+        margin-bottom: 8px;
+
+        font-size: 0.58rem;
+
     }
 
     .presentacion h1 {
-        font-size: 1.5rem;
+
+        font-size: 1.45rem;
+
+        line-height: 1.2;
+
     }
 
     .presentacion p {
-        font-size: 0.76rem;
+
+        font-size: 0.74rem;
+
+        line-height: 1.65;
+
+    }
+
+    .card,
+    .dashboard-card,
+    .pedido-admin,
+    .resumen-carrito {
+
+        border-radius: 12px;
+
     }
 
     .login-admin {
+
+        min-height: 100dvh;
+
         padding: 18px;
+
     }
 
     .login-admin .login-contenedor {
-        padding: 30px 24px;
+
+        width: 100%;
+
+        padding: 30px 22px;
 
         border-radius: 15px;
+
     }
+
 }
 
 
 /* ==========================================================================
-   RESPONSIVE — MÓVIL PEQUEÑO
+   MÓVIL PEQUEÑO
 ========================================================================== */
 
 @media (max-width: 400px) {
 
-    .login-admin .login-contenedor {
-        padding: 26px 20px;
+    .header-contenido {
+
+        width: calc(100% - 18px);
+
     }
 
     .logo {
-        font-size: 0.92rem;
+
+        font-size: 0.88rem;
+
     }
 
     .logo::before {
+
         display: none;
+
     }
 
     .header nav {
-        max-width: calc(100vw - 110px);
 
         gap: 2px;
+
     }
 
     .header nav a {
-        padding: 0 8px;
 
-        font-size: 0.61rem;
+        padding: 0 9px;
+
+        font-size: 0.60rem;
+
     }
-}
 
+    .contenedor {
+
+        width: calc(100% - 18px);
+
+        padding-top: 22px;
+
+    }
+
+    .login-admin .login-contenedor {
+
+        padding: 26px 20px;
+
+    }
+
+}

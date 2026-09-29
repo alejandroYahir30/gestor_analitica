@@ -13,10 +13,6 @@
     <title>Café Nébula | Inventario</title>
 
 
-    <!-- =====================================================
-         ESTILOS
-    ====================================================== -->
-
     <link
         rel="stylesheet"
         href="../css/global.css"
@@ -118,7 +114,7 @@
 
 
         <!-- =================================================
-             FORMULARIO PARA AGREGAR PRODUCTO
+             FORMULARIO AGREGAR / EDITAR
         ================================================== -->
 
         <section
@@ -131,15 +127,15 @@
 
                 <div>
 
-                    <p>
+                    <p id="formulario-producto-etiqueta">
                         NUEVO REGISTRO
                     </p>
 
-                    <h2>
+                    <h2 id="formulario-producto-titulo">
                         Agregar producto
                     </h2>
 
-                    <span>
+                    <span id="formulario-producto-descripcion">
                         El producto se agregará al inventario
                         y estará disponible para los clientes.
                     </span>
@@ -162,6 +158,11 @@
                 id="form-agregar-producto"
                 class="producto-formulario"
             >
+
+                <input
+                    type="hidden"
+                    id="id-producto-editar"
+                >
 
 
                 <!-- NOMBRE -->
@@ -289,6 +290,35 @@
                 </div>
 
 
+                <!-- IMAGEN -->
+
+                <div
+                    class="
+                        campo-producto
+                        campo-producto-completo
+                    "
+                >
+
+                    <label for="imagen-producto">
+                        Imagen del producto
+                    </label>
+
+                    <input
+                        type="text"
+                        id="imagen-producto"
+                        name="imagen"
+                        maxlength="500"
+                        placeholder="https://ejemplo.com/imagen.jpg"
+                        required
+                    >
+
+                    <span class="campo-ayuda">
+                        Escribe la URL de la imagen que utilizará el producto.
+                    </span>
+
+                </div>
+
+
                 <!-- ACCIONES -->
 
                 <div class="producto-formulario-acciones">
@@ -317,7 +347,7 @@
 
 
         <!-- =================================================
-             RESUMEN DEL INVENTARIO
+             RESUMEN
         ================================================== -->
 
         <section class="inventario-resumen">
@@ -353,7 +383,7 @@
 
 
         <!-- =================================================
-             ÚLTIMOS PRODUCTOS AGREGADOS
+             ÚLTIMOS PRODUCTOS
         ================================================== -->
 
         <section class="ultimos-productos-panel">
@@ -456,8 +486,6 @@
     <script src="../js/admin.js"></script>
 
     <script src="../js/admin-auth.js"></script>
-
-
 
 
 </body>

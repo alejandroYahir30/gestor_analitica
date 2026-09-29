@@ -1,4 +1,4 @@
-const API_URL_INVENTARIO = "http://localhost:3000/api";
+const API_URL_INVENTARIO = "/api";
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -28,6 +28,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const inventarioContenedor =
         document.getElementById("inventario");
+
+    const idProductoEditar =
+        document.getElementById("id-producto-editar");
+
+    const formularioEtiqueta =
+        document.getElementById(
+            "formulario-producto-etiqueta"
+        );
+
+    const formularioTitulo =
+        document.getElementById(
+            "formulario-producto-titulo"
+        );
+
+    const formularioDescripcion =
+        document.getElementById(
+            "formulario-producto-descripcion"
+        );
+
+    const btnGuardar =
+        document.querySelector(
+            ".btn-guardar-producto"
+        );
+
+
+    let productosActuales = [];
 
 
     // =====================================================
@@ -62,6 +88,72 @@ document.addEventListener("DOMContentLoaded", () => {
             formulario.reset();
         }
 
+        if (idProductoEditar) {
+            idProductoEditar.value = "";
+        }
+
+        if (formularioEtiqueta) {
+            formularioEtiqueta.textContent =
+                "NUEVO REGISTRO";
+        }
+
+        if (formularioTitulo) {
+            formularioTitulo.textContent =
+                "Agregar producto";
+        }
+
+        if (formularioDescripcion) {
+            formularioDescripcion.textContent =
+                "El producto se agregará al inventario y estará disponible para los clientes.";
+        }
+
+        if (btnGuardar) {
+            btnGuardar.textContent =
+                "Guardar producto";
+        }
+
+        const stockMinimo =
+            document.getElementById(
+                "stock-minimo-producto"
+            );
+
+        if (stockMinimo) {
+            stockMinimo.value = 5;
+        }
+
+    }
+
+
+    function prepararFormularioAgregar() {
+
+        if (formulario) {
+            formulario.reset();
+        }
+
+        if (idProductoEditar) {
+            idProductoEditar.value = "";
+        }
+
+        if (formularioEtiqueta) {
+            formularioEtiqueta.textContent =
+                "NUEVO REGISTRO";
+        }
+
+        if (formularioTitulo) {
+            formularioTitulo.textContent =
+                "Agregar producto";
+        }
+
+        if (formularioDescripcion) {
+            formularioDescripcion.textContent =
+                "El producto se agregará al inventario y estará disponible para los clientes.";
+        }
+
+        if (btnGuardar) {
+            btnGuardar.textContent =
+                "Guardar producto";
+        }
+
         const stockMinimo =
             document.getElementById(
                 "stock-minimo-producto"
@@ -78,7 +170,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         btnAgregar.addEventListener(
             "click",
-            mostrarFormulario
+            () => {
+
+                prepararFormularioAgregar();
+
+                mostrarFormulario();
+
+            }
         );
 
     }
@@ -113,7 +211,6 @@ document.addEventListener("DOMContentLoaded", () => {
         recientesContenedor
     ) {
 
-        // Iniciar siempre oculto
         recientesContenedor.style.display =
             "none";
 
@@ -193,9 +290,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         if (!fecha) {
-
             return "Fecha no disponible";
-
         }
 
 
@@ -328,6 +423,195 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // =====================================================
+    // EDITAR PRODUCTO
+    // =====================================================
+
+    function editarProducto(idProducto) {
+
+        const producto =
+            productosActuales.find(
+                item =>
+                    Number(item.id_producto) ===
+                    Number(idProducto)
+            );
+
+
+        if (!producto) {
+
+            alert(
+                "No se encontró el producto."
+            );
+
+            return;
+
+        }
+
+
+        if (idProductoEditar) {
+            idProductoEditar.value =
+                producto.id_producto;
+        }
+
+
+        document.getElementById(
+            "nombre-producto"
+        ).value =
+            producto.nombre || "";
+
+
+        document.getElementById(
+            "categoria-producto"
+        ).value =
+            producto.categoria || "";
+
+
+        document.getElementById(
+            "descripcion-producto"
+        ).value =
+            producto.descripcion || "";
+
+
+        document.getElementById(
+            "precio-producto"
+        ).value =
+            producto.precio;
+
+
+        document.getElementById(
+            "stock-producto"
+        ).value =
+            producto.stock;
+
+
+        document.getElementById(
+            "stock-minimo-producto"
+        ).value =
+            producto.stock_minimo;
+
+
+        document.getElementById(
+            "imagen-producto"
+        ).value =
+            producto.imagen || "";
+
+
+        if (formularioEtiqueta) {
+            formularioEtiqueta.textContent =
+                "EDICIÓN";
+        }
+
+
+        if (formularioTitulo) {
+            formularioTitulo.textContent =
+                "Editar producto";
+        }
+
+
+        if (formularioDescripcion) {
+            formularioDescripcion.textContent =
+                "Modifica la información del producto y guarda los cambios.";
+        }
+
+
+        if (btnGuardar) {
+            btnGuardar.textContent =
+                "Guardar cambios";
+        }
+
+
+        mostrarFormulario();
+
+    }
+
+
+    // =====================================================
+    // ELIMINAR PRODUCTO
+    // =====================================================
+
+    async function eliminarProducto(idProducto) {
+
+        const producto =
+            productosActuales.find(
+                item =>
+                    Number(item.id_producto) ===
+                    Number(idProducto)
+            );
+
+
+        if (!producto) {
+
+            alert(
+                "No se encontró el producto."
+            );
+
+            return;
+
+        }
+
+
+        const confirmar =
+            confirm(
+                `¿Seguro que deseas eliminar "${producto.nombre}"?`
+            );
+
+
+        if (!confirmar) {
+            return;
+        }
+
+
+        try {
+
+            const respuesta =
+                await fetch(
+                    `${API_URL_INVENTARIO}/productos/${idProducto}`,
+                    {
+                        method: "DELETE"
+                    }
+                );
+
+
+            const resultado =
+                await respuesta.json();
+
+
+            if (!respuesta.ok) {
+
+                throw new Error(
+                    resultado.mensaje ||
+                    "No fue posible eliminar el producto."
+                );
+
+            }
+
+
+            alert(
+                "Producto eliminado correctamente."
+            );
+
+
+            await cargarInventario();
+
+
+        } catch (error) {
+
+            console.error(
+                "Error al eliminar producto:",
+                error
+            );
+
+
+            alert(
+                "No fue posible eliminar el producto.\n\n" +
+                error.message
+            );
+
+        }
+
+    }
+
+
+    // =====================================================
     // CARGAR INVENTARIO
     // =====================================================
 
@@ -359,17 +643,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 await respuesta.json();
 
 
-            // =================================================
-            // ACTUALIZAR PRODUCTOS RECIENTES
-            // =================================================
+            productosActuales =
+                productos;
+
 
             mostrarProductosRecientes(
                 productos
             );
 
 
-            // Mantener productos recientes ocultos
-            // después de cargar el inventario
             if (recientesContenedor) {
 
                 recientesContenedor.style.display =
@@ -381,10 +663,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-            // =================================================
-            // ACTUALIZAR CONTADOR
-            // =================================================
-
             if (cantidadProductos) {
 
                 cantidadProductos.textContent =
@@ -392,10 +670,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
 
-
-            // =================================================
-            // INVENTARIO VACÍO
-            // =================================================
 
             if (
                 productos.length === 0
@@ -421,10 +695,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
 
-
-            // =================================================
-            // GENERAR INVENTARIO
-            // =================================================
 
             let productosHTML = "";
 
@@ -554,6 +824,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
                             </div>
 
+
+                            <div class="inventario-acciones">
+
+                                <button
+                                    type="button"
+                                    class="btn-editar-producto"
+                                    data-id="${producto.id_producto}"
+                                >
+                                    Editar
+                                </button>
+
+
+                                <button
+                                    type="button"
+                                    class="btn-eliminar-producto"
+                                    data-id="${producto.id_producto}"
+                                >
+                                    Eliminar
+                                </button>
+
+                            </div>
+
                         </article>
 
                     `;
@@ -573,33 +865,68 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
 
 
+            // =================================================
+            // EVENTOS EDITAR
+            // =================================================
+
+            const botonesEditar =
+                document.querySelectorAll(
+                    ".btn-editar-producto"
+                );
+
+
+            botonesEditar.forEach(
+                boton => {
+
+                    boton.addEventListener(
+                        "click",
+                        () => {
+
+                            editarProducto(
+                                boton.dataset.id
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+            // =================================================
+            // EVENTOS ELIMINAR
+            // =================================================
+
+            const botonesEliminar =
+                document.querySelectorAll(
+                    ".btn-eliminar-producto"
+                );
+
+
+            botonesEliminar.forEach(
+                boton => {
+
+                    boton.addEventListener(
+                        "click",
+                        () => {
+
+                            eliminarProducto(
+                                boton.dataset.id
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
         } catch (error) {
 
             console.error(
                 "Error al cargar inventario:",
                 error
             );
-
-
-            if (recientesContenedor) {
-
-                recientesContenedor.innerHTML = `
-
-                    <div class="carrito-vacio">
-
-                        <h2>
-                            No se pudieron cargar
-                        </h2>
-
-                        <p>
-                            Verifica que el servidor esté funcionando.
-                        </p>
-
-                    </div>
-
-                `;
-
-            }
 
 
             inventarioContenedor.innerHTML = `
@@ -624,7 +951,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // =====================================================
-    // AGREGAR PRODUCTO
+    // AGREGAR / ACTUALIZAR PRODUCTO
     // =====================================================
 
     if (formulario) {
@@ -640,6 +967,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     new FormData(
                         formulario
                     );
+
+
+                const idEditar =
+                    idProductoEditar
+                        ? idProductoEditar.value
+                        : "";
 
 
                 const producto = {
@@ -671,30 +1004,70 @@ document.addEventListener("DOMContentLoaded", () => {
                             ? 5
                             : Number(
                                 datos.get("stock_minimo")
-                            )
+                            ),
+
+                    imagen:
+                        datos.get("imagen")
+                            .trim()
 
                 };
 
 
                 try {
 
-                    const respuesta =
-                        await fetch(
-                            `${API_URL_INVENTARIO}/productos`,
-                            {
-                                method: "POST",
+                    let respuesta;
 
-                                headers: {
-                                    "Content-Type":
-                                        "application/json"
-                                },
 
-                                body:
-                                    JSON.stringify(
-                                        producto
-                                    )
-                            }
-                        );
+                    // =================================================
+                    // EDITAR
+                    // =================================================
+
+                    if (idEditar) {
+
+                        respuesta =
+                            await fetch(
+                                `${API_URL_INVENTARIO}/productos/${idEditar}`,
+                                {
+                                    method: "PUT",
+
+                                    headers: {
+                                        "Content-Type":
+                                            "application/json"
+                                    },
+
+                                    body:
+                                        JSON.stringify(
+                                            producto
+                                        )
+                                }
+                            );
+
+
+                    // =================================================
+                    // AGREGAR
+                    // =================================================
+
+                    } else {
+
+                        respuesta =
+                            await fetch(
+                                `${API_URL_INVENTARIO}/productos`,
+                                {
+                                    method: "POST",
+
+                                    headers: {
+                                        "Content-Type":
+                                            "application/json"
+                                    },
+
+                                    body:
+                                        JSON.stringify(
+                                            producto
+                                        )
+                                }
+                            );
+
+                    }
 
 
                     const resultado =
@@ -705,34 +1078,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         throw new Error(
                             resultado.mensaje ||
-                            "No fue posible agregar el producto."
+                            "No fue posible guardar el producto."
                         );
 
                     }
 
 
                     alert(
-                        "Producto agregado correctamente."
+                        idEditar
+                            ? "Producto actualizado correctamente."
+                            : "Producto agregado correctamente."
                     );
 
 
                     ocultarFormulario();
 
 
-                    // Volver a cargar todo
                     await cargarInventario();
 
 
                 } catch (error) {
 
                     console.error(
-                        "Error al agregar producto:",
+                        "Error al guardar producto:",
                         error
                     );
 
 
                     alert(
-                        "No fue posible agregar el producto.\n\n" +
+                        "No fue posible guardar el producto.\n\n" +
                         error.message
                     );
 

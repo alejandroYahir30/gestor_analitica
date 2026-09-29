@@ -1,37 +1,89 @@
-
 /* ==========================================================================
    CAFÉ NÉBULA — PRODUCTOS
-   Cliente / Catálogo
+   Página principal del cliente
 ========================================================================== */
 
 
 /* ==========================================================================
-   GRID
+   CONTENEDOR
+========================================================================== */
+
+.contenedor {
+    width: min(1180px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 68px 0 90px;
+}
+
+
+/* ==========================================================================
+   PRESENTACIÓN
+========================================================================== */
+
+.presentacion {
+    width: min(760px, 100%);
+    margin: 0 auto 52px;
+    text-align: center;
+}
+
+.presentacion .etiqueta {
+    display: inline-flex;
+    align-items: center;
+    min-height: auto;
+    margin-bottom: 14px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    color: #8b674b;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.presentacion h1 {
+    margin: 0 0 14px;
+    color: #211f1c;
+    font-family: var(--font-main);
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    font-weight: 800;
+    letter-spacing: -0.065em;
+    line-height: 1;
+}
+
+.presentacion p:last-child {
+    max-width: 570px;
+    margin: 0 auto;
+    color: #746f68;
+    font-size: 0.8rem;
+    font-weight: 500;
+    line-height: 1.8;
+}
+
+
+/* ==========================================================================
+   GRID DE PRODUCTOS
 ========================================================================== */
 
 .productos-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
-
+    gap: 26px;
     width: 100%;
 }
 
 
 /* ==========================================================================
-   CARD
+   TARJETA
 ========================================================================== */
 
 .producto {
+    position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
-
-    width: 100%;
     min-width: 0;
-    min-height: 390px;
-
-    padding: 30px 28px 26px;
+    min-height: 500px;
+    overflow: hidden;
 
     background: #ffffff;
 
@@ -39,25 +91,67 @@
     border-radius: 18px;
 
     box-shadow:
-        0 2px 6px rgba(35, 30, 24, 0.035),
+        0 2px 6px rgba(35, 30, 24, 0.03),
         0 12px 30px rgba(35, 30, 24, 0.045);
 
-    text-align: center;
+    animation:
+        aparecerProducto
+        0.45s
+        ease
+        both;
 
     transition:
-        transform 0.22s ease,
-        box-shadow 0.22s ease,
-        border-color 0.22s ease;
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
 }
 
 .producto:hover {
-    border-color: #d6c7b8;
+    transform: translateY(-5px);
+
+    border-color: #d5c6b7;
 
     box-shadow:
-        0 8px 18px rgba(35, 30, 24, 0.05),
-        0 18px 38px rgba(35, 30, 24, 0.08);
+        0 8px 16px rgba(35, 30, 24, 0.05),
+        0 20px 40px rgba(35, 30, 24, 0.08);
+}
 
-    transform: translateY(-4px);
+
+/* ==========================================================================
+   IMAGEN DEL PRODUCTO
+========================================================================== */
+
+.producto-imagen {
+    width: 100%;
+    height: 230px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #eee5d9;
+}
+
+.producto-imagen img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.35s ease;
+}
+
+.producto:hover .producto-imagen img {
+    transform: scale(1.04);
+}
+
+
+/* ==========================================================================
+   CONTENIDO DEL PRODUCTO
+========================================================================== */
+
+.producto-contenido {
+    padding: 0 24px;
 }
 
 
@@ -65,17 +159,14 @@
    CATEGORÍA
 ========================================================================== */
 
-.producto .categoria,
-.producto .producto-categoria {
+.producto-categoria {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
 
     width: fit-content;
-    max-width: 100%;
 
-    margin: 0 0 18px;
-    padding: 7px 11px;
+    margin: 20px 0 0;
+    padding: 6px 10px;
 
     background: #f5f0e9;
 
@@ -83,10 +174,10 @@
 
     color: #806149;
 
-    font-size: 0.57rem;
+    font-size: 0.56rem;
     font-weight: 800;
+    letter-spacing: 0.08em;
 
-    letter-spacing: 0.09em;
     text-transform: uppercase;
 }
 
@@ -96,29 +187,17 @@
 ========================================================================== */
 
 .producto h2 {
-    width: 100%;
-
-    margin: 0 0 12px;
+    margin: 13px 0 0;
 
     color: #211f1c;
 
-    font-family:
-        "Manrope",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
+    font-family: var(--font-main);
 
     font-size: 1.18rem;
     font-weight: 800;
 
     letter-spacing: -0.035em;
-    line-height: 1.3;
-
-    text-align: center;
-
-    overflow-wrap: break-word;
+    line-height: 1.25;
 }
 
 
@@ -126,113 +205,81 @@
    DESCRIPCIÓN
 ========================================================================== */
 
-.producto p,
-.producto .producto-descripcion {
-    width: 100%;
-    max-width: 300px;
-
-    margin: 0 auto;
+.producto-descripcion {
+    margin: 9px 0 0;
 
     color: #77716a;
 
-    font-size: 0.73rem;
+    font-size: 0.72rem;
     font-weight: 500;
 
     line-height: 1.7;
-
-    text-align: center;
-
-    overflow-wrap: break-word;
 }
 
 
 /* ==========================================================================
-   ZONA INFERIOR
+   INFORMACIÓN
 ========================================================================== */
 
-.producto .producto-info {
+.producto-info {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end;
+    justify-content: space-between;
 
-    width: 100%;
-
-    gap: 18px;
+    gap: 15px;
 
     margin-top: auto;
-    padding: 20px 0 18px;
+
+    padding: 20px 24px;
 
     border-top: 1px solid #eeeae4;
+
+    background: #ffffff;
 }
 
-
-/* ==========================================================================
-   PRECIO
-========================================================================== */
-
-.producto .precio,
-.producto .producto-precio {
-    margin: 0;
-    padding: 0;
-
+.producto-precio {
     color: #211f1c;
 
-    font-family:
-        "Manrope",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
+    font-family: var(--font-main);
 
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     font-weight: 800;
 
     letter-spacing: -0.04em;
-
-    text-align: center;
 }
 
+.producto-stock {
+    margin-top: 4px;
 
-/* ==========================================================================
-   STOCK
-========================================================================== */
-
-.producto .producto-stock {
     color: #8a847c;
 
-    font-size: 0.62rem;
+    font-size: 0.61rem;
     font-weight: 600;
 
-    text-align: center;
+    text-align: right;
 }
 
 
 /* ==========================================================================
-   BOTÓN
+   BOTÓN AGREGAR
 ========================================================================== */
 
-.producto button,
-.producto .btn-agregar,
-.producto .btn-agotado {
-    width: 100%;
-    max-width: 300px;
+.btn-agregar {
+    width: calc(100% - 48px);
 
     min-height: 46px;
 
-    margin: 0;
+    margin: 0 24px 24px;
 
     padding: 0 18px;
 
+    border: none;
     border-radius: 9px;
 
-    font-family:
-        "Manrope",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
+    background: #211f1c;
+    color: #ffffff;
+
+    font-family: var(--font-main);
 
     font-size: 0.68rem;
     font-weight: 800;
@@ -243,55 +290,49 @@
 
     transition:
         background 0.2s ease,
-        border-color 0.2s ease,
         transform 0.2s ease,
         box-shadow 0.2s ease;
 }
 
-
-/* Disponible */
-
-.producto button,
-.producto .btn-agregar {
-    border: 1px solid #211f1c;
-
-    background: #211f1c;
-    color: #ffffff;
-}
-
-.producto button:hover,
-.producto .btn-agregar:hover {
-    border-color: #6f4e37;
-
+.btn-agregar:hover {
     background: #6f4e37;
 
     box-shadow:
-        0 7px 16px rgba(111, 78, 55, 0.16);
+        0 8px 18px rgba(111, 78, 55, 0.18);
 
     transform: translateY(-1px);
 }
 
-.producto button:active,
-.producto .btn-agregar:active {
+.btn-agregar:active {
     transform: translateY(0);
 }
 
 
 /* ==========================================================================
-   AGOTADO
+   PRODUCTO AGOTADO
 ========================================================================== */
 
-.producto button:disabled,
-.producto .btn-agotado {
+.btn-agotado {
+    width: calc(100% - 48px);
+
+    min-height: 46px;
+
+    margin: 0 24px 24px;
+
+    padding: 0 18px;
+
     border: 1px solid #e5e1db;
+    border-radius: 9px;
 
     background: #f5f3f0;
     color: #99938b;
 
-    cursor: not-allowed;
+    font-family: var(--font-main);
 
-    transform: none;
-    box-shadow: none;
+    font-size: 0.68rem;
+    font-weight: 700;
+
+    cursor: not-allowed;
 }
 
 
@@ -299,13 +340,11 @@
    CARGANDO
 ========================================================================== */
 
-.productos-grid > p {
+#productos > p {
     grid-column: 1 / -1;
 
-    width: 100%;
-
     margin: 0;
-    padding: 60px 20px;
+    padding: 70px 20px;
 
     background: #ffffff;
 
@@ -325,21 +364,116 @@
    ANIMACIÓN
 ========================================================================== */
 
-.producto {
-    animation: aparecerProducto 0.4s ease both;
-}
-
 @keyframes aparecerProducto {
 
     from {
         opacity: 0;
-        transform: translateY(8px);
+
+        transform:
+            translateY(12px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
     }
+}
+
+
+/* ==========================================================================
+   ICONO DEL CARRITO
+========================================================================== */
+
+.link-carrito {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    padding: 0 !important;
+
+    border-radius: 8px;
+}
+
+.icono-carrito {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 22px;
+    height: 22px;
+}
+
+.icono-carrito svg {
+    width: 21px;
+    height: 21px;
+
+    fill: none;
+
+    stroke: #211f1c;
+
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* ==========================================================================
+   CONTADOR DEL CARRITO
+========================================================================== */
+
+.contador-carrito {
+    position: absolute;
+
+    top: -4px;
+    right: -5px;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 17px;
+    height: 17px;
+
+    padding: 0 4px;
+
+    border-radius: 50%;
+
+    background: #c83f3f;
+    color: #ffffff;
+
+    font-size: 0.54rem;
+    font-weight: 800;
+
+    line-height: 1;
+
+    border: 2px solid #ffffff;
+}
+
+.contador-carrito.activo {
+    display: flex;
+}
+
+
+/* ==========================================================================
+   HOVER CARRITO
+========================================================================== */
+
+.link-carrito:hover {
+    background: #f4f1eb;
+}
+
+.link-carrito:hover .icono-carrito svg {
+    stroke: #6f4e37;
 }
 
 
@@ -349,14 +483,23 @@
 
 @media (max-width: 1000px) {
 
+    .contenedor {
+        width: calc(100% - 40px);
+
+        padding-top: 55px;
+    }
+
     .productos-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 20px;
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 22px;
     }
 
     .producto {
-        min-height: 380px;
+        min-height: 490px;
     }
+
 }
 
 
@@ -366,74 +509,108 @@
 
 @media (max-width: 650px) {
 
+    .contenedor {
+        width: calc(100% - 32px);
+
+        padding:
+            48px
+            0
+            55px;
+    }
+
+    .presentacion {
+        margin-bottom: 38px;
+    }
+
+    .presentacion h1 {
+        font-size: 2.55rem;
+    }
+
+    .presentacion p:last-child {
+        font-size: 0.75rem;
+    }
+
     .productos-grid {
         grid-template-columns: 1fr;
-        gap: 18px;
+
+        gap: 20px;
     }
 
     .producto {
-        min-height: 350px;
-
-        padding: 28px 24px 24px;
+        min-height: 0;
     }
 
-    .producto h2 {
-        font-size: 1.1rem;
+    .producto-imagen {
+        height: 220px;
     }
 
-    .producto p,
-    .producto .producto-descripcion {
-        max-width: 340px;
+    .link-carrito {
+        width: 38px;
+        height: 38px;
     }
 
-    .producto button,
-    .producto .btn-agregar,
-    .producto .btn-agotado {
-        max-width: 340px;
+    .icono-carrito {
+        width: 20px;
+        height: 20px;
     }
+
+    .icono-carrito svg {
+        width: 19px;
+        height: 19px;
+    }
+
+    .contador-carrito {
+        top: -3px;
+        right: -4px;
+
+        min-width: 16px;
+        height: 16px;
+
+        font-size: 0.5rem;
+    }
+
 }
 
 
 /* ==========================================================================
-   CELULARES PEQUEÑOS
+   MÓVIL PEQUEÑO
 ========================================================================== */
 
-@media (max-width: 380px) {
+@media (max-width: 420px) {
 
-    .producto {
-        min-height: 340px;
+    .contenedor {
+        width: calc(100% - 24px);
 
-        padding: 25px 20px 22px;
+        padding-top: 42px;
     }
 
-    .producto .categoria,
-    .producto .producto-categoria {
-        margin-bottom: 15px;
+    .presentacion h1 {
+        font-size: 2.2rem;
     }
 
-    .producto h2 {
-        font-size: 1.05rem;
+    .producto-imagen {
+        height: 205px;
     }
 
-    .producto p,
-    .producto .producto-descripcion {
-        font-size: 0.7rem;
+    .producto-contenido {
+        padding: 0 18px;
     }
 
-    .producto .producto-info {
-        gap: 12px;
-        padding-top: 17px;
+    .producto-categoria {
+        margin-top: 18px;
     }
 
-    .producto .precio,
-    .producto .producto-precio {
-        font-size: 1.15rem;
+    .producto-info {
+        padding-left: 18px;
+        padding-right: 18px;
     }
 
-    .producto button,
-    .producto .btn-agregar,
-    .producto .btn-agotado {
-        min-height: 44px;
+    .btn-agregar,
+    .btn-agotado {
+        width: calc(100% - 36px);
+
+        margin-left: 18px;
+        margin-right: 18px;
     }
+
 }
-

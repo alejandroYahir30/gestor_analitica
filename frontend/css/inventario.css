@@ -1059,3 +1059,140 @@
     }
 
 }
+
+/* =====================================================
+   ACCIONES DE PRODUCTO
+===================================================== */
+
+.inventario-acciones {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    min-width: 170px;
+}
+
+
+/* =====================================================
+   BOTÓN EDITAR
+===================================================== */
+
+.btn-editar-producto,
+.btn-eliminar-producto {
+
+    appearance: none;
+    border: 1px solid transparent;
+
+    height: 38px;
+    padding: 0 15px;
+
+    border-radius: 8px;
+
+    font-family: var(--font-main);
+    font-size: 0.68rem;
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* EDITAR */
+
+.btn-editar-producto {
+
+    background: #f4f1eb;
+    border-color: #e3ded5;
+    color: #302c27;
+
+}
+
+
+.btn-editar-producto:hover {
+
+    background: #ebe6dd;
+    border-color: #d8d0c4;
+
+    transform: translateY(-1px);
+
+}
+
+
+.btn-editar-producto:active {
+
+    transform: translateY(0);
+
+}
+
+
+/* =====================================================
+   BOTÓN ELIMINAR
+===================================================== */
+
+.btn-eliminar-producto {
+
+    background: #fff5f4;
+    border-color: #efd8d5;
+    color: #a33b35;
+
+}
+
+
+.btn-eliminar-producto:hover {
+
+    background: #fce9e7;
+    border-color: #e8c3bf;
+    color: #8f2f2a;
+
+    transform: translateY(-1px);
+
+}
+
+
+.btn-eliminar-producto:active {
+
+    transform: translateY(0);
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .inventario-acciones {
+
+        justify-content: flex-start;
+        min-width: auto;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .inventario-acciones {
+
+        width: 100%;
+
+    }
+
+
+    .btn-editar-producto,
+    .btn-eliminar-producto {
+
+        flex: 1;
+        height: 40px;
+
+    }
+
+}

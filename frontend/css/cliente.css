@@ -1,12 +1,11 @@
-
 /* ==========================================================================
    CAFÉ NÉBULA — CLIENTE
-   Estilo cafetería premium
+   Estilos compartidos de las páginas del cliente
 ========================================================================== */
 
 
 /* ==========================================================================
-   BASE
+   IDENTIDAD DEL CLIENTE
 ========================================================================== */
 
 body {
@@ -23,15 +22,26 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
+
     width: 100%;
-    background: #ffffff;
+
+    background: rgba(255, 255, 255, 0.96);
+
     border-bottom: 1px solid #e8e4dd;
-    box-shadow: 0 2px 12px rgba(35, 30, 24, 0.04);
+
+    box-shadow:
+        0 2px 12px rgba(35, 30, 24, 0.04);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
 }
+
 
 .header-contenido {
     width: min(1180px, calc(100% - 48px));
+
     min-height: 76px;
+
     margin: 0 auto;
 
     display: flex;
@@ -47,23 +57,27 @@ body {
 ========================================================================== */
 
 .logo {
+    display: inline-flex;
+    align-items: center;
+
     color: #211f1c;
+
     text-decoration: none;
 
-    font-family:
-        "Manrope",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
+    font-family: var(--font-main);
 
     font-size: 1.05rem;
+
     font-weight: 800;
+
     letter-spacing: -0.035em;
 
-    transition: color 0.2s ease;
+    white-space: nowrap;
+
+    transition:
+        color 0.2s ease;
 }
+
 
 .logo:hover {
     color: #6f4e37;
@@ -77,8 +91,10 @@ body {
 .header nav {
     display: flex;
     align-items: center;
+
     gap: 5px;
 }
+
 
 .header nav a {
     position: relative;
@@ -88,33 +104,37 @@ body {
     justify-content: center;
 
     min-height: 42px;
+
     padding: 0 16px;
 
+    border-radius: 8px;
+
     color: #68635c;
+
     text-decoration: none;
 
-    font-family:
-        "Manrope",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
+    font-family: var(--font-main);
 
     font-size: 0.72rem;
+
     font-weight: 700;
 
-    border-radius: 8px;
+    white-space: nowrap;
 
     transition:
         color 0.2s ease,
         background 0.2s ease;
 }
 
+
 .header nav a:hover {
     color: #211f1c;
+
     background: #f4f1eb;
 }
+
+
+/* Página actual */
 
 .header nav a:first-child {
     color: #211f1c;
@@ -122,437 +142,47 @@ body {
 
 
 /* ==========================================================================
-   CONTENEDOR
+   RESPONSIVE — TABLET
 ========================================================================== */
 
-.contenedor {
-    width: min(1180px, calc(100% - 48px));
-    margin: 0 auto;
-
-    padding-top: 68px;
-    padding-bottom: 90px;
-}
-
-
-/* ==========================================================================
-   PRESENTACIÓN
-========================================================================== */
-
-.presentacion {
-    width: min(760px, 100%);
-    margin: 0 auto 48px;
-
-    text-align: center;
-}
-
-.etiqueta {
-    display: inline-flex;
-    align-items: center;
-
-    margin-bottom: 14px;
-
-    color: #8b674b;
-
-    font-size: 0.62rem;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-
-    text-transform: uppercase;
-}
-
-.presentacion h1 {
-    margin: 0 0 14px;
-
-    color: #211f1c;
-
-    font-family:
-        "Manrope",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    font-size: clamp(2.6rem, 5vw, 4rem);
-    font-weight: 800;
-    letter-spacing: -0.065em;
-    line-height: 1;
-}
-
-.presentacion p:last-child {
-    max-width: 570px;
-    margin: 0 auto;
-
-    color: #746f68;
-
-    font-size: 0.8rem;
-    font-weight: 500;
-    line-height: 1.8;
-}
-
-
-/* ==========================================================================
-   GRID
-========================================================================== */
-
-.productos-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap: 28px;
-
-    width: 100%;
-}
-
-
-/* ==========================================================================
-   CARD DEL PRODUCTO
-========================================================================== */
-
-.producto {
-    position: relative;
-
-    display: flex;
-    flex-direction: column;
-
-    min-width: 0;
-    min-height: 520px;
-
-    background: #ffffff;
-
-    border: 1px solid #e6e0d7;
-    border-radius: 18px;
-
-    overflow: hidden;
-
-    box-shadow:
-        0 3px 8px rgba(35, 30, 24, 0.035),
-        0 15px 35px rgba(35, 30, 24, 0.055);
-
-    animation: aparecerProducto 0.45s ease both;
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        border-color 0.25s ease;
-}
-
-.producto:hover {
-    border-color: #d5c6b7;
-
-    box-shadow:
-        0 8px 15px rgba(35, 30, 24, 0.05),
-        0 22px 42px rgba(35, 30, 24, 0.09);
-
-    transform: translateY(-6px);
-}
-
-
-/* ==========================================================================
-   IMAGEN DEL PRODUCTO
-========================================================================== */
-
-
-/* ==========================================================================
-   CONTENIDO INTERNO
-========================================================================== */
-
-.producto-categoria {
-    display: inline-flex;
-    align-items: center;
-
-    width: fit-content;
-
-    margin: 20px 24px 0;
-    padding: 6px 10px;
-
-    background: #f5f0e9;
-
-    border-radius: 6px;
-
-    color: #806149;
-
-    font-size: 0.56rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-
-    text-transform: uppercase;
-}
-
-
-/* ==========================================================================
-   NOMBRE
-========================================================================== */
-
-.producto h2 {
-    margin: 13px 24px 0;
-
-    color: #211f1c;
-
-    font-family:
-        "Manrope",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    font-size: 1.18rem;
-    font-weight: 800;
-
-    letter-spacing: -0.035em;
-    line-height: 1.25;
-}
-
-
-/* ==========================================================================
-   DESCRIPCIÓN
-========================================================================== */
-
-.producto-descripcion {
-    margin: 9px 24px 0;
-
-    color: #77716a;
-
-    font-size: 0.72rem;
-    font-weight: 500;
-
-    line-height: 1.7;
-}
-
-
-/* ==========================================================================
-   INFORMACIÓN
-========================================================================== */
-
-.producto-info {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-
-    gap: 15px;
-
-    margin-top: auto;
-
-    padding: 20px 24px;
-
-    border-top: 1px solid #eeeae4;
-
-    background: #fff;
-}
-
-.producto-precio {
-    color: #211f1c;
-
-    font-family:
-        "Manrope",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    font-size: 1.2rem;
-    font-weight: 800;
-
-    letter-spacing: -0.04em;
-}
-
-.producto-stock {
-    color: #8a847c;
-
-    font-size: 0.61rem;
-    font-weight: 600;
-
-    text-align: right;
-}
-
-
-/* ==========================================================================
-   BOTÓN AGREGAR
-========================================================================== */
-
-.btn-agregar {
-    width: calc(100% - 48px);
-
-    min-height: 46px;
-
-    margin: 0 24px 24px;
-    padding: 0 18px;
-
-    border: none;
-    border-radius: 9px;
-
-    background: #211f1c;
-    color: #ffffff;
-
-    font-family:
-        "Manrope",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    font-size: 0.68rem;
-    font-weight: 800;
-
-    letter-spacing: 0.01em;
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.btn-agregar:hover {
-    background: #6f4e37;
-
-    box-shadow:
-        0 8px 18px rgba(111, 78, 55, 0.18);
-
-    transform: translateY(-1px);
-}
-
-.btn-agregar:active {
-    transform: translateY(0);
-}
-
-
-/* ==========================================================================
-   PRODUCTO AGOTADO
-========================================================================== */
-
-.btn-agotado {
-    width: calc(100% - 48px);
-
-    min-height: 46px;
-
-    margin: 0 24px 24px;
-    padding: 0 18px;
-
-    border: 1px solid #e5e1db;
-    border-radius: 9px;
-
-    background: #f5f3f0;
-    color: #99938b;
-
-    font-family:
-        "Manrope",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    font-size: 0.68rem;
-    font-weight: 700;
-
-    cursor: not-allowed;
-}
-
-
-/* ==========================================================================
-   ESTADO CARGANDO
-========================================================================== */
-
-#productos > p {
-    grid-column: 1 / -1;
-
-    margin: 0;
-    padding: 70px 20px;
-
-    background: #ffffff;
-
-    border: 1px solid #e8e4dd;
-    border-radius: 16px;
-
-    color: #817b73;
-
-    font-size: 0.76rem;
-    font-weight: 600;
-
-    text-align: center;
-}
-
-
-/* ==========================================================================
-   ANIMACIÓN
-========================================================================== */
-
-@keyframes aparecerProducto {
-
-    from {
-        opacity: 0;
-        transform: translateY(12px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-/* ==========================================================================
-   TABLET
-========================================================================== */
-
-@media (max-width: 1000px) {
-
-    .contenedor {
-        width: min(900px, calc(100% - 40px));
-    }
+@media (max-width: 900px) {
 
     .header-contenido {
         width: calc(100% - 40px);
     }
 
-    .productos-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-        gap: 22px;
-    }
-
-    .producto {
-        min-height: 500px;
-    }
 }
 
 
 /* ==========================================================================
-   MÓVIL
+   RESPONSIVE — MÓVIL
 ========================================================================== */
 
-@media (max-width: 650px) {
+@media (max-width: 700px) {
 
     .header {
         position: relative;
     }
 
+
     .header-contenido {
         width: calc(100% - 32px);
 
-        min-height: auto;
+        min-height: 68px;
 
-        padding: 15px 0;
-
-        gap: 15px;
+        gap: 14px;
     }
+
 
     .logo {
         font-size: 0.95rem;
-        white-space: nowrap;
     }
+
 
     .header nav {
         gap: 2px;
     }
+
 
     .header nav a {
         min-height: 36px;
@@ -560,42 +190,8 @@ body {
         padding: 0 10px;
 
         font-size: 0.62rem;
-
-        white-space: nowrap;
     }
 
-    .contenedor {
-        width: calc(100% - 32px);
-
-        padding-top: 48px;
-        padding-bottom: 55px;
-    }
-
-    .presentacion {
-        margin-bottom: 38px;
-    }
-
-    .presentacion h1 {
-        font-size: 2.55rem;
-    }
-
-    .presentacion p:last-child {
-        font-size: 0.75rem;
-    }
-
-    .productos-grid {
-        grid-template-columns: 1fr;
-
-        gap: 20px;
-    }
-
-    .producto {
-        min-height: 0;
-    }
-
-    .producto::before {
-        height: 230px;
-    }
 }
 
 
@@ -607,56 +203,20 @@ body {
 
     .header-contenido {
         width: calc(100% - 24px);
+
+        gap: 8px;
     }
+
 
     .logo {
         font-size: 0.88rem;
     }
 
+
     .header nav a {
         padding: 0 8px;
+
         font-size: 0.58rem;
     }
 
-    .contenedor {
-        width: calc(100% - 24px);
-        padding-top: 42px;
-    }
-
-    .presentacion h1 {
-        font-size: 2.2rem;
-    }
-
-    .producto::before {
-        height: 205px;
-    }
-
-    .producto-categoria {
-        margin-left: 18px;
-        margin-right: 18px;
-    }
-
-    .producto h2 {
-        margin-left: 18px;
-        margin-right: 18px;
-    }
-
-    .producto-descripcion {
-        margin-left: 18px;
-        margin-right: 18px;
-    }
-
-    .producto-info {
-        padding-left: 18px;
-        padding-right: 18px;
-    }
-
-    .btn-agregar,
-    .btn-agotado {
-        width: calc(100% - 36px);
-
-        margin-left: 18px;
-        margin-right: 18px;
-    }
 }
-
