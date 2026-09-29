@@ -1,5 +1,6 @@
 const API_URL_INVENTARIO = "/api";
 
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const formularioPanel =
@@ -33,14 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("id-producto-editar");
 
     const formularioEtiqueta =
-        document.getElementById(
-            "formulario-producto-etiqueta"
-        );
+        document.getElementById("formulario-producto-etiqueta");
 
     const formularioTitulo =
-        document.getElementById(
-            "formulario-producto-titulo"
-        );
+        document.getElementById("formulario-producto-titulo");
 
     const formularioDescripcion =
         document.getElementById(
@@ -56,9 +53,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let productosActuales = [];
 
 
-    // =====================================================
-    // FORMULARIO
-    // =====================================================
+    // =================================================
+    // MOSTRAR FORMULARIO
+    // =================================================
 
     function mostrarFormulario() {
 
@@ -75,6 +72,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+
+    // =================================================
+    // OCULTAR FORMULARIO
+    // =================================================
 
     function ocultarFormulario() {
 
@@ -124,6 +125,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    // =================================================
+    // PREPARAR FORMULARIO PARA AGREGAR
+    // =================================================
+
     function prepararFormularioAgregar() {
 
         if (formulario) {
@@ -166,6 +171,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    // =================================================
+    // BOTÓN AGREGAR
+    // =================================================
+
     if (btnAgregar) {
 
         btnAgregar.addEventListener(
@@ -173,7 +182,6 @@ document.addEventListener("DOMContentLoaded", () => {
             () => {
 
                 prepararFormularioAgregar();
-
                 mostrarFormulario();
 
             }
@@ -181,6 +189,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+
+    // =================================================
+    // BOTONES CERRAR / CANCELAR
+    // =================================================
 
     if (btnCerrar) {
 
@@ -190,7 +202,6 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
     }
-
 
     if (btnCancelar) {
 
@@ -202,9 +213,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // =====================================================
-    // MOSTRAR / OCULTAR PRODUCTOS RECIENTES
-    // =====================================================
+    // =================================================
+    // PRODUCTOS RECIENTES
+    // =================================================
 
     if (
         btnMostrarRecientes &&
@@ -249,9 +260,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // =====================================================
+    // =================================================
     // CONVERTIR FECHA
-    // =====================================================
+    // =================================================
 
     function convertirFecha(fechaRegistro) {
 
@@ -267,9 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 fecha.getTime()
             )
         ) {
-
             return null;
-
         }
 
         return fecha;
@@ -277,22 +286,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // =====================================================
+    // =================================================
     // FORMATEAR FECHA
-    // =====================================================
+    // =================================================
 
     function formatearFecha(fechaRegistro) {
 
         const fecha =
-            convertirFecha(
-                fechaRegistro
-            );
-
+            convertirFecha(fechaRegistro);
 
         if (!fecha) {
             return "Fecha no disponible";
         }
-
 
         return fecha.toLocaleDateString(
             "es-MX",
@@ -306,16 +311,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // =====================================================
+    // =================================================
     // MOSTRAR PRODUCTOS RECIENTES
-    // =====================================================
+    // =================================================
 
     function mostrarProductosRecientes(productos) {
 
         if (!recientesContenedor) {
             return;
         }
-
 
         const productosRecientes =
             productos
@@ -325,12 +329,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 )
                 .sort(
                     (a, b) =>
-                        new Date(
-                            b.fecha_registro
-                        ) -
-                        new Date(
-                            a.fecha_registro
-                        )
+                        new Date(b.fecha_registro) -
+                        new Date(a.fecha_registro)
                 )
                 .slice(0, 3);
 
@@ -384,7 +384,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                 $${Number(
                                     producto.precio
                                 ).toFixed(2)}
-
                                 · Stock
                                 ${Number(
                                     producto.stock
@@ -422,9 +421,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // =====================================================
+    // =================================================
     // EDITAR PRODUCTO
-    // =====================================================
+    // =================================================
 
     function editarProducto(idProducto) {
 
@@ -438,7 +437,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!producto) {
 
-            alert(
+            notificacionError(
                 "No se encontró el producto."
             );
 
@@ -448,8 +447,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         if (idProductoEditar) {
+
             idProductoEditar.value =
                 producto.id_producto;
+
         }
 
 
@@ -496,26 +497,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         if (formularioEtiqueta) {
+
             formularioEtiqueta.textContent =
                 "EDICIÓN";
-        }
 
+        }
 
         if (formularioTitulo) {
+
             formularioTitulo.textContent =
                 "Editar producto";
-        }
 
+        }
 
         if (formularioDescripcion) {
+
             formularioDescripcion.textContent =
                 "Modifica la información del producto y guarda los cambios.";
+
         }
 
-
         if (btnGuardar) {
+
             btnGuardar.textContent =
                 "Guardar cambios";
+
         }
 
 
@@ -524,9 +530,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // =====================================================
+    // =================================================
     // ELIMINAR PRODUCTO
-    // =====================================================
+    // =================================================
 
     async function eliminarProducto(idProducto) {
 
@@ -540,7 +546,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!producto) {
 
-            alert(
+            notificacionError(
                 "No se encontró el producto."
             );
 
@@ -550,8 +556,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         const confirmar =
-            confirm(
-                `¿Seguro que deseas eliminar "${producto.nombre}"?`
+            await confirmarAccion(
+                `Se eliminará "${producto.nombre}" del inventario. Esta acción no se puede deshacer.`
             );
 
 
@@ -585,7 +591,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-            alert(
+            notificacionExito(
                 "Producto eliminado correctamente."
             );
 
@@ -601,9 +607,8 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
 
-            alert(
-                "No fue posible eliminar el producto.\n\n" +
-                error.message
+            notificacionError(
+                `No fue posible eliminar el producto. ${error.message}`
             );
 
         }
@@ -611,16 +616,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // =====================================================
+    // =================================================
     // CARGAR INVENTARIO
-    // =====================================================
+    // =================================================
 
     async function cargarInventario() {
 
         if (!inventarioContenedor) {
             return;
         }
-
 
         try {
 
@@ -641,7 +645,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const productos =
                 await respuesta.json();
-
 
             productosActuales =
                 productos;
@@ -671,9 +674,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-            if (
-                productos.length === 0
-            ) {
+            if (productos.length === 0) {
 
                 inventarioContenedor.innerHTML = `
 
@@ -703,10 +704,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 producto => {
 
                     const stock =
-                        Number(
-                            producto.stock
-                        );
-
+                        Number(producto.stock);
 
                     const stockMinimo =
                         Number(
@@ -718,12 +716,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     let claseEstado;
 
 
-                    if (
-                        stock <= 0
-                    ) {
+                    if (stock <= 0) {
 
-                        estado =
-                            "Agotado";
+                        estado = "Agotado";
 
                         claseEstado =
                             "inventario-agotado";
@@ -732,16 +727,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         stock <= stockMinimo
                     ) {
 
-                        estado =
-                            "Stock bajo";
+                        estado = "Stock bajo";
 
                         claseEstado =
                             "inventario-bajo";
 
                     } else {
 
-                        estado =
-                            "Disponible";
+                        estado = "Disponible";
 
                         claseEstado =
                             "inventario-disponible";
@@ -835,7 +828,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                     Editar
                                 </button>
 
-
                                 <button
                                     type="button"
                                     class="btn-eliminar-producto"
@@ -865,10 +857,6 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
 
 
-            // =================================================
-            // EVENTOS EDITAR
-            // =================================================
-
             const botonesEditar =
                 document.querySelectorAll(
                     ".btn-editar-producto"
@@ -880,22 +868,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     boton.addEventListener(
                         "click",
-                        () => {
-
+                        () =>
                             editarProducto(
                                 boton.dataset.id
-                            );
-
-                        }
+                            )
                     );
 
                 }
             );
 
-
-            // =================================================
-            // EVENTOS ELIMINAR
-            // =================================================
 
             const botonesEliminar =
                 document.querySelectorAll(
@@ -908,13 +889,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     boton.addEventListener(
                         "click",
-                        () => {
-
+                        () =>
                             eliminarProducto(
                                 boton.dataset.id
-                            );
-
-                        }
+                            )
                     );
 
                 }
@@ -950,24 +928,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // =====================================================
-    // AGREGAR / ACTUALIZAR PRODUCTO
-    // =====================================================
+    // =================================================
+    // GUARDAR PRODUCTO
+    // =================================================
 
     if (formulario) {
 
         formulario.addEventListener(
             "submit",
-            async (event) => {
+            async event => {
 
                 event.preventDefault();
 
 
                 const datos =
-                    new FormData(
-                        formulario
-                    );
-
+                    new FormData(formulario);
 
                 const idEditar =
                     idProductoEditar
@@ -978,15 +953,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 const producto = {
 
                     nombre:
-                        datos.get("nombre")
+                        datos
+                            .get("nombre")
                             .trim(),
 
                     categoria:
-                        datos.get("categoria")
+                        datos
+                            .get("categoria")
                             .trim(),
 
                     descripcion:
-                        datos.get("descripcion")
+                        datos
+                            .get("descripcion")
                             .trim(),
 
                     precio:
@@ -1003,11 +981,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         datos.get("stock_minimo") === ""
                             ? 5
                             : Number(
-                                datos.get("stock_minimo")
+                                datos.get(
+                                    "stock_minimo"
+                                )
                             ),
 
                     imagen:
-                        datos.get("imagen")
+                        datos
+                            .get("imagen")
                             .trim()
 
                 };
@@ -1017,10 +998,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     let respuesta;
 
-
-                    // =================================================
-                    // EDITAR
-                    // =================================================
 
                     if (idEditar) {
 
@@ -1041,11 +1018,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                         )
                                 }
                             );
-
-
-                    // =================================================
-                    // AGREGAR
-                    // =================================================
 
                     } else {
 
@@ -1084,7 +1056,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
 
 
-                    alert(
+                    notificacionExito(
                         idEditar
                             ? "Producto actualizado correctamente."
                             : "Producto agregado correctamente."
@@ -1092,7 +1064,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                     ocultarFormulario();
-
 
                     await cargarInventario();
 
@@ -1105,9 +1076,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     );
 
 
-                    alert(
-                        "No fue posible guardar el producto.\n\n" +
-                        error.message
+                    notificacionError(
+                        `No fue posible guardar el producto. ${error.message}`
                     );
 
                 }
@@ -1118,9 +1088,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // =====================================================
-    // INICIAR
-    // =====================================================
+    // =================================================
+    // INICIAR INVENTARIO
+    // =================================================
 
     cargarInventario();
 

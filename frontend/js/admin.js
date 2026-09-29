@@ -10,8 +10,6 @@ async function cargarPedidos() {
     const contenedor =
         document.getElementById("pedidos");
 
-    // Si esta página no tiene pedidos,
-    // no ejecutar esta función.
     if (!contenedor) {
         return;
     }
@@ -135,8 +133,6 @@ async function cargarPedidos() {
 
                 <article class="pedido-fila">
 
-                    <!-- IDENTIFICACIÓN -->
-
                     <div class="pedido-identificacion">
 
                         <span class="pedido-numero">
@@ -159,8 +155,6 @@ async function cargarPedidos() {
                     </div>
 
 
-                    <!-- FECHA -->
-
                     <div class="pedido-fecha">
 
                         <span>
@@ -176,16 +170,12 @@ async function cargarPedidos() {
                     </div>
 
 
-                    <!-- PRODUCTOS -->
-
                     <div class="pedido-productos">
 
                         ${productosHTML}
 
                     </div>
 
-
-                    <!-- TOTAL -->
 
                     <div class="pedido-total">
 
@@ -202,8 +192,6 @@ async function cargarPedidos() {
                     </div>
 
 
-                    <!-- ESTADO -->
-
                     <div class="pedido-estado">
 
                         <span
@@ -219,8 +207,6 @@ async function cargarPedidos() {
 
                     </div>
 
-
-                    <!-- ACCIONES -->
 
                     <div class="pedido-acciones">
 
@@ -285,41 +271,26 @@ function actualizarContadores(pedidos) {
     pedidos.forEach(pedido => {
 
         if (pedido.estado === "pendiente") {
-
             pendientes++;
-
         }
-
 
         if (pedido.estado === "aceptado") {
-
             aceptados++;
-
         }
-
 
         if (pedido.estado === "en_preparacion") {
-
             preparacion++;
-
         }
-
 
         if (
             pedido.estado === "completado" ||
             pedido.estado === "rechazado"
         ) {
-
             finalizados++;
-
         }
 
     });
 
-
-    // =================================================
-    // CONTADORES
-    // =================================================
 
     const contadorPendientes =
         document.getElementById(
@@ -343,34 +314,23 @@ function actualizarContadores(pedidos) {
 
 
     if (contadorPendientes) {
-
         contadorPendientes.textContent =
             pendientes;
-
     }
-
 
     if (contadorAceptados) {
-
         contadorAceptados.textContent =
             aceptados;
-
     }
-
 
     if (contadorPreparacion) {
-
         contadorPreparacion.textContent =
             preparacion;
-
     }
 
-
     if (contadorFinalizados) {
-
         contadorFinalizados.textContent =
             finalizados;
-
     }
 
 }
@@ -381,7 +341,6 @@ function actualizarContadores(pedidos) {
 // =====================================================
 
 function generarBotonesEstado(pedido) {
-
 
     if (pedido.estado === "pendiente") {
 
@@ -523,10 +482,9 @@ async function cambiarEstado(
         }
 
 
-        alert(
-            `Pedido #${idPedido} actualizado.\n\n` +
-            `Nuevo estado: ` +
-            `${formatearEstado(nuevoEstado)}`
+        mostrarNotificacion(
+            `Pedido #${idPedido} actualizado. Nuevo estado: ${formatearEstado(nuevoEstado)}`,
+            "exito"
         );
 
 
@@ -541,9 +499,9 @@ async function cambiarEstado(
         );
 
 
-        alert(
-            "No fue posible actualizar el pedido.\n\n" +
-            error.message
+        mostrarNotificacion(
+            `No fue posible actualizar el pedido. ${error.message}`,
+            "error"
         );
 
     }
@@ -607,9 +565,6 @@ function formatearFecha(fecha) {
 // =====================================================
 // INICIAR
 // =====================================================
-
-// Solo cargar pedidos cuando estamos
-// realmente en la página de pedidos.
 
 if (
     document.getElementById("pedidos")

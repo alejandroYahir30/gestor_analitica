@@ -11,6 +11,7 @@ const pedidosRoutes = require("./routes/pedidos.routes");
 const authRoutes = require("./routes/auth.routes");
 const ventasRoutes = require("./routes/ventas.routes");
 const estadisticasRoutes = require("./routes/estadisticas.routes");
+const ofertasRoutes = require("./routes/ofertas.routes");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -52,6 +53,7 @@ app.use(
     estadisticasRoutes
 );
 
+app.use("/api/ofertas", ofertasRoutes);
 
 // =====================================================
 // RUTA PRINCIPAL
